@@ -1,6 +1,6 @@
 extends: existence
 message: "Static construction '%s' - consider using a stronger, more active verb."
-level: info
+level: suggestion
 ignorecase: true
 
 # STATIC SENTENCES: Be-verb + adjective/noun without action

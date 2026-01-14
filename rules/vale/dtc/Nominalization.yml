@@ -1,6 +1,6 @@
 extends: existence
 message: "Nominalization '%s' - consider using the verb form for more vigorous prose."
-level: info
+level: suggestion
 ignorecase: true
 
 # NOMINALIZATION: Turning verbs into nouns makes prose static and lifeless

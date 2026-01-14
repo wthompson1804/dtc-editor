@@ -1,6 +1,6 @@
 extends: existence
 message: "Weak hedging: '%s'. Consider being more direct or providing specific qualifications."
-level: info
+level: suggestion
 ignorecase: true
 
 # HEDGING IN TECHNICAL WRITING
