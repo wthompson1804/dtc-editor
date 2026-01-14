@@ -17,6 +17,7 @@ from dtc_editor.holistic.prompts import (
     HOLISTIC_USER_TEMPLATE,
     HOLISTIC_USER_TEMPLATE_MINIMAL,
 )
+from dtc_editor.holistic.acronyms import AcronymTracker
 
 if TYPE_CHECKING:
     import anthropic
@@ -55,9 +56,15 @@ class HolisticRewriter:
     entire paragraphs for overall clarity and vigor.
     """
 
-    def __init__(self, config: RewriteConfig, protected_terms: Set[str]):
+    def __init__(
+        self,
+        config: RewriteConfig,
+        protected_terms: Set[str],
+        acronym_tracker: Optional[AcronymTracker] = None,
+    ):
         self.config = config
         self.protected_terms = protected_terms
+        self.acronym_tracker = acronym_tracker
         self._client: Optional["anthropic.Anthropic"] = None
 
     @property
@@ -79,7 +86,7 @@ class HolisticRewriter:
 
         # Use full template if we have context, minimal otherwise
         if chunk.context_before or chunk.context_after:
-            return HOLISTIC_USER_TEMPLATE.format(
+            base_prompt = HOLISTIC_USER_TEMPLATE.format(
                 section_title=chunk.section_title,
                 context_before=chunk.context_before or "(start of document)",
                 text=chunk.text,
@@ -87,7 +94,16 @@ class HolisticRewriter:
                 protected_terms=terms_str,
             )
         else:
-            return HOLISTIC_USER_TEMPLATE_MINIMAL.format(text=chunk.text)
+            base_prompt = HOLISTIC_USER_TEMPLATE_MINIMAL.format(text=chunk.text)
+
+        # Add acronym guidance if tracker is available
+        if self.acronym_tracker:
+            defined, undefined = self.acronym_tracker.process_chunk(chunk.text, chunk.id)
+            if undefined:
+                defined_str, undefined_str = self.acronym_tracker.format_for_prompt(defined, undefined)
+                base_prompt += f"\n\n## Acronyms to Expand (first use in document)\n{undefined_str}"
+
+        return base_prompt
 
     def _rewrite_single(self, chunk: Chunk) -> RewriteResult:
         """Rewrite a single chunk with retry logic."""

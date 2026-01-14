@@ -31,6 +31,7 @@ from dtc_editor.holistic.validator import (
     ValidatorConfig,
     ValidationResult,
 )
+from dtc_editor.holistic.acronyms import AcronymTracker
 
 logger = logging.getLogger(__name__)
 
@@ -165,6 +166,12 @@ def run_holistic_pipeline(
     if progress_callback:
         progress_callback("chunking", 1, 1)
 
+    # Initialize acronym tracker and scan existing definitions
+    acronym_tracker = AcronymTracker()
+    full_text = "\n\n".join(c.text for c in chunking.chunks if c.is_rewritable)
+    acronym_tracker.scan_existing_definitions(full_text)
+    logger.info(f"Acronym tracker initialized, {len(acronym_tracker.defined)} acronyms already defined")
+
     # Stage 2: Rewrite chunks
     logger.info("Starting holistic rewrite")
     rewriter = HolisticRewriter(
@@ -174,6 +181,7 @@ def run_holistic_pipeline(
             max_concurrent=config.max_concurrent,
         ),
         protected_terms=config.protected_terms,
+        acronym_tracker=acronym_tracker,
     )
 
     def rewrite_progress(completed, total):
