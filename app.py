@@ -113,50 +113,79 @@ if uploaded_file and api_key:
                 progress_bar.progress(100, text="Complete!")
                 status_text.text("")
 
-                # Success message
-                st.success(f"**Done!** Reduced word count by {(1 - result.stats.total_words_final / result.stats.total_words_original) * 100:.1f}%")
+                # Read file contents into memory before temp dir is cleaned up
+                with open(clean_path, "rb") as f:
+                    clean_data = f.read()
+                with open(redline_path, "rb") as f:
+                    redline_data = f.read()
+                with open(review_path, "rb") as f:
+                    review_data = f.read()
 
-                # Stats
-                col1, col2, col3 = st.columns(3)
-                col1.metric("Words Before", f"{result.stats.total_words_original:,}")
-                col2.metric("Words After", f"{result.stats.total_words_final:,}")
-                col3.metric("Chunks Processed", result.stats.rewritable_chunks)
-
-                # Download buttons
-                st.markdown("### Downloads")
-
-                col1, col2, col3 = st.columns(3)
-
-                with col1:
-                    with open(clean_path, "rb") as f:
-                        st.download_button(
-                            "📄 Clean Document",
-                            f.read(),
-                            file_name=f"{doc_stem}.clean.docx",
-                            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        )
-
-                with col2:
-                    with open(redline_path, "rb") as f:
-                        st.download_button(
-                            "📝 Redline",
-                            f.read(),
-                            file_name=f"{doc_stem}.redline.docx",
-                            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        )
-
-                with col3:
-                    with open(review_path, "rb") as f:
-                        st.download_button(
-                            "📋 Change Log",
-                            f.read(),
-                            file_name=f"{doc_stem}.review.md",
-                            mime="text/markdown",
-                        )
+                # Store in session state so they persist across re-runs
+                st.session_state['clean_data'] = clean_data
+                st.session_state['redline_data'] = redline_data
+                st.session_state['review_data'] = review_data
+                st.session_state['doc_stem'] = doc_stem
+                st.session_state['stats'] = {
+                    'words_before': result.stats.total_words_original,
+                    'words_after': result.stats.total_words_final,
+                    'chunks': result.stats.rewritable_chunks,
+                    'reduction': (1 - result.stats.total_words_final / result.stats.total_words_original) * 100
+                }
 
             except Exception as e:
                 st.error(f"Error: {str(e)}")
                 raise e
+
+# Show results if we have them in session state
+if 'clean_data' in st.session_state:
+    stats = st.session_state['stats']
+    doc_stem = st.session_state['doc_stem']
+
+    # Success message
+    st.success(f"**Done!** Reduced word count by {stats['reduction']:.1f}%")
+
+    # Stats
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Words Before", f"{stats['words_before']:,}")
+    col2.metric("Words After", f"{stats['words_after']:,}")
+    col3.metric("Chunks Processed", stats['chunks'])
+
+    # Download buttons
+    st.markdown("### Downloads")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.download_button(
+            "📄 Clean Document",
+            st.session_state['clean_data'],
+            file_name=f"{doc_stem}.clean.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        )
+
+    with col2:
+        st.download_button(
+            "📝 Redline",
+            st.session_state['redline_data'],
+            file_name=f"{doc_stem}.redline.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        )
+
+    with col3:
+        st.download_button(
+            "📋 Change Log",
+            st.session_state['review_data'],
+            file_name=f"{doc_stem}.review.md",
+            mime="text/markdown",
+        )
+
+    # Clear results button
+    if st.button("Process Another Document"):
+        for key in ['clean_data', 'redline_data', 'review_data', 'doc_stem', 'stats']:
+            if key in st.session_state:
+                del st.session_state[key]
+        st.rerun()
 
 elif uploaded_file and not api_key:
     st.warning("Please enter your Anthropic API key to process the document.")
