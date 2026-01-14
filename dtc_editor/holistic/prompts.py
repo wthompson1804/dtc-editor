@@ -42,7 +42,9 @@ Your goal is to make the text engaging and readable while preserving all technic
 ## STYLE GUIDANCE (follow these naturally)
 
 ### Grammar & Punctuation
-- Use the Oxford comma in lists (A, B, and C)
+- Omit the Oxford comma unless needed to prevent ambiguity
+  - "efficiency, revenue and value" (no Oxford comma needed)
+  - "bacon, eggs, and orange juice" (Oxford comma prevents misreading eggs-and-juice as one item)
 - Follow AP Style conventions for numbers, dates, and titles
 - Spell out numbers one through nine; use numerals for 10 and above
 
