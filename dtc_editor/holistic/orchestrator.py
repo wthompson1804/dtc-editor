@@ -301,27 +301,39 @@ def run_holistic_pipeline(
 
 def generate_review_report(result: PipelineResult, compliance=None) -> str:
     """
-    Generate a human-readable review report.
+    Generate an exhaustive review report with all changes.
 
     Args:
         result: Pipeline result with rewrite decisions
         compliance: Optional template compliance result
     """
-    lines = [
-        "# Holistic Rewrite Review Report",
-        "",
-        "## Summary",
-        f"- Total chunks: {result.stats.total_chunks}",
-        f"- Rewritable: {result.stats.rewritable_chunks}",
-        f"- Accepted: {result.stats.accepted}",
-        f"- Rejected: {result.stats.rejected}",
-        f"- Flagged for review: {result.stats.flagged}",
-        f"- Word count: {result.stats.total_words_original} → {result.stats.total_words_final}",
-        f"- Processing time: {result.stats.total_time_s:.1f}s",
-        "",
-    ]
+    from collections import defaultdict
 
-    # Add template compliance section if provided
+    lines = []
+
+    # --- Header ---
+    lines.append("# Holistic Rewrite Review Report")
+    lines.append("")
+
+    # --- Summary Table ---
+    lines.append("## Summary")
+    lines.append("")
+    lines.append("| Metric | Value |")
+    lines.append("|--------|-------|")
+    lines.append(f"| Total chunks | {result.stats.total_chunks} |")
+    lines.append(f"| Rewritable | {result.stats.rewritable_chunks} |")
+    lines.append(f"| Accepted | {result.stats.accepted} |")
+    lines.append(f"| Rejected | {result.stats.rejected} |")
+    lines.append(f"| Flagged | {result.stats.flagged} |")
+    lines.append(f"| Words before | {result.stats.total_words_original:,} |")
+    lines.append(f"| Words after | {result.stats.total_words_final:,} |")
+    if result.stats.total_words_original > 0:
+        reduction = 1 - result.stats.total_words_final / result.stats.total_words_original
+        lines.append(f"| Reduction | {reduction:.1%} |")
+    lines.append(f"| Processing time | {result.stats.total_time_s:.1f}s |")
+    lines.append("")
+
+    # --- Template Compliance ---
     if compliance is not None:
         lines.append("## Template Compliance")
         lines.append("")
@@ -353,10 +365,70 @@ def generate_review_report(result: PipelineResult, compliance=None) -> str:
                 lines.append(f"{compliance.recommendation}")
             lines.append("")
 
-        lines.append("---")
+    lines.append("---")
+    lines.append("")
+
+    # --- Complete Change Log ---
+    lines.append("## Complete Change Log")
+    lines.append("")
+
+    # Group decisions by section, preserving order
+    by_section = defaultdict(list)
+    section_order = []
+    for d in result.decisions:
+        if d.chunk.is_rewritable and d.decision == "accepted":
+            section = d.chunk.section_title or "Untitled Section"
+            if section not in section_order:
+                section_order.append(section)
+            by_section[section].append(d)
+
+    section_stats = []
+    para_num = 0
+
+    for section_title in section_order:
+        lines.append(f"### {section_title}")
         lines.append("")
 
-    # Show flagged items first
+        section_words_before = 0
+        section_words_after = 0
+
+        for d in by_section[section_title]:
+            para_num += 1
+            orig_words = len(d.chunk.text.split())
+            new_words = len(d.rewrite.rewritten.split()) if d.rewrite.rewritten else orig_words
+            delta = orig_words - new_words
+            pct = (delta / orig_words * 100) if orig_words > 0 else 0
+
+            section_words_before += orig_words
+            section_words_after += new_words
+
+            lines.append(f"#### Paragraph {para_num} ({d.chunk.id})")
+            lines.append("")
+            lines.append(f"**Original ({orig_words} words):**")
+            lines.append(f"> {d.chunk.text}")
+            lines.append("")
+            lines.append(f"**Revised ({new_words} words):**")
+            lines.append(f"> {d.rewrite.rewritten}")
+            lines.append("")
+
+            if delta > 0:
+                lines.append(f"**Change:** -{delta} words ({pct:.0f}% reduction)")
+            elif delta < 0:
+                lines.append(f"**Change:** +{abs(delta)} words ({abs(pct):.0f}% increase)")
+            else:
+                lines.append("**Change:** No word count change (restructured)")
+            lines.append("")
+            lines.append("---")
+            lines.append("")
+
+        section_stats.append({
+            "section": section_title,
+            "chunks": len(by_section[section_title]),
+            "before": section_words_before,
+            "after": section_words_after,
+        })
+
+    # --- Flagged Items ---
     flagged = [d for d in result.decisions if d.decision == "flagged"]
     if flagged:
         lines.append("## Items Requiring Review")
@@ -374,33 +446,40 @@ def generate_review_report(result: PipelineResult, compliance=None) -> str:
             lines.append("---")
             lines.append("")
 
-    # Show rejected items
+    # --- Rejected Changes ---
     rejected = [d for d in result.decisions if d.decision == "rejected"]
     if rejected:
-        lines.append("## Rejected Rewrites (kept original)")
+        lines.append("## Rejected Changes (Original Kept)")
         lines.append("")
-        for d in rejected[:10]:  # Limit to first 10
-            lines.append(f"### {d.chunk.id}")
+        for d in rejected:
+            lines.append(f"### {d.chunk.id} ({d.chunk.section_title})")
             lines.append(f"**Reason:** {d.validation.summary}")
+            lines.append("")
+            lines.append("**Original (kept):**")
+            lines.append(f"> {d.chunk.text}")
+            lines.append("")
+            if d.rewrite.rewritten:
+                lines.append("**Rejected rewrite:**")
+                lines.append(f"> {d.rewrite.rewritten}")
+                lines.append("")
             if d.rewrite.error:
                 lines.append(f"**LLM Error:** {d.rewrite.error}")
-            lines.append("")
-
-    # Show sample accepted rewrites
-    accepted = [d for d in result.decisions if d.decision == "accepted" and d.chunk.is_rewritable]
-    if accepted:
-        lines.append("## Sample Accepted Rewrites")
-        lines.append("")
-        for d in accepted[:5]:  # Show first 5
-            lines.append(f"### {d.chunk.id} ({d.chunk.section_title})")
-            lines.append("")
-            lines.append("**Original:**")
-            lines.append(f"> {d.chunk.text[:300]}...")
-            lines.append("")
-            lines.append("**Rewritten:**")
-            lines.append(f"> {d.rewrite.rewritten[:300]}...")
-            lines.append("")
+                lines.append("")
             lines.append("---")
             lines.append("")
+
+    # --- Statistics by Section ---
+    if section_stats:
+        lines.append("## Statistics by Section")
+        lines.append("")
+        lines.append("| Section | Chunks | Words Before | Words After | Reduction |")
+        lines.append("|---------|--------|--------------|-------------|-----------|")
+        for s in section_stats:
+            if s["before"] > 0:
+                red = (1 - s["after"] / s["before"]) * 100
+                # Truncate long section names
+                section_name = s["section"][:35] + "..." if len(s["section"]) > 35 else s["section"]
+                lines.append(f"| {section_name} | {s['chunks']} | {s['before']:,} | {s['after']:,} | {red:.1f}% |")
+        lines.append("")
 
     return "\n".join(lines)

@@ -132,6 +132,20 @@ def _run_holistic_mode(args):
         }
         print(f"TOC: {toc_stats['toc_entries']} entries, TOF: {toc_stats['tof_entries']} figures, TOT: {toc_stats['tot_entries']} tables")
 
+    # Generate redline document (track changes)
+    from dtc_editor.redline import create_redline
+    redline_dest = bundle_dir / f"{doc_stem}.redline.docx"
+    redline_result = create_redline(
+        str(orig_dest),
+        str(clean_dest),
+        str(redline_dest),
+        author=args.author,
+    )
+    if redline_result.status == "ok":
+        print(f"Redline: {redline_result.message}")
+    else:
+        print(f"Redline: {redline_result.status} - {redline_result.message}")
+
     # Generate review report
     review_report = generate_review_report(result, compliance=compliance)
     review_dest = bundle_dir / f"{doc_stem}.review.md"
@@ -170,6 +184,15 @@ def _run_holistic_mode(args):
         output["toc_entries"] = toc_stats["toc_entries"]
         output["tof_entries"] = toc_stats["tof_entries"]
         output["tot_entries"] = toc_stats["tot_entries"]
+
+    # Add redline status
+    output["redline"] = {
+        "status": redline_result.status,
+        "backend": redline_result.backend,
+        "message": redline_result.message,
+    }
+    if redline_result.status == "ok":
+        output["redline_file"] = str(redline_dest)
 
     # Add template compliance (always included)
     output["template_compliance"] = {
