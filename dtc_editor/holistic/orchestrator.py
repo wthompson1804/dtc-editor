@@ -193,7 +193,7 @@ def run_holistic_pipeline(
         progress_callback=rewrite_progress,
     )
 
-    # Stage 3: Validate each rewrite
+    # Stage 3: Validate each rewrite (with Vale retry)
     logger.info("Validating rewrites")
     validator = Validator(ValidatorConfig(
         vale_config=config.vale_config,
@@ -201,12 +201,49 @@ def run_holistic_pipeline(
     ))
 
     validations = []
+    final_rewrites = list(rewrites)  # Copy to allow updates
+
     for i, (chunk, rewrite) in enumerate(zip(chunking.chunks, rewrites)):
         if progress_callback:
             progress_callback("validating", i + 1, len(chunking.chunks))
 
         if chunk.is_rewritable and rewrite.success:
             validation = validator.validate(rewrite.original, rewrite.rewritten)
+
+            # Check for Vale warnings - if found, retry once with feedback
+            vale_issues = validator.get_vale_issues(rewrite.rewritten)
+            if vale_issues and validation.recommendation != "reject":
+                logger.info(f"Vale issues in {chunk.id}, attempting fix...")
+
+                # Convert ValeIssue objects to dicts for the rewriter
+                issues_for_llm = [
+                    {"text": issue.text, "message": issue.message, "rule": issue.rule}
+                    for issue in vale_issues
+                ]
+
+                # Try to fix with LLM
+                fix_result = rewriter.fix_with_vale_feedback(
+                    chunk.id,
+                    rewrite.rewritten,
+                    issues_for_llm,
+                )
+
+                if fix_result.success:
+                    # Re-validate the fixed text
+                    new_validation = validator.validate(rewrite.original, fix_result.rewritten)
+                    new_vale_issues = validator.get_vale_issues(fix_result.rewritten)
+
+                    # Use the fix if it's better or equal
+                    if len(new_vale_issues) <= len(vale_issues):
+                        # Update rewrite result with fixed text
+                        final_rewrites[i] = fix_result
+                        validation = new_validation
+                        if new_vale_issues:
+                            logger.info(f"Fixed {chunk.id}: {len(vale_issues)} -> {len(new_vale_issues)} issues")
+                        else:
+                            logger.info(f"Fixed {chunk.id}: all Vale issues resolved")
+                    else:
+                        logger.info(f"Fix for {chunk.id} didn't improve, keeping original rewrite")
         else:
             # Non-rewritable or failed rewrite: auto-pass validation
             validation = ValidationResult(
@@ -216,6 +253,9 @@ def run_holistic_pipeline(
                 summary="Skipped (non-rewritable or LLM error)",
             )
         validations.append(validation)
+
+    # Use final_rewrites for decision making
+    rewrites = final_rewrites
 
     # Stage 4: Make decisions
     logger.info("Making accept/reject decisions")

@@ -1,6 +1,6 @@
 extends: existence
 message: "Potentially vague intensifier: '%s'. If it adds meaning, keep it; otherwise consider removing."
-level: suggestion
+level: warning
 ignorecase: true
 
 # WEAK LANGUAGE IN TECHNICAL WRITING

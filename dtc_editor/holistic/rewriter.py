@@ -178,6 +178,79 @@ class HolisticRewriter:
             latency_ms=latency,
         )
 
+    def fix_with_vale_feedback(
+        self,
+        chunk_id: str,
+        current_text: str,
+        vale_issues: List[dict],
+    ) -> RewriteResult:
+        """
+        Fix specific Vale issues in already-rewritten text.
+
+        Args:
+            chunk_id: ID of the chunk being fixed
+            current_text: The current rewritten text that has Vale issues
+            vale_issues: List of Vale issues with 'rule', 'message', 'text' keys
+
+        Returns:
+            RewriteResult with the fixed text
+        """
+        # Build feedback prompt
+        issues_text = "\n".join([
+            f"- '{issue.get('text', '')}': {issue.get('message', '')}"
+            for issue in vale_issues[:5]  # Limit to 5 issues
+        ])
+
+        fix_prompt = f"""The following text has style issues that need fixing:
+
+TEXT:
+{current_text}
+
+ISSUES TO FIX:
+{issues_text}
+
+Rewrite the text to fix these specific issues while preserving all meaning, technical terms, and numbers. Return only the fixed text."""
+
+        start_time = time.time()
+
+        try:
+            time.sleep(self.config.min_request_interval)
+
+            message = self.client.messages.create(
+                model=self.config.model,
+                max_tokens=self.config.max_tokens,
+                temperature=0.3,  # Lower temperature for fixes
+                system="You are a technical editor. Fix the specified style issues without changing meaning.",
+                messages=[{"role": "user", "content": fix_prompt}],
+            )
+
+            fixed = ""
+            for block in message.content:
+                if hasattr(block, "text"):
+                    fixed += block.text
+            fixed = fixed.strip()
+
+            latency = (time.time() - start_time) * 1000
+
+            return RewriteResult(
+                chunk_id=chunk_id,
+                original=current_text,
+                rewritten=fixed,
+                success=True,
+                latency_ms=latency,
+            )
+
+        except Exception as e:
+            logger.warning(f"Vale fix failed for {chunk_id}: {e}")
+            return RewriteResult(
+                chunk_id=chunk_id,
+                original=current_text,
+                rewritten=current_text,  # Keep current on failure
+                success=False,
+                error=str(e),
+                latency_ms=(time.time() - start_time) * 1000,
+            )
+
     def rewrite_chunks(
         self,
         chunks: List[Chunk],

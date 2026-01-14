@@ -37,6 +37,15 @@ class ValidationResult:
 
 
 @dataclass
+class ValeIssue:
+    """A single Vale issue for feedback."""
+    rule: str
+    message: str
+    text: str
+    severity: str
+
+
+@dataclass
 class ValidatorConfig:
     """Configuration for the validator."""
     vale_config: Optional[str] = None
@@ -132,6 +141,21 @@ class Validator:
                 os.unlink(temp_path)
 
         return []
+
+    def get_vale_issues(self, text: str) -> List[ValeIssue]:
+        """Get structured Vale issues for LLM feedback."""
+        raw_issues = self._run_vale(text)
+        issues = []
+        for issue in raw_issues:
+            severity = issue.get('Severity', 'suggestion')
+            if severity in ('warning', 'error'):
+                issues.append(ValeIssue(
+                    rule=issue.get('Check', 'unknown'),
+                    message=issue.get('Message', ''),
+                    text=issue.get('Match', ''),
+                    severity=severity,
+                ))
+        return issues
 
     def _check_numbers(self, original: str, rewritten: str) -> CheckResult:
         """Check that all numbers are preserved."""
