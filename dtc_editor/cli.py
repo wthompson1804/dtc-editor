@@ -74,6 +74,21 @@ def _run_holistic_mode(args):
     clean_dest = bundle_dir / f"{doc_stem}.clean.docx"
     emit_clean_docx(args.input_docx, result.final_ir, str(clean_dest))
 
+    # Optional: Add figure captions
+    figure_stats = None
+    if getattr(args, 'add_figure_captions', False):
+        from dtc_editor.adapters.figure_captions import process_figure_captions, CaptionConfig
+        caption_config = CaptionConfig(
+            use_llm=True,
+            api_key=args.anthropic_api_key,
+        )
+        figure_stats = process_figure_captions(
+            str(clean_dest),  # Input: the clean docx we just created
+            str(clean_dest),  # Output: overwrite same file
+            caption_config,
+        )
+        print(f"Figure captions: {figure_stats['total_figures']} figures, {figure_stats['captions_inferred']} inferred, {figure_stats['placeholders_added']} placeholders")
+
     # Generate review report
     review_report = generate_review_report(result)
     review_dest = bundle_dir / f"{doc_stem}.review.md"
@@ -100,6 +115,12 @@ def _run_holistic_mode(args):
         "review_needed": result.review_needed,
         "review_file": str(review_dest),
     }
+
+    # Add figure stats if processed
+    if figure_stats:
+        output["figures_processed"] = figure_stats["total_figures"]
+        output["captions_inferred"] = figure_stats["captions_inferred"]
+        output["placeholders_added"] = figure_stats["placeholders_added"]
 
     print(json.dumps(output, indent=2))
 
@@ -183,6 +204,11 @@ def main():
     holistic_group.add_argument(
         "--review-file",
         help="Output path for review report (markdown)"
+    )
+    holistic_group.add_argument(
+        "--add-figure-captions",
+        action="store_true",
+        help="Detect figures and add missing captions (uses LLM if available)"
     )
 
     # GUI option
