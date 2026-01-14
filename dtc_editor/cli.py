@@ -1,10 +1,17 @@
 from __future__ import annotations
 import argparse
 import json
+import logging
 import os
 from pathlib import Path
 from datetime import datetime, timezone
 from dtc_editor.pipeline import run_pipeline
+
+# Configure logging for holistic pipeline
+logging.basicConfig(
+    level=logging.INFO,
+    format='  %(message)s',
+)
 
 
 def _run_holistic_mode(args):
@@ -41,7 +48,10 @@ def _run_holistic_mode(args):
     # Find vale config
     vale_config = args.vale_config
     if not vale_config:
-        default_vale = Path(__file__).parent.parent / ".vale.ini"
+        # Check rules/vale/.vale.ini first, then repo root
+        default_vale = Path(__file__).parent.parent / "rules" / "vale" / ".vale.ini"
+        if not default_vale.exists():
+            default_vale = Path(__file__).parent.parent / ".vale.ini"
         if default_vale.exists():
             vale_config = str(default_vale)
 
