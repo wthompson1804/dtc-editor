@@ -34,11 +34,6 @@ uploaded_file = st.file_uploader(
     help="Drag and drop a .docx file or click to browse",
 )
 
-# Options
-with st.expander("Options", expanded=False):
-    add_toc = st.checkbox("Add Table of Contents", value=True)
-    add_captions = st.checkbox("Add Figure Captions", value=True)
-
 # Process button
 if uploaded_file and api_key:
     if st.button("✨ Process Document", type="primary", use_container_width=True):
@@ -93,11 +88,9 @@ if uploaded_file and api_key:
 
                 # Emit clean document
                 emit_clean_docx(
-                    result.final_ir,
                     str(input_path),
+                    result.final_ir,
                     str(clean_path),
-                    add_figure_captions=add_captions,
-                    add_toc=add_toc,
                 )
 
                 # Generate review report
