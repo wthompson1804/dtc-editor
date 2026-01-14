@@ -89,6 +89,43 @@ def _run_holistic_mode(args):
         )
         print(f"Figure captions: {figure_stats['total_figures']} figures, {figure_stats['captions_inferred']} inferred, {figure_stats['placeholders_added']} placeholders")
 
+    # Optional: Add TOC/TOF/TOT
+    toc_stats = None
+    if getattr(args, 'add_toc', False):
+        from docx import Document
+        from dtc_editor.adapters.document_restructure import (
+            infer_document_structure,
+            insert_inferred_toc,
+            insert_inferred_tof,
+            insert_inferred_tot,
+        )
+
+        doc = Document(str(clean_dest))
+        inferred = infer_document_structure(doc)
+
+        # Insert in reverse order (TOT, TOF, TOC) so positions stay valid
+        insert_pos = 2  # After title
+
+        tot_inserted = 0
+        tof_inserted = 0
+        toc_inserted = 0
+
+        if inferred.table_entries:
+            tot_inserted = insert_inferred_tot(doc, inferred.table_entries, insert_pos)
+        if inferred.figure_entries:
+            tof_inserted = insert_inferred_tof(doc, inferred.figure_entries, insert_pos)
+        if inferred.toc_entries:
+            toc_inserted = insert_inferred_toc(doc, inferred.toc_entries, insert_pos)
+
+        doc.save(str(clean_dest))
+
+        toc_stats = {
+            "toc_entries": len(inferred.toc_entries),
+            "tof_entries": len(inferred.figure_entries),
+            "tot_entries": len(inferred.table_entries),
+        }
+        print(f"TOC: {toc_stats['toc_entries']} entries, TOF: {toc_stats['tof_entries']} figures, TOT: {toc_stats['tot_entries']} tables")
+
     # Generate review report
     review_report = generate_review_report(result)
     review_dest = bundle_dir / f"{doc_stem}.review.md"
@@ -121,6 +158,12 @@ def _run_holistic_mode(args):
         output["figures_processed"] = figure_stats["total_figures"]
         output["captions_inferred"] = figure_stats["captions_inferred"]
         output["placeholders_added"] = figure_stats["placeholders_added"]
+
+    # Add TOC stats if processed
+    if toc_stats:
+        output["toc_entries"] = toc_stats["toc_entries"]
+        output["tof_entries"] = toc_stats["tof_entries"]
+        output["tot_entries"] = toc_stats["tot_entries"]
 
     print(json.dumps(output, indent=2))
 
@@ -209,6 +252,11 @@ def main():
         "--add-figure-captions",
         action="store_true",
         help="Detect figures and add missing captions (uses LLM if available)"
+    )
+    holistic_group.add_argument(
+        "--add-toc",
+        action="store_true",
+        help="Add Table of Contents, Figures, and Tables"
     )
 
     # GUI option
