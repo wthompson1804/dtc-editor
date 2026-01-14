@@ -1,0 +1,11 @@
+# DTC Style Guide: Document start
+# Rule: Start document with one or more paragraphs of text, not a Chapter header
+# This might be abstract, introduction, or thesis statement
+extends: existence
+message: "Consider starting with introductory text (abstract, introduction, or thesis statement) before the first chapter heading."
+level: suggestion
+scope: heading
+# This is informational - actual check would need document structure analysis
+tokens:
+  # Placeholder - actual validation requires checking if heading comes before any body text
+  - '^Chapter\s+1\b'

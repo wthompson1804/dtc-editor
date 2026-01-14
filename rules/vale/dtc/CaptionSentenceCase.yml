@@ -1,0 +1,10 @@
+# DTC Style Guide: Caption sentence case
+# Rule: Figure & Table captions should be written in sentence style and case
+# Not title case or all caps
+extends: existence
+message: "Caption appears to use title case. Use sentence case instead: '%s'"
+level: suggestion
+scope: paragraph
+tokens:
+  # Title case pattern after Figure/Table X-Y: (multiple capitalized words)
+  - '\b(?:Figure|Table)\s+\d+-\d+:\s+(?:[A-Z][a-z]+\s+){3,}[A-Z][a-z]+'

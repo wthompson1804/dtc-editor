@@ -1,0 +1,19 @@
+# DTC Style Guide: Figure caption format
+# Rule: Format is "Figure X-Y: Caption text ending in period."
+# - Chapter number, hyphen, figure number
+# - Colon after number
+# - Sentence case caption
+# - Ends with period
+extends: existence
+message: "Figure caption format should be 'Figure X-Y: Caption ending in period.' Found: '%s'"
+level: warning
+scope: paragraph
+# Match malformed figure captions
+tokens:
+  # Missing colon after number
+  - '\bFigure\s+\d+-\d+\s+[A-Z]'
+  # Wrong separator (period or space instead of hyphen)
+  - '\bFigure\s+\d+\.\d+:'
+  - '\bFigure\s+\d+\s+\d+:'
+  # No chapter number
+  - '\bFigure\s+\d+:'

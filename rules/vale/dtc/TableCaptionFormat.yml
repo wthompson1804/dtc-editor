@@ -1,0 +1,18 @@
+# DTC Style Guide: Table caption format
+# Rule: Format is "Table X-Y: Caption text ending in period."
+# - Chapter number, hyphen, table number
+# - Colon after number
+# - Sentence case caption
+# - Ends with period
+extends: existence
+message: "Table caption format should be 'Table X-Y: Caption ending in period.' Found: '%s'"
+level: warning
+scope: paragraph
+tokens:
+  # Missing colon after number
+  - '\bTable\s+\d+-\d+\s+[A-Z]'
+  # Wrong separator (period or space instead of hyphen)
+  - '\bTable\s+\d+\.\d+:'
+  - '\bTable\s+\d+\s+\d+:'
+  # No chapter number
+  - '\bTable\s+\d+:'

@@ -1,0 +1,10 @@
+# DTC Style Guide: Reference URL/DOI requirement
+# Rule: Include DOI or URL with hyperlink for all references
+# If DOI available, use doi:xxx or https://doi.org/xxx format
+extends: existence
+message: "Reference may be missing DOI or URL. DTC requires hyperlinks for all external references."
+level: suggestion
+scope: paragraph
+tokens:
+  # Reference pattern without URL or DOI at end
+  - '^\[\d+\][^[]+\d{4}\)[^[]+(?<!doi)[^[]+(?<!https?://)[^[]+\.\s*$'

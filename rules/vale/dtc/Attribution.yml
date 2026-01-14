@@ -1,0 +1,11 @@
+# DTC Style Guide: Attribution requirement
+# Rule: Figures & Tables created from an outside source must be attributed
+# Look for common attribution phrases to ensure they're present when needed
+extends: existence
+message: "If this figure/table is from an external source, ensure it includes attribution (e.g., 'Source:', 'Adapted from:', 'Credit:')."
+level: suggestion
+scope: paragraph
+# This is informational - flags captions that might need attribution
+tokens:
+  # Captions that reference external content without clear attribution
+  - '\b(?:Figure|Table)\s+\d+-\d+:[^.]*(?:from|based on|derived|adapted)[^.]*(?<!Source)[^.]*(?<!Credit)[^.]*\.'

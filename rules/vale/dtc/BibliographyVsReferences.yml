@@ -1,0 +1,10 @@
+# DTC Style Guide: Bibliography vs References
+# Rule: Use "References" if there are in-text citations, "Bibliography" otherwise
+# This rule flags potential misuse
+extends: existence
+message: "'%s' - If there are no in-text cross-references to citations, use 'Bibliography' instead of 'References'."
+level: suggestion
+scope: heading
+tokens:
+  # Just a reminder when "References" heading is seen
+  - '^References$'

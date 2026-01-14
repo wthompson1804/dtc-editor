@@ -1,0 +1,10 @@
+# DTC Style Guide: Trademark and proper noun usage
+# Rule: Use proper trademark designations for DTC entities
+extends: substitution
+message: "Use proper DTC trademark: '%s'"
+level: warning
+ignorecase: true
+swap:
+  'digital twin consortium': "Digital Twin Consortium"
+  'DTC(?! )': "DTC"
+  'digitaltwinconsortium': "Digital Twin Consortium"

@@ -1,0 +1,12 @@
+# DTC Style Guide: APA Reference format
+# Rule: References must follow APA formatting guidelines
+# Format: Author, I.N. (Year). Title. Journal, volume(issue), pages. doi/url
+extends: existence
+message: "Reference '%s' may not follow APA format. Expected: Author (Year). Title. Source. DOI/URL"
+level: suggestion
+scope: paragraph
+tokens:
+  # References starting with number but missing author format
+  - '^\[\d+\]\s+[A-Z][a-z]+\s+[A-Z]\.'
+  # Missing year in parentheses after author
+  - '^\[\d+\]\s+[A-Z][^(]+[^)]\.\s+[A-Z]'

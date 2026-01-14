@@ -1,0 +1,10 @@
+# DTC Style Guide: Title length
+# Rule: Please keep the title less than 7 words
+# Titles should be written in formal academic style
+extends: existence
+message: "Document titles should be less than 7 words per DTC style guide."
+level: warning
+scope: heading
+# Match title-style headings that are too long (8+ words)
+tokens:
+  - '^(?:[A-Z][a-zA-Z]*\s+){7,}[A-Z][a-zA-Z]*'

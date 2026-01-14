@@ -1,0 +1,12 @@
+# DTC Style Guide: Cross-reference format
+# Rule: Cross-references should use "Figure X-Y" or "Table X-Y" format
+# Every figure and table should have a cross-reference in the text
+extends: existence
+message: "Cross-reference '%s' should use format 'Figure X-Y' or 'Table X-Y' with chapter-item numbering."
+level: suggestion
+scope: paragraph
+tokens:
+  # Informal references without proper numbering
+  - '\b(?:the |see |in )(?:figure|table|fig\.|tbl\.)\s+(?:below|above|following|previous)\b'
+  # References with just a single number (no chapter)
+  - '\b(?:Figure|Table)\s+\d+(?!\s*[-–])\b'

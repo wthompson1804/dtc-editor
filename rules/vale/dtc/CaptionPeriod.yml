@@ -1,0 +1,9 @@
+# DTC Style Guide: Caption punctuation
+# Rule: Figure & Table captions should end with a period
+extends: existence
+message: "Caption should end with a period: '%s'"
+level: warning
+scope: paragraph
+tokens:
+  # Caption ending without period (ends with letter or number, then newline/end)
+  - '\b(?:Figure|Table)\s+\d+-\d+:[^.!?]+[a-zA-Z0-9]\s*$'

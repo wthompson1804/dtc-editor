@@ -1,0 +1,11 @@
+# DTC Style Guide: "digital twin" capitalization
+# Rule: As a common noun, "digital twin" is NOT capitalized.
+# Exception: Capitalized in proper nouns like "Digital Twin Consortium"
+extends: substitution
+message: "As a common noun, 'digital twin' should be lowercase (except in proper nouns like 'Digital Twin Consortium')."
+level: warning
+ignorecase: false
+# Flag capitalized "Digital Twin" that's NOT followed by "Consortium"
+swap:
+  'Digital Twin(?! Consortium)': "digital twin"
+  'Digital Twins(?! Consortium)': "digital twins"
