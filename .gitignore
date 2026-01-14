@@ -12,6 +12,8 @@ __pycache__/
 # Test outputs
 test_*/
 dtc_out/
+whitepaper_*/
+demo_output/
 
 # IDE
 .idea/
@@ -28,3 +30,13 @@ build/
 
 # Claude
 .claude/
+
+# Vale binary (users install via Homebrew)
+vale
+
+# Environment files
+.env
+
+# Sample/test documents (keep only sample_document.docx)
+MEC*.docx
+DTC_Technical*.docx

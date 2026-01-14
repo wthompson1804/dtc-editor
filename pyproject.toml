@@ -1,21 +1,17 @@
 [project]
 name = "dtc-editor"
 version = "0.3.0"
-description = "DTC Editorial Engine vNext2: representation-first edit objects + deterministic apply + verification + bundle outputs + LLM rewrites + Google Docs export"
+description = "DTC Editorial Engine: AI-powered document editing with style enforcement"
 requires-python = ">=3.10"
 dependencies = [
   "python-docx>=1.1.0",
   "pyyaml>=6.0.0",
+  "anthropic>=0.18.0",
+  "streamlit>=1.30.0",
 ]
 
 [project.optional-dependencies]
-llm = ["anthropic>=0.18.0"]
 google = ["google-api-python-client>=2.100.0", "google-auth>=2.25.0"]
-all = [
-  "anthropic>=0.18.0",
-  "google-api-python-client>=2.100.0",
-  "google-auth>=2.25.0",
-]
 
 [project.scripts]
 dtc-edit = "dtc_editor.cli:main"
