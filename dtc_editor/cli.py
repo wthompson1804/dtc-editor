@@ -20,6 +20,12 @@ def _run_holistic_mode(args):
     print(f"Loading document: {args.input_docx}")
     ir, inventory = extract_ir_and_inventory(args.input_docx)
 
+    # Check template compliance (read-only)
+    from docx import Document
+    from dtc_editor.adapters.template_reconstruct import detect_template_compliance
+    source_doc = Document(args.input_docx)
+    compliance = detect_template_compliance(source_doc)
+
     # Load protected terms
     terms_path = Path(args.input_docx).parent / "protected_terms.txt"
     if terms_path.exists():
@@ -164,6 +170,15 @@ def _run_holistic_mode(args):
         output["toc_entries"] = toc_stats["toc_entries"]
         output["tof_entries"] = toc_stats["tof_entries"]
         output["tot_entries"] = toc_stats["tot_entries"]
+
+    # Add template compliance (always included)
+    output["template_compliance"] = {
+        "score": f"{compliance.score:.0%}",
+        "is_compliant": compliance.is_compliant,
+        "missing_styles": compliance.missing_styles,
+        "issues": compliance.issues,
+        "recommendation": compliance.recommendation,
+    }
 
     print(json.dumps(output, indent=2))
 
