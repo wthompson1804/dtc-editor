@@ -1,0 +1,168 @@
+extends: substitution
+message: "Consider using '%s' for clearer prose."
+level: suggestion
+ignorecase: true
+
+# CONTEXT-SENSITIVE TERMS RULES
+# Based on Orwell's principle: "Never use a long word where a short one will do"
+# BUT: Only when meaning is preserved. Technical terms of art are preserved.
+#
+# EXCLUDED (technical terms with specific meanings):
+#   - capability/capabilities (technical term for system features)
+#   - functionality (specific to software)
+#   - implement/implementation (standard technical term)
+#   - parameters (technical: input variables, settings)
+#   - optimize/optimization (technical: performance improvement)
+#   - methodology (academic: systematic approach)
+#   - leverage (technical: use advantageously)
+#   - facilitate (process term)
+#   - interface (technical)
+#   - architecture (technical)
+#   - specification (technical)
+#   - configuration (technical)
+#   - component (technical)
+#   - module (technical)
+#   - instance (technical)
+#   - protocol (technical)
+
+swap:
+  # === DTC-SPECIFIC TERMINOLOGY ===
+  "Digital Twin": "digital twin"
+  "Digital twin": "digital twin"
+  "digital Twin": "digital twin"
+  "Digital Twins": "digital twins"
+  "Digital twins": "digital twins"
+  "digital Twins": "digital twins"
+  "Internet of Things": "IoT"
+  "internet of things": "IoT"
+
+  # === UNIVERSALLY WORDY PHRASES (Orwell: cut unnecessary words) ===
+  # These add no meaning and can always be shortened
+  "in order to": "to"
+  "due to the fact that": "because"
+  "for the purpose of": "to"
+  "in the event that": "if"
+  "with regard to": "about"
+  "with respect to": "regarding"
+  "in reference to": "about"
+  "pertaining to": "about"
+  "on the basis of": "based on"
+  "in accordance with": "per"
+  "in conjunction with": "with"
+  "at this point in time": "now"
+  "at the present time": "now"
+  "in the near future": "soon"
+  "prior to": "before"
+  "subsequent to": "after"
+  "in the amount of": "for"
+  "in excess of": "more than"
+  "despite the fact that": "although"
+  "regardless of the fact that": "although"
+  "notwithstanding the fact that": "although"
+  "owing to the fact that": "because"
+  "in light of the fact that": "because"
+  "by virtue of the fact that": "because"
+
+  # === VERBOSE CONSTRUCTIONS (Strunk: omit needless words) ===
+  "is able to": "can"
+  "has the ability to": "can"
+  "has the capacity to": "can"
+  "make a decision": "decide"
+  "reach a decision": "decide"
+  "arrive at a decision": "decide"
+  "come to a conclusion": "conclude"
+  "reach a conclusion": "conclude"
+  "make an assumption": "assume"
+  "give consideration to": "consider"
+  "take into consideration": "consider"
+  "make use of": "use"
+  "have a need for": "need"
+  "have an effect on": "affect"
+  "have an impact on": "affect"
+  "give rise to": "cause"
+  "put an end to": "end"
+  "come to an end": "end"
+  "take action": "act"
+  "make contact with": "contact"
+  "make mention of": "mention"
+  "make reference to": "refer to"
+  "make changes to": "change"
+  "make adjustments to": "adjust"
+  "make improvements to": "improve"
+
+  # === TIME EXPRESSIONS ===
+  "on a daily basis": "daily"
+  "on a weekly basis": "weekly"
+  "on a monthly basis": "monthly"
+  "on a regular basis": "regularly"
+  "on an ongoing basis": "continuously"
+  "at all times": "always"
+  "in all cases": "always"
+  "in most cases": "usually"
+  "in many cases": "often"
+  "in some cases": "sometimes"
+  "at no time": "never"
+  "under no circumstances": "never"
+
+  # === REDUNDANT MODIFIERS ===
+  "absolutely essential": "essential"
+  "actual fact": "fact"
+  "advance planning": "planning"
+  "basic fundamentals": "fundamentals"
+  "close proximity": "near"
+  "completely eliminate": "eliminate"
+  "consensus of opinion": "consensus"
+  "end result": "result"
+  "final outcome": "outcome"
+  "future plans": "plans"
+  "past history": "history"
+  "personal opinion": "opinion"
+  "unexpected surprise": "surprise"
+  "very unique": "unique"
+
+  # === SAFE SIMPLIFICATIONS (meaning preserved) ===
+  # Only words where the simpler form has identical meaning
+  "utilize": "use"
+  "utilization": "use"
+  "commence": "begin"
+  "terminate": "end"
+  "endeavor": "try"
+  "ascertain": "determine"
+  "cognizant": "aware"
+  "sufficient": "enough"
+  "numerous": "many"
+  "obtain": "get"
+  "procure": "get"
+  "purchase": "buy"
+  "relocate": "move"
+  "remuneration": "pay"
+  "retain": "keep"
+  "transmit": "send"
+  "whether or not": "whether"
+  "individuals": "people"
+  "assistance": "help"
+  "initiate": "start"
+  "finalize": "finish"
+
+  # === BUSINESS JARGON (safe to simplify) ===
+  # These are genuinely empty business-speak, not technical terms
+  "synergy": "cooperation"
+  "synergize": "cooperate"
+  "circle back": "return to"
+  "touch base": "contact"
+  "move the needle": "make progress"
+  "low-hanging fruit": "easy wins"
+  "deep dive": "analysis"
+  "take offline": "discuss separately"
+  "bandwidth": "capacity"
+  "ping": "contact"
+  "socialize": "share"
+  "ideate": "brainstorm"
+  "productize": "develop"
+  "solutioning": "problem-solving"
+  "learnings": "lessons"
+  "ask": "request"
+  "deliverables": "outputs"
+  "actionable": "practical"
+  "impactful": "effective"
+  "scalable": "expandable"

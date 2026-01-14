@@ -1,0 +1,88 @@
+extends: existence
+message: "Business jargon: '%s'. Consider plainer language if possible."
+level: suggestion
+ignorecase: true
+
+# JARGON IN TECHNICAL WRITING
+#
+# IMPORTANT: Many "business terms" are legitimate in technical writing:
+# - "ecosystem" - legitimate (software ecosystem, IoT ecosystem)
+# - "scalable" - legitimate technical term
+# - "robust" - legitimate technical term
+# - "enable" - standard technical term
+# - "optimize" - legitimate technical term
+# - "leverage" - can be legitimate in technical contexts
+# - "stakeholder" - legitimate project management term
+# - "granular" - legitimate technical term for fine-grained
+# - "onboarding" - industry standard term
+#
+# This rule only flags EMPTY business buzzwords that rarely add meaning
+# and can almost always be replaced with clearer alternatives.
+# Level is "suggestion" because some may be appropriate in context.
+
+tokens:
+  # === EMPTY BUZZWORDS ===
+  # These rarely convey specific meaning
+  - "synergy"
+  - "synergize"
+  - "synergies"
+  - "paradigm shift"
+  - "disruptive"
+  - "thought leader"
+  - "thought leadership"
+  - "best of breed"
+  - "world-class"
+  - "cutting-edge"
+  - "bleeding edge"
+  - "next-gen"
+  - "game changer"
+  - "game-changer"
+  - "value-add"
+  - "value proposition"
+  - "core competency"
+  - "core competencies"
+  - "mindshare"
+  - "wheelhouse"
+  - "net-net"
+  - "boil the ocean"
+  - "move the needle"
+  - "ideate"
+  - "productize"
+  - "solutioning"
+  - "operationalize"
+  - "incentivize"
+  - "evangelist"
+  - "empower"
+  - "empowerment"
+  - "transformative"
+  - "impactful"
+  - "holistic"
+  - "turnkey"
+  - "rightsizing"
+
+  # === VAGUE ACTION PHRASES ===
+  # These often obscure what's actually happening
+  - "circle back"
+  - "touch base"
+  - "reach out"
+  - "loop in"
+  - "take offline"
+  - "drill down"
+  - "push the envelope"
+  - "bring to the table"
+  - "on the same page"
+  - "at the end of the day"
+  - "going forward"
+  - "win-win"
+  - "low-hanging fruit"
+  - "actionable"
+  - "action item"
+  - "deliverables"
+  - "touchpoint"
+  - "bandwidth"
+  - "customer-centric"
+
+  # Note: "ecosystem", "scalable", "robust", "optimize", "enable",
+  # "leverage", "stakeholder", "granular", "onboarding", "proactive",
+  # "seamless", "vertical", "silo" are deliberately NOT included because
+  # they have legitimate technical meanings in appropriate contexts.

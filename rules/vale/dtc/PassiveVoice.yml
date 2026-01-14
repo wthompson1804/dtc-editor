@@ -1,0 +1,81 @@
+extends: existence
+message: "Passive construction: '%s'. Consider if active voice would be clearer (but passive is often appropriate in technical writing)."
+level: suggestion
+ignorecase: true
+
+# PASSIVE VOICE IN TECHNICAL WRITING
+#
+# IMPORTANT: Passive voice is STANDARD and APPROPRIATE in technical writing:
+# - Methods sections: "The data was collected..."
+# - Specifications: "The system shall be configured..."
+# - Objective reporting: "The results were analyzed..."
+# - Unknown/unimportant actors: "The bug was discovered in version 2.0"
+#
+# Per IEEE and ISO standards, passive voice is acceptable when:
+# - The action is more important than the actor
+# - The actor is unknown or irrelevant
+# - Objectivity is required (scientific writing)
+#
+# This rule only flags PROBLEMATIC passive patterns where:
+# - The passive obscures responsibility
+# - The passive adds unnecessary wordiness
+# - The sentence could be clearer with active voice
+#
+# Level is "suggestion" because technical writing often legitimately uses passive.
+
+tokens:
+  # === PASSIVE THAT OBSCURES RESPONSIBILITY ===
+  # These often hide who should be accountable
+  - "mistakes were made"
+  - "errors were introduced"
+  - "problems were caused"
+  - "issues were created"
+  - "bugs were introduced"
+  - "faults were found"
+  - "failures were detected"
+
+  # === WORDY PASSIVE CONSTRUCTIONS ===
+  # These can almost always be shortened
+  - "it is believed that"
+  - "it is thought that"
+  - "it is assumed that"
+  - "it is expected that"
+  - "it is recommended that"
+  - "it is suggested that"
+  - "it is required that"
+  - "it is necessary that"
+  - "it is important that"
+  - "it is essential that"
+  - "it has been determined that"
+  - "it has been decided that"
+  - "it has been found that"
+  - "it has been shown that"
+  - "it has been demonstrated that"
+  - "it has been established that"
+  - "it has been observed that"
+  - "it has been noted that"
+  - "it was determined that"
+  - "it was decided that"
+  - "it was found that"
+  - "it can be seen that"
+  - "it should be noted that"
+  - "it must be emphasized that"
+  - "it is worth noting that"
+  - "it is interesting to note that"
+  - "it is to be noted that"
+
+  # === UNNECESSARY PASSIVE HEDGES ===
+  # Often weaken statements without adding meaning
+  - "is considered to be"
+  - "is said to be"
+  - "is known to be"
+  - "is thought to be"
+  - "is believed to be"
+  - "is understood to be"
+  - "is felt to be"
+  - "is reported to be"
+  - "is claimed to be"
+
+  # Note: Simple passive constructions like "was measured", "was calculated",
+  # "was designed", "was implemented", etc. are deliberately NOT included
+  # because they are standard and appropriate in technical documentation.

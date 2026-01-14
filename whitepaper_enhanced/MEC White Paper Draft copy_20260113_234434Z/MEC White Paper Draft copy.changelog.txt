@@ -1,0 +1,138 @@
+Review Bundle — 2026-01-13T23:44:34Z
+
+Artifacts
+- Original: whitepaper_enhanced/MEC White Paper Draft copy_20260113_234434Z/MEC White Paper Draft copy.original.docx
+- Clean:    whitepaper_enhanced/MEC White Paper Draft copy_20260113_234434Z/MEC White Paper Draft copy.clean.docx
+- Redline:  [not generated]
+
+PersnicketyBot
+- OK: True
+- Note: All core DTC + representation + verification capabilities present.
+
+Redline Generation
+- Backend: none
+- Status:  skipped
+- Notes:   No compare backend available. Last error: RuntimeError: Word COM requires Windows.
+
+Stats
+- editops_total: 87
+- editops_applied: 74
+- editops_rejected: 12
+- editops_llm: 32
+- editops_vale: 51
+- findings_total: 218
+
+Findings
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=36, clauses~=4).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=65, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=57, clauses~=2).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=51, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=45, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=18, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=44, clauses~=2).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=69, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=28, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=23, clauses~=4).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=24, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=46, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=64, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=30, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=36, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=52, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=53, clauses~=5).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=67, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=52, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=31, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=49, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=46, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=69, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=45, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=48, clauses~=1).
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'ability'.
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'take part'.
+- [INFO] vale vale.dtc.PassiveVoice: Passive voice: 'can be'. Consider using active voice for clarity.
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'give'.
+- [INFO] vale vale.dtc.PassiveVoice: Passive voice: 'can be'. Consider using active voice for clarity.
+- [INFO] vale vale.dtc.PassiveVoice: Passive voice: 'has been'. Consider using active voice for clarity.
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'IoT'.
+- [INFO] vale vale.dtc.WeakLanguage: Weak or vague language: 'relatively'. Consider being more specific or removing.
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'give'.
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'give'.
+- [INFO] vale vale.dtc.WeakLanguage: Weak or vague language: 'essentially'. Consider being more specific or removing.
+- [INFO] vale vale.dtc.WeakLanguage: Weak or vague language: 'just'. Consider being more specific or removing.
+- [INFO] vale vale.dtc.WeakLanguage: Weak or vague language: 'primarily'. Consider being more specific or removing.
+- [WARNING] vale vale.dtc.Jargon: Business jargon: 'vertical'. Consider plainer language.
+- [INFO] vale vale.dtc.PassiveVoice: Passive voice: 'have been'. Consider using active voice for clarity.
+- [INFO] vale vale.dtc.PassiveVoice: Passive voice: 'should be'. Consider using active voice for clarity.
+- [WARNING] vale vale.dtc.Hedging: Hedging language: 'should be'. Consider being more direct and confident.
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'do'.
+- [INFO] vale vale.dtc.WeakLanguage: Weak or vague language: 'generally'. Consider being more specific or removing.
+- [WARNING] vale vale.dtc.Terms: Use preferred term: 'regarding'.
+- [WARNING] vale vale.dtc.Wordiness: Wordy phrase 'for'. Consider 'in terms of'.
+- [WARNING] vale vale.dtc.Jargon: Business jargon: 'bandwidth'. Consider plainer language.
+- [INFO] vale vale.dtc.PassiveVoice: Passive voice: 'can be'. Consider using active voice for clarity.
+- [INFO] vale vale.dtc.PassiveVoice: Passive voice: 'can be'. Consider using active voice for clarity.
+... plus 158 more.
+
+EditOps (first 50)
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=45a740d32cb38241
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=2b89c40943bedd0e
+- applied: clarity.throat_clearing.it_is_important (clarity) @ anchor=68fc15e6ce6fe8cd
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=1e5aed8573b93e37
+- applied: vale.dtc.Terms (vale_style) @ anchor=2b221989e5a31fbd
+- applied: vale.dtc.Terms (vale_style) @ anchor=0021eaf164bb2c03
+- applied: vale.dtc.Terms (vale_style) @ anchor=96d3fede0dd2b3b3
+- applied: vale.dtc.Terms (vale_style) @ anchor=45a740d32cb38241
+- applied: vale.dtc.Terms (vale_style) @ anchor=45a740d32cb38241
+- rejected: vale.dtc.Terms (vale_style) @ anchor=45a740d32cb38241
+- applied: vale.dtc.Terms (vale_style) @ anchor=d99e1da4a58ce460
+- applied: vale.dtc.Terms (vale_style) @ anchor=d99e1da4a58ce460
+- rejected: vale.dtc.Wordiness (vale_style) @ anchor=d99e1da4a58ce460
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=d99e1da4a58ce460
+- applied: vale.dtc.Terms (vale_style) @ anchor=2b89c40943bedd0e
+- applied: vale.dtc.Terms (vale_style) @ anchor=2b89c40943bedd0e
+- applied: vale.dtc.Terms (vale_style) @ anchor=772001886fa59c40
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=7fc822e45d925ef5
+- applied: vale.dtc.Terms (vale_style) @ anchor=df6d560eb699d4e7
+- applied: vale.dtc.Terms (vale_style) @ anchor=f6d60e2d38b074ed
+- applied: vale.dtc.Terms (vale_style) @ anchor=f6d60e2d38b074ed
+- applied: vale.dtc.Terms (vale_style) @ anchor=700eefd13574e5f9
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=c5439ddfb3dde204
+- applied: vale.dtc.Terms (vale_style) @ anchor=c5439ddfb3dde204
+- applied: vale.dtc.Terms (vale_style) @ anchor=5a7cbf4f35f8d11c
+- applied: vale.dtc.Terms (vale_style) @ anchor=5a7cbf4f35f8d11c
+- applied: vale.dtc.Terms (vale_style) @ anchor=1f7b3f1ccc7272b8
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=8b6d319b71d38fcf
+- applied: vale.dtc.Terms (vale_style) @ anchor=1e5aed8573b93e37
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=40ad3938d2088d2b
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=a9709b2b53f91584
+- applied: vale.dtc.Terms (vale_style) @ anchor=c05fa2cb121bb0ea
+- applied: vale.dtc.Terms (vale_style) @ anchor=f0d61e5329fba66a
+- applied: vale.dtc.Terms (vale_style) @ anchor=b63ee9fc2a044bee
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=6d549488ed77cfad
+- applied: vale.dtc.Terms (vale_style) @ anchor=6d549488ed77cfad
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=e50480bd46ca3cf7
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=e50480bd46ca3cf7
+- applied: vale.dtc.Terms (vale_style) @ anchor=e50480bd46ca3cf7
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=9266247aed3f03fd
+- applied: vale.dtc.Terms (vale_style) @ anchor=9266247aed3f03fd
+- applied: vale.dtc.Terms (vale_style) @ anchor=9266247aed3f03fd
+- rejected: vale.dtc.Wordiness (vale_style) @ anchor=9266247aed3f03fd
+- applied: vale.dtc.Wordiness (vale_style) @ anchor=8223433fd3ecd86c
+- applied: vale.dtc.Terms (vale_style) @ anchor=5dc4f328b9cc05e2
+- applied: vale.dtc.Terms (vale_style) @ anchor=47aadeb1d4d6e916
+- applied: vale.dtc.Terms (vale_style) @ anchor=10f5b5c50bdb5e9e
+- applied: vale.dtc.Terms (vale_style) @ anchor=066f3972e52cedea
+- applied: vale.dtc.Terms (vale_style) @ anchor=6ae4c9c6acd551f4
+- rejected: vale.dtc.Wordiness (vale_style) @ anchor=6ae4c9c6acd551f4

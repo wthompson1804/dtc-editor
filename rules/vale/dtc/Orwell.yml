@@ -1,0 +1,93 @@
+extends: existence
+message: "'%s' - Consider revising. %s"
+level: warning
+ignorecase: true
+
+# ORWELL'S PRINCIPLES FOR CLEAR PROSE
+# From "Politics and the English Language" (1946)
+#
+# Rule 1: Never use a dead metaphor, simile, or figure of speech
+# Rule 3: If it is possible to cut a word out, always cut it out
+# Rule 5: Never use jargon if you can think of an everyday equivalent
+#         (BUT: Technical terms of art are preserved - they ARE the precise term)
+#
+# This rule catches patterns that are universally problematic in ANY writing,
+# including technical documents. These are never necessary.
+
+tokens:
+  # === DEAD METAPHORS (Rule 1) ===
+  # These have lost their metaphorical power and add nothing
+  - 'at the end of the day'
+  - 'when all is said and done'
+  - 'bottom line'
+  - 'level the playing field'
+  - 'paradigm shift'
+  - 'sea change'
+  - 'game-changer'
+  - 'tip of the iceberg'
+  - 'elephant in the room'
+  - 'perfect storm'
+  - 'think outside the box'
+  - 'push the envelope'
+  - 'raise the bar'
+  - 'move the goalposts'
+  - 'ball is in .* court'
+  - 'drop the ball'
+  - 'on the same page'
+  - 'hit the ground running'
+  - 'low-hanging fruit'
+  - 'silver bullet'
+  - 'best of breed'
+  - 'bleeding edge'
+  - 'mission critical'
+  - 'value add'
+  - 'win-win'
+  - 'ecosystem'
+  - 'synergies'
+  - 'holistic'
+  - 'robust'
+  - 'best practices'
+  - 'going forward'
+  - 'at this moment in time'
+
+  # === THROAT-CLEARING PHRASES (Rule 3: cut unnecessary words) ===
+  # These add no information and delay the real content
+  - '(?i)^it is important to (note|remember|realize|understand) that'
+  - '(?i)^it should be (noted|mentioned|emphasized|stressed) that'
+  - '(?i)^it is worth (noting|mentioning|pointing out) that'
+  - '(?i)^it goes without saying that'
+  - '(?i)^needless to say'
+  - '(?i)^as is well known'
+  - '(?i)^as has been (noted|mentioned|stated|shown)'
+  - '(?i)^the fact that'
+  - '(?i)^it can be seen that'
+  - '(?i)^it is clear that'
+  - '(?i)^it is evident that'
+  - '(?i)^it is obvious that'
+  - '(?i)^it is apparent that'
+  - '(?i)^it would appear that'
+  - '(?i)^it seems (to be )?that'
+  - '(?i)^in this day and age'
+  - '(?i)^in today.s (world|society|environment)'
+
+  # === EMPTY INTENSIFIERS ===
+  # These weaken rather than strengthen claims
+  - 'very (unique|essential|critical|important|significant)'
+  - 'extremely (unique|essential|critical)'
+  - 'absolutely (essential|critical|necessary)'
+  - 'completely (unique|eliminate|destroy)'
+  - 'totally (unique|different|new)'
+  - 'really (unique|important|significant)'
+  - 'highly (unique)'
+
+  # === WEASEL PHRASES ===
+  # Vague attributions that add no credibility
+  - 'it has been (said|argued|claimed|suggested)'
+  - 'some (say|argue|claim|suggest|believe)'
+  - 'many (say|argue|believe|feel)'
+  - 'experts (say|agree|believe)'
+  - 'research (shows|suggests|indicates)'
+  - 'studies (show|suggest|indicate)'
+
+  # Only flag these when they're truly vague (no citation follows)
+  # Technical writing properly uses these with citations

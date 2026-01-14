@@ -1,0 +1,30 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Test outputs
+test_*/
+dtc_out/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+
+# Build
+*.egg-info/
+dist/
+build/
+
+# Claude
+.claude/

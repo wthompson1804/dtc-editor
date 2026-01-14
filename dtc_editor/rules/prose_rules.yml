@@ -1,0 +1,12 @@
+capabilities:
+  - prose.throat_clearing
+  - prose.wordy_constructions
+
+replacement_rules:
+  - id: prose.wordy.due_to_the_fact_that
+    category: clarity
+    rationale: Simplify
+    search: "due to the fact that"
+    replace: "because"
+    requires_review: false
+    risk_tier: low

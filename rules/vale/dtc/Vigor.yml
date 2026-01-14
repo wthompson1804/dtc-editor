@@ -1,0 +1,52 @@
+extends: existence
+message: "Lifeless construction '%s' - consider more vigorous phrasing."
+level: suggestion
+ignorecase: true
+
+# VIGOR: Patterns that drain life from prose
+#
+# This rule targets constructions that, while grammatically correct,
+# make prose feel bureaucratic, distant, or sleep-inducing.
+#
+# The goal is not "plain language" (which can be dull) but VIGOROUS language
+# that moves, that has actors doing things, that engages the reader.
+#
+# As William Zinsser wrote: "The secret of good writing is to strip every
+# sentence to its cleanest components."
+
+tokens:
+  # === SMOTHERED VERBS ===
+  # Verb buried inside a noun phrase
+  - '\bgive (consideration|attention|thought) to\b'
+  - '\bpay (attention|heed) to\b'
+  - '\blend (support|assistance|credence) to\b'
+  - '\bhave (a|an|the) (impact|effect|influence) on\b'
+  - '\bplace (emphasis|importance|value|stress) on\b'
+  - '\bbring (attention|focus) to\b'
+  - '\bcall (attention|into question)\b'
+  - '\bcome to (a|an|the) (conclusion|realization|decision|understanding)\b'
+  - '\bserve (as|to)\b'
+  - '\bact as (a|an|the)\b'
+  - '\bfunction as (a|an|the)\b'
+
+  # === ZOMBIE NOUNS (nominalizations as subjects) ===
+  # When the action becomes the actor, prose dies
+  - '^(The |A |An )?(implementation|utilization|optimization|realization|actualization) (of |is |was |will )\b'
+  - '^(The |A |An )?(establishment|achievement|accomplishment|attainment) (of |is |was |will )\b'
+  - '^(The |A |An )?(proliferation|propagation|dissemination|distribution) (of |is |was |will )\b'
+
+  # === BUREAUCRATIC HEDGING ===
+  - '\b(the|a|an) (current|present|existing) (situation|state|condition|status)\b'
+  - '\b(in|at|for) (this|the) (current|present) (time|moment|juncture|point)\b'
+  - '\b(on|upon) (a|an) (\w+) basis\b'
+  - '\bin (a|an) (\w+) manner\b'
+  - '\bin (a|an) (\w+) fashion\b'
+  - '\bin terms of\b'
+  - '\bwith (respect|regard|reference) to\b'
+  - '\bfor (the|all) (purposes?|intents?) (of|and)\b'
+
+  # === EVASIVE ATTRIBUTION ===
+  - '\b(is|are|has been|was) (widely|generally|commonly|typically|usually|often|frequently) (accepted|believed|thought|considered|regarded|recognized|acknowledged|understood)\b'
+
+  # === MEANINGLESS INTENSIFIERS ===
+  - '\b(very|extremely|highly|incredibly|remarkably|exceptionally|particularly|especially) (important|significant|critical|crucial|essential|key|vital)\b'

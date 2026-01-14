@@ -1,0 +1,6 @@
+extends: existence
+message: "Figure captions should use DTC format: 'Figure X-Y'."
+level: warning
+scope: paragraph
+tokens:
+  - '^Figure\s+\d+-\d+\b'

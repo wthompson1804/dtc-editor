@@ -1,0 +1,6039 @@
+{
+  "timestamp_utc": "2026-01-13T23:44:34Z",
+  "mode": "rewrite",
+  "persnicketybot": {
+    "ok": true,
+    "missing": [],
+    "notes": [
+      "All core DTC + representation + verification capabilities present."
+    ]
+  },
+  "artifacts": {
+    "original_docx": "whitepaper_enhanced/MEC White Paper Draft copy_20260113_234434Z/MEC White Paper Draft copy.original.docx",
+    "clean_docx": "whitepaper_enhanced/MEC White Paper Draft copy_20260113_234434Z/MEC White Paper Draft copy.clean.docx",
+    "redline_docx": null
+  },
+  "redline_engine": {
+    "backend": "none",
+    "status": "skipped",
+    "message": "No compare backend available. Last error: RuntimeError: Word COM requires Windows."
+  },
+  "google_export": null,
+  "llm": {
+    "enabled": true,
+    "model": "claude-sonnet-4-20250514",
+    "prose_candidates_attempted": 32,
+    "editops_generated": 32
+  },
+  "vale": {
+    "status": "ok",
+    "findings": 182,
+    "editops": 51,
+    "message": "Vale completed: 182 findings, 51 auto-fixable"
+  },
+  "stats": {
+    "editops_total": 87,
+    "editops_applied": 74,
+    "editops_rejected": 12,
+    "editops_llm": 32,
+    "editops_vale": 51,
+    "findings_total": 218
+  },
+  "structure": {
+    "pre": {
+      "headings": [],
+      "heading_styles": [],
+      "paragraph_count": 267,
+      "table_count": 0,
+      "has_abstract": true,
+      "has_references": true,
+      "has_authors": true
+    },
+    "post": {
+      "headings": [],
+      "heading_styles": [],
+      "paragraph_count": 267,
+      "table_count": 0,
+      "has_abstract": true,
+      "has_references": true,
+      "has_authors": true
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "some cases one needs for a digital twin monitor to eavesdrop on ",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "e50480bd46ca3cf7"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 220,
+        "block_index": 190
+      },
+      "before": "The Digital Twin Containers",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "47aadeb1d4d6e916"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 221,
+        "block_index": 191
+      },
+      "before": "nt to place the logic of a digital twin capability out at an edg",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "10f5b5c50bdb5e9e"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 228,
+        "block_index": 195
+      },
+      "before": "on will begin to blur as the digital twin operations begin to take",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "c2d71bc886e1e02f"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=36, clauses~=4).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 15,
+        "block_index": 12
+      },
+      "before": "The benefits to implementing these capabilities well is that computing within and across the multiple tiers enables new applications and features, which can increase efficiency, revenue, and value, and improve the overall experience for the customer.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "36",
+        "clause_estimate": "4",
+        "anchor": "0021eaf164bb2c03"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=65, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 16,
+        "block_index": 13
+      },
+      "before": "This white paper examines some of the earlier research by the Edge Fog Consortium, followed by some of the implementation concepts originating in the ETSI standards group, and then concludes with an implementation approach first championed within the TM Forum and now being used to plan smart infrastructure projects surrounding combined telecommunications and electric power distribution as well as transportation, public safety, manufacturing, and  applications.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "65",
+        "clause_estimate": "2",
+        "anchor": "84008b76ef5f273b"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=57, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "As has been researched extensively by the Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum, the evolution of smart infrastructure is now maturing and needs to add “smartness” within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "57",
+        "clause_estimate": "2",
+        "anchor": "45a740d32cb38241"
+      }
+    },
+    {
+      "rule_id": "prose.throat_clearing_opening",
+      "severity": "info",
+      "category": "prose_quality",
+      "message": "Throat-clearing / pompous opening.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "As has been researched extensively by the Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum, the evolution of smart infrastructure is now maturing and needs to add “smartness” within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "45a740d32cb38241"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=51, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "That has relatively recently given rise to cloud computing and a return to a centralization of network intelligence in large computing data centers, which then drove the need to provide more sensitive controls close to “things” at remote locations that connect them to the cloud to reduce latency and improve efficiency.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "51",
+        "clause_estimate": "3",
+        "anchor": "45a740d32cb38241"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 26,
+        "block_index": 21
+      },
+      "before": "Scale – the plethora of billions of smart elements operating at the edge needing unique circumstantial support outstripping the ability to simplify actions where micromanagement is just not feasible because of the complexity and pure size of the mathematical combinations of considerations.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "1",
+        "anchor": "83f4bc1d7708af53"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=45, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "The original data, detected issue, and the immediate initiated response can be passed along to other potentially more centralized network intelligence centers in parallel for further processing, but the key Is that the critical initial response at the edge is not delayed in the meantime.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "45",
+        "clause_estimate": "2",
+        "anchor": "d99e1da4a58ce460"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=18, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 49,
+        "block_index": 44
+      },
+      "before": "Localization of data and computation can improve privacy, security, reliability, resilience, and safety, which, taken together, comprise trustworthiness.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "18",
+        "clause_estimate": "3",
+        "anchor": "eab5b0c965230171"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=44, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "It is a critical architecture for today’s connected world as it enables low latency, reliable operation, and removes the requirement for persistent cloud connectivity to address emerging use cases in Internet of Things (IoT), 5G, Artificial Intelligence (AI), Virtual Reality and Tactile Internet applications.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "44",
+        "clause_estimate": "2",
+        "anchor": "2b89c40943bedd0e"
+      }
+    },
+    {
+      "rule_id": "prose.throat_clearing_opening",
+      "severity": "info",
+      "category": "prose_quality",
+      "message": "Throat-clearing / pompous opening.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 54,
+        "block_index": 49
+      },
+      "before": "It is important to note that cloud and fog computing are on a mutually beneficial, inter-dependent continuum.",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "68fc15e6ce6fe8cd"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=69, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "However, the bandwidth to transport the sensor and actuator data to and from the cloud could cost thousands of dollars per month; those connections could be susceptible to hackers; it may take several hundred milliseconds to react to an abnormal sensor reading, during which time a major leak could spill significant oil; and if the connection to the cloud is down or the cloud is overloaded, control is lost.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "69",
+        "clause_estimate": "3",
+        "anchor": "2a68a2c304a63911"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=28, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "In that same scenario, if a hierarchy of local fog nodes is placed near the pipeline, they can connect to sensors and actuators with inexpensive local networking facilities.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "28",
+        "clause_estimate": "3",
+        "anchor": "2a68a2c304a63911"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 57,
+        "block_index": 52
+      },
+      "before": "Platform as a service (PaaS) is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage web applications without the complexity of building and maintaining the infrastructure typically associated with developing and launching an application.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "2",
+        "anchor": "7dbe2312f96c6f09"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=23, clauses~=4).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 58,
+        "block_index": 53
+      },
+      "before": "This architecture is applicable across many different markets including, but not limited to, transportation, agriculture, smart-cities, smart–buildings, healthcare, hospitality, energy, and financial services.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "23",
+        "clause_estimate": "4",
+        "anchor": "772001886fa59c40"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=24, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 65,
+        "block_index": 58
+      },
+      "before": "Manageability: Managing all aspects of fog deployments, which include RAS, DevOps, etc., is a critical aspect across all layers of a fog computing hierarchy.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "24",
+        "clause_estimate": "3",
+        "anchor": "6b528c5c2940ac81"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=46, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 74,
+        "block_index": 67
+      },
+      "before": "In synchronization with the thinking coming out of the Open Fog Consortium, the European Telecommunications Standards Institute (ETSI) has generated some more specific recommendations towards implementation of this new approach to tiered smart infrastructure that provides ideas on the implementation focused on guidance for mobile operators.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "46",
+        "clause_estimate": "1",
+        "anchor": "092d6784fee05e12"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=64, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 75,
+        "block_index": 68
+      },
+      "before": "The vocabulary coming from ETSI for this concept is the Multi-access Edge Computing  (“MEC”) discussion (which is why we are using this term for continuity) and it will draw the next wave of investments by Mobile operators who want to take advantage of low latency services that 5G promises - which means running services closer to the consumers (that is close to radio sites).",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "64",
+        "clause_estimate": "2",
+        "anchor": "cf427d93353d860f"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=30, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 88,
+        "block_index": 80
+      },
+      "before": "On the left side you see the servers that are turned into virtualized infrastructure, while on the right site is VIM that manages virtual resources on top of these servers.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "30",
+        "clause_estimate": "3",
+        "anchor": "df6d560eb699d4e7"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=36, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 102,
+        "block_index": 91
+      },
+      "before": "The beauty of MEC ETSI architecture is that MEC Apps are network-aware (so that MEC Apps can act based on that) and that is where MEC Service can help by exposing the network information through APIs.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "36",
+        "clause_estimate": "3",
+        "anchor": "36d343ed389a5af7"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=52, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 143,
+        "block_index": 127
+      },
+      "before": "The new vision for the MEC spans and automates the compute and connectivity product and service catalog configuration requirements for fulfilment from Cloud to Edge and for operations from Edge back to Cloud incorporating appropriate use of private edge / on device, on premise, far edge, near edge through to public cloud.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "52",
+        "clause_estimate": "1",
+        "anchor": "5a7cbf4f35f8d11c"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=53, clauses~=5).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 144,
+        "block_index": 128
+      },
+      "before": "The MEC will enable Vertical Product Managers to easily add their application services and solutions, such as AI and Digital Twins and then easily define, offer, sell, fulfill, manage and bill complex bundled solutions which include multi-sourced partner offerings for target markets, such as SMB, Smart Airports, Smart Agriculture, or Smart City etc.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "53",
+        "clause_estimate": "5",
+        "anchor": "1f7b3f1ccc7272b8"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=67, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 152,
+        "block_index": 134
+      },
+      "before": "In addition to just the physical nodes that provide the resources for the tiered environment, the MEC has a logical architecture associated with providing for the Platform as a Service for microservices running in the nodes, but it also provides for the horizontal services needed to provide the management of the distributed systems environment as well as the cybersecurity elements needed to protect the remote computation nodes.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "67",
+        "clause_estimate": "2",
+        "anchor": "8b6d319b71d38fcf"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 163,
+        "block_index": 144
+      },
+      "before": "For the convenience of simplifying the implementation of the tiers, a common pattern is used for supporting the tiered distributed applications and microservices pods and containers, as well as the elements that provide for the traditional needs of a distributed systems environment.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "2",
+        "anchor": "5866d67f53c63038"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=52, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 175,
+        "block_index": 152
+      },
+      "before": "DDS has a feature of allowing the creation of domains such that all local events can be sequestered into just the one node for the most part, and then only those events that need to be used for internodal communications are allowed to travel outside of the node to the next node.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "52",
+        "clause_estimate": "2",
+        "anchor": "6d549488ed77cfad"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=31, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 176,
+        "block_index": 153
+      },
+      "before": "Now, within each container running in the pod environment, there will be a microservice that can be used to subscribe to various “topics” that are associated with the different DDS messages.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "31",
+        "clause_estimate": "3",
+        "anchor": "d5e3da7e72ea13ed"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=0).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 180,
+        "block_index": 157
+      },
+      "before": "But a distributed logging service like the AnyLog technique operates like a very large sharded database on a massively parallel processing supercomputer where the initial data gathering step and intermediate analysis is performed at the edge as opposed to a central computer.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "0",
+        "anchor": "9c068cd7770439a5"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=49, clauses~=0).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "As such, there is a continuing need to have a “Rosetta Stone” form of ontological mapping capability in any event communications facility such as we are discussing for dealing with both the syntax of messages and the semantic meaning of the data itself in the incoming and outgoing communications.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "49",
+        "clause_estimate": "0",
+        "anchor": "9266247aed3f03fd"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=46, clauses~=0).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 203,
+        "block_index": 177
+      },
+      "before": "The public cloud is still a very important aspect of the overall system of systems, but it needs to be used for its typical uses and then be augmented by the virtual supercomputer sharded approach at the edges to solve the latency and network traffic problem.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "46",
+        "clause_estimate": "0",
+        "anchor": "2195dc2a06b7b320"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 230,
+        "block_index": 197
+      },
+      "before": "As we examine the details a little more closely, the subfunctions begin to decompose into subsystems on the management side as shown in the diagram below, and the agent functions begin to decompose into rings of security for defense in depth purposes.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "1",
+        "anchor": "1c95203ce0c263c1"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=69, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 277,
+        "block_index": 236
+      },
+      "before": "The concept of the distribution is to establish a secure private slice network for the distribution, but then use an intelligent delivery process that stages the distributions in a bit of a multicast approach using the spine for broadcasting the containers down into their appointed nodes using a waterfall sequence, position them for smoke testing and field integration testing, and then wait for activation using a blue/green swap technique.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "69",
+        "clause_estimate": "2",
+        "anchor": "9df54418f1d5f2f8"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=45, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 283,
+        "block_index": 240
+      },
+      "before": "The assembly and testing of delivered containers is done using Infrastructure as Code in which the configuration control involves not only just variables, but also actual scripts that control the assembly process as well as the testing process that accompanies each step of the operation.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "45",
+        "clause_estimate": "3",
+        "anchor": "f742fdba32457f73"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=48, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 309,
+        "block_index": 262
+      },
+      "before": "As this model is used in actual implementations across multiple industries, the lessons learned need to be accumulated so that the model can be dynamically updated for easier use and to speed the proliferation of the technique as a part of the global public and private networking capability.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "48",
+        "clause_estimate": "1",
+        "anchor": "e40b435b89c8e9ff"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 9,
+        "block_index": 6
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "14"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'take part'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 15,
+        "block_index": 12
+      },
+      "before": "participate",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "26"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 15,
+        "block_index": 12
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "26"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'give'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 17,
+        "block_index": 14
+      },
+      "before": "provide",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "30"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 18,
+        "block_index": 15
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "32"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'has been'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "has been",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "36"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'IoT'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "Internet of Things",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "36"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'relatively'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "relatively",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "36"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'give'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "provide",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "36"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'give'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "provide",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "36"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'essentially'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 23,
+        "block_index": 18
+      },
+      "before": "essentially",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "38"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'just'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 26,
+        "block_index": 21
+      },
+      "before": "just",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "44"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'primarily'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 29,
+        "block_index": 24
+      },
+      "before": "primarily",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "50"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'vertical'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 29,
+        "block_index": 24
+      },
+      "before": "vertical",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "50"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'have been'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 43,
+        "block_index": 38
+      },
+      "before": "have been",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "78"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'should be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'should be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'do'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "perform",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'generally'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "generally",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'regarding'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'bandwidth'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "bandwidth",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'meanwhile'. Consider 'in the meantime'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "in the meantime",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "80"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'bandwidth'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 45,
+        "block_index": 40
+      },
+      "before": "bandwidth",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "82"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'relatively'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 46,
+        "block_index": 41
+      },
+      "before": "relatively",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "84"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'should be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 47,
+        "block_index": 42
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "86"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'should be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 47,
+        "block_index": 42
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "86"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'may be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 47,
+        "block_index": 42
+      },
+      "before": "may be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "86"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 47,
+        "block_index": 42
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "86"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'rather'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 48,
+        "block_index": 43
+      },
+      "before": "rather",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "88"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'usually'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 48,
+        "block_index": 43
+      },
+      "before": "usually",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "88"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 49,
+        "block_index": 44
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "90"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'will be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 52,
+        "block_index": 47
+      },
+      "before": "will be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "96"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'IoT'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "Internet of Things",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "98"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'is being'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "is being",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "98"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'enable'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "enable",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "98"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'mission-critical'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "mission-critical",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "98"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'keep'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "retain",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "98"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'completely'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "completely",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "98"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'naturally'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 54,
+        "block_index": 49
+      },
+      "before": "naturally",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "100"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'bandwidth'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "bandwidth",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "102"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'could be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "could be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "102"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'could be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "could be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "102"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'it may'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "it may",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "102"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'robust'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 56,
+        "block_index": 51
+      },
+      "before": "robust",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "104"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'typically'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 57,
+        "block_index": 52
+      },
+      "before": "typically",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "106"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'may be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 58,
+        "block_index": 53
+      },
+      "before": "may be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "108"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'vertical'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 58,
+        "block_index": 53
+      },
+      "before": "vertical",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "108"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'need'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 58,
+        "block_index": 53
+      },
+      "before": "require",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "108"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'stakeholder'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 60,
+        "block_index": 54
+      },
+      "before": "stakeholder",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "110"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'vertical'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 62,
+        "block_index": 55
+      },
+      "before": "vertical",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "112"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'a'. Consider 'one of the'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 63,
+        "block_index": 56
+      },
+      "before": "one of the",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "114"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'may be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 66,
+        "block_index": 59
+      },
+      "before": "may be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "120"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'ecosystem'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 67,
+        "block_index": 60
+      },
+      "before": "ecosystem",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "122"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'should be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 67,
+        "block_index": 60
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "122"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'should be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 67,
+        "block_index": 60
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "122"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 72,
+        "block_index": 65
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "132"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'bandwidth'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 81,
+        "block_index": 74
+      },
+      "before": "bandwidth",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "150"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 81,
+        "block_index": 74
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "150"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'very'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 85,
+        "block_index": 77
+      },
+      "before": "very",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "156"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'so'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 86,
+        "block_index": 78
+      },
+      "before": "so",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "158"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'function'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 88,
+        "block_index": 80
+      },
+      "before": "functionality",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "162"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'must be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 103,
+        "block_index": 92
+      },
+      "before": "must be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "186"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'Bandwidth'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 106,
+        "block_index": 95
+      },
+      "before": "Bandwidth",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "192"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'Bandwidth'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 106,
+        "block_index": 95
+      },
+      "before": "Bandwidth",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "192"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'bandwidth'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 106,
+        "block_index": 95
+      },
+      "before": "bandwidth",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "192"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'should be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 111,
+        "block_index": 99
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "200"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'should be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 111,
+        "block_index": 99
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "200"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'give'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 113,
+        "block_index": 101
+      },
+      "before": "provide",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "204"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'function'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 113,
+        "block_index": 101
+      },
+      "before": "functionality",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "204"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 114,
+        "block_index": 102
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "206"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'could be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 115,
+        "block_index": 103
+      },
+      "before": "could be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "208"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'could be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 115,
+        "block_index": 103
+      },
+      "before": "could be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "208"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'a little'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 120,
+        "block_index": 106
+      },
+      "before": "a little",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "214"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'may be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 124,
+        "block_index": 110
+      },
+      "before": "may be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "222"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'So'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 124,
+        "block_index": 110
+      },
+      "before": "So",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "222"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'should be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 124,
+        "block_index": 110
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "222"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'should be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 124,
+        "block_index": 110
+      },
+      "before": "should be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "222"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'effectively'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 124,
+        "block_index": 110
+      },
+      "before": "effectively",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "222"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 126,
+        "block_index": 112
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "226"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ask'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 139,
+        "block_index": 123
+      },
+      "before": "request",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "248"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 142,
+        "block_index": 126
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "254"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'besides'. Consider 'in addition to'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 142,
+        "block_index": 126
+      },
+      "before": "in addition to",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "254"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'just'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 142,
+        "block_index": 126
+      },
+      "before": "just",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "254"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 142,
+        "block_index": 126
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "254"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'is being'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 142,
+        "block_index": 126
+      },
+      "before": "is being",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "254"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'digital twin'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 143,
+        "block_index": 127
+      },
+      "before": "Digital Twin",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "256"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'highly'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 143,
+        "block_index": 127
+      },
+      "before": "highly",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "256"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'digital twins'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 143,
+        "block_index": 127
+      },
+      "before": "Digital Twins",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "256"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'Vertical'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 144,
+        "block_index": 128
+      },
+      "before": "Vertical",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "258"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'easily'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 144,
+        "block_index": 128
+      },
+      "before": "easily",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "258"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'digital twins'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 144,
+        "block_index": 128
+      },
+      "before": "Digital Twins",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "258"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'easily'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 144,
+        "block_index": 128
+      },
+      "before": "easily",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "258"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'besides'. Consider 'In addition to'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 152,
+        "block_index": 134
+      },
+      "before": "In addition to",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "270"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'just'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 152,
+        "block_index": 134
+      },
+      "before": "just",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "270"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'IoT'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 156,
+        "block_index": 138
+      },
+      "before": "Internet of Things",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "278"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'will be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 157,
+        "block_index": 139
+      },
+      "before": "will be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "280"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'first'. Consider 'in the first place'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 158,
+        "block_index": 140
+      },
+      "before": "in the first place",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "282"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'simply'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 161,
+        "block_index": 142
+      },
+      "before": "simply",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "286"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'is being'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 163,
+        "block_index": 144
+      },
+      "before": "is being",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "290"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'first'. Consider 'in the first place'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 167,
+        "block_index": 146
+      },
+      "before": "in the first place",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "294"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'has been'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 167,
+        "block_index": 146
+      },
+      "before": "has been",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "294"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'typically'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 172,
+        "block_index": 149
+      },
+      "before": "typically",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "300"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 172,
+        "block_index": 149
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "300"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 173,
+        "block_index": 150
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "302"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'will be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 173,
+        "block_index": 150
+      },
+      "before": "will be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "302"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 174,
+        "block_index": 151
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "304"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 175,
+        "block_index": 152
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "306"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'just'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 175,
+        "block_index": 152
+      },
+      "before": "just",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "306"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'mostly'. Consider 'for the most part'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 175,
+        "block_index": 152
+      },
+      "before": "for the most part",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "306"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 175,
+        "block_index": 152
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "306"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'will be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 176,
+        "block_index": 153
+      },
+      "before": "will be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "308"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 176,
+        "block_index": 153
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "308"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'just'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 177,
+        "block_index": 154
+      },
+      "before": "just",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "310"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'is being'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 177,
+        "block_index": 154
+      },
+      "before": "is being",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "310"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "312"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'may be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "may be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "312"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'besides'. Consider 'In addition to'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "In addition to",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "312"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'very'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "very",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "312"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'sometimes'. Consider 'in some cases'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "in some cases",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "312"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'in some cases'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "in some cases",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "312"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'sometimes'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "in some cases",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "312"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'simply'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 180,
+        "block_index": 157
+      },
+      "before": "simply",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "316"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'very'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 180,
+        "block_index": 157
+      },
+      "before": "very",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "316"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'easily'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 180,
+        "block_index": 157
+      },
+      "before": "easily",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "316"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 181,
+        "block_index": 158
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "318"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'first'. Consider 'in the first place'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "in the first place",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "326"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'are being'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "are being",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "326"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "326"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'just'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "just",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "326"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'regarding'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "326"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "326"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 186,
+        "block_index": 163
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "328"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'near'. Consider 'adjacent to'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 189,
+        "block_index": 164
+      },
+      "before": "adjacent to",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "330"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 189,
+        "block_index": 164
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "330"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 189,
+        "block_index": 164
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "330"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 190,
+        "block_index": 165
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "332"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 190,
+        "block_index": 165
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "332"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'usually'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 190,
+        "block_index": 165
+      },
+      "before": "usually",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "332"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'significantly'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 191,
+        "block_index": 166
+      },
+      "before": "significantly",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "334"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'truly'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 191,
+        "block_index": 166
+      },
+      "before": "truly",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "334"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'extremely'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 193,
+        "block_index": 168
+      },
+      "before": "extremely",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "338"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'is being'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 196,
+        "block_index": 170
+      },
+      "before": "is being",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "342"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 196,
+        "block_index": 170
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "342"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'more'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 197,
+        "block_index": 171
+      },
+      "before": "Additional",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "344"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'could be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 202,
+        "block_index": 176
+      },
+      "before": "could be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "354"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'could be'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 202,
+        "block_index": 176
+      },
+      "before": "could be",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "354"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'easily'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 208,
+        "block_index": 180
+      },
+      "before": "easily",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "362"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 211,
+        "block_index": 183
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "368"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 214,
+        "block_index": 184
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "370"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'typically'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 214,
+        "block_index": 184
+      },
+      "before": "typically",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "370"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'digital twin'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 220,
+        "block_index": 190
+      },
+      "before": "Digital Twin",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "382"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'it may'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 221,
+        "block_index": 191
+      },
+      "before": "it may",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "384"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'may be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 221,
+        "block_index": 191
+      },
+      "before": "may be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "384"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 221,
+        "block_index": 191
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "384"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'essentially'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 221,
+        "block_index": 191
+      },
+      "before": "essentially",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "384"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 221,
+        "block_index": 191
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "384"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'a little'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 230,
+        "block_index": 197
+      },
+      "before": "a little",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "396"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'paradigm'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 249,
+        "block_index": 213
+      },
+      "before": "paradigm",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "426"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'limits'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 257,
+        "block_index": 221
+      },
+      "before": "parameters",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "442"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'must be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 262,
+        "block_index": 226
+      },
+      "before": "must be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "452"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'will be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 263,
+        "block_index": 227
+      },
+      "before": "will be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "454"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'just'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 266,
+        "block_index": 229
+      },
+      "before": "just",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "458"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'a bit'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 277,
+        "block_index": 236
+      },
+      "before": "a bit",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "472"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'must be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 284,
+        "block_index": 241
+      },
+      "before": "must be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "482"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.WeakLanguage",
+      "severity": "info",
+      "category": "vale",
+      "message": "Weak or vague language: 'certainly'. Consider being more specific or removing.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 287,
+        "block_index": 244
+      },
+      "before": "certainly",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.WeakLanguage",
+        "line": "488"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'must be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 287,
+        "block_index": 244
+      },
+      "before": "must be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "488"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'ecosystem'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 291,
+        "block_index": 247
+      },
+      "before": "ecosystem",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "494"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'can be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 292,
+        "block_index": 248
+      },
+      "before": "can be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "496"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'regarding'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 298,
+        "block_index": 253
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "506"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 298,
+        "block_index": 253
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "506"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 299,
+        "block_index": 254
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "508"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'regarding'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 299,
+        "block_index": 254
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "508"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'regarding'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 300,
+        "block_index": 255
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "510"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Wordiness",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 300,
+        "block_index": 255
+      },
+      "before": "in terms of",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Wordiness",
+        "line": "510"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Hedging",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Hedging language: 'it might'. Consider being more direct and confident.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 309,
+        "block_index": 262
+      },
+      "before": "it might",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Hedging",
+        "line": "524"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.PassiveVoice",
+      "severity": "info",
+      "category": "vale",
+      "message": "Passive voice: 'might be'. Consider using active voice for clarity.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 309,
+        "block_index": 262
+      },
+      "before": "might be",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "vale_check": "dtc.PassiveVoice",
+        "line": "524"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Jargon",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Business jargon: 'vertical'. Consider plainer language.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 309,
+        "block_index": 262
+      },
+      "before": "vertical",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Jargon",
+        "line": "524"
+      }
+    },
+    {
+      "rule_id": "vale.dtc.Terms",
+      "severity": "warning",
+      "category": "vale",
+      "message": "Use preferred term: 'ability'.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 309,
+        "block_index": 262
+      },
+      "before": "capability",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "vale_check": "dtc.Terms",
+        "line": "524"
+      }
+    }
+  ],
+  "editops": [
+    {
+      "id": "d179d0a9d926",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 78,
+        "span_end": 96,
+        "occurrence": 1
+      },
+      "intent": "dtc_style",
+      "engine": "deterministic_rule",
+      "rule_id": "dtc.terminology.internet_of_things",
+      "rationale": "Capitalize IoT full form",
+      "before": "Internet of Things",
+      "after": "Internet of Things",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "6be744771c77",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2b89c40943bedd0e",
+        "doc_index": 53,
+        "block_type": "paragraph",
+        "span_start": 297,
+        "span_end": 315,
+        "occurrence": 1
+      },
+      "intent": "dtc_style",
+      "engine": "deterministic_rule",
+      "rule_id": "dtc.terminology.internet_of_things",
+      "rationale": "Capitalize IoT full form",
+      "before": "Internet of Things",
+      "after": "Internet of Things",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "38b6cf12af4b",
+      "op": "replace_span",
+      "target": {
+        "anchor": "68fc15e6ce6fe8cd",
+        "doc_index": 54,
+        "block_type": "paragraph",
+        "span_start": 192,
+        "span_end": 221,
+        "occurrence": 1
+      },
+      "intent": "clarity",
+      "engine": "deterministic_rule",
+      "rule_id": "clarity.throat_clearing.it_is_important",
+      "rationale": "Remove throat-clearing",
+      "before": "It is important to note that ",
+      "after": "",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "e765ac2062a2",
+      "op": "replace_span",
+      "target": {
+        "anchor": "1e5aed8573b93e37",
+        "doc_index": 156,
+        "block_type": "paragraph",
+        "span_start": 66,
+        "span_end": 84,
+        "occurrence": 1
+      },
+      "intent": "dtc_style",
+      "engine": "deterministic_rule",
+      "rule_id": "dtc.terminology.internet_of_things",
+      "rationale": "Capitalize IoT full form",
+      "before": "Internet of Things",
+      "after": "Internet of Things",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_ace12765b4f7",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2b221989e5a31fbd",
+        "doc_index": 9,
+        "block_type": "paragraph",
+        "span_start": 64,
+        "span_end": 74,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_c947b700f824",
+      "op": "replace_span",
+      "target": {
+        "anchor": "0021eaf164bb2c03",
+        "doc_index": 15,
+        "block_type": "paragraph",
+        "span_start": 318,
+        "span_end": 329,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'take part'.",
+      "before": "participate",
+      "after": "take part",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_5dd625e2e55c",
+      "op": "replace_span",
+      "target": {
+        "anchor": "96d3fede0dd2b3b3",
+        "doc_index": 17,
+        "block_type": "paragraph",
+        "span_start": 42,
+        "span_end": 49,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'give'.",
+      "before": "provide",
+      "after": "give",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_94f97dd68a7f",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 78,
+        "span_end": 96,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'IoT'.",
+      "before": "Internet of Things",
+      "after": "IoT",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_ca94fa50fb93",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 784,
+        "span_end": 791,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'give'.",
+      "before": "provide",
+      "after": "give",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_ca94fa50fb93",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 784,
+        "span_end": 791,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'give'.",
+      "before": "provide",
+      "after": "give",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "vale_10cef4589fc2",
+      "op": "replace_span",
+      "target": {
+        "anchor": "d99e1da4a58ce460",
+        "doc_index": 44,
+        "block_type": "paragraph",
+        "span_start": 411,
+        "span_end": 418,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'do'.",
+      "before": "perform",
+      "after": "do",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_d33627d3fd32",
+      "op": "replace_span",
+      "target": {
+        "anchor": "d99e1da4a58ce460",
+        "doc_index": 44,
+        "block_type": "paragraph",
+        "span_start": 509,
+        "span_end": 520,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'regarding'.",
+      "before": "in terms of",
+      "after": "regarding",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_2f8dd6054a0b",
+      "op": "replace_span",
+      "target": {
+        "anchor": "d99e1da4a58ce460",
+        "doc_index": 44,
+        "block_type": "paragraph",
+        "span_start": 509,
+        "span_end": 520,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "before": "in terms of",
+      "after": "in terms of",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "vale_2aeae67ff6f7",
+      "op": "replace_span",
+      "target": {
+        "anchor": "d99e1da4a58ce460",
+        "doc_index": 44,
+        "block_type": "paragraph",
+        "span_start": 1386,
+        "span_end": 1401,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'meanwhile'. Consider 'in the meantime'.",
+      "before": "in the meantime",
+      "after": "in the meantime",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_0b9362dd6398",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2b89c40943bedd0e",
+        "doc_index": 53,
+        "block_type": "paragraph",
+        "span_start": 297,
+        "span_end": 315,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'IoT'.",
+      "before": "Internet of Things",
+      "after": "IoT",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_68d79772596f",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2b89c40943bedd0e",
+        "doc_index": 53,
+        "block_type": "paragraph",
+        "span_start": 1106,
+        "span_end": 1112,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'keep'.",
+      "before": "retain",
+      "after": "keep",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_bc13688765ae",
+      "op": "replace_span",
+      "target": {
+        "anchor": "772001886fa59c40",
+        "doc_index": 58,
+        "block_type": "paragraph",
+        "span_start": 542,
+        "span_end": 549,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'need'.",
+      "before": "require",
+      "after": "need",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_8a89ee0c5d27",
+      "op": "replace_span",
+      "target": {
+        "anchor": "7fc822e45d925ef5",
+        "doc_index": 63,
+        "block_type": "paragraph",
+        "span_start": 28,
+        "span_end": 38,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'a'. Consider 'one of the'.",
+      "before": "one of the",
+      "after": "one of the",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_80ddbd8d09e1",
+      "op": "replace_span",
+      "target": {
+        "anchor": "df6d560eb699d4e7",
+        "doc_index": 88,
+        "block_type": "paragraph",
+        "span_start": 17,
+        "span_end": 30,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'function'.",
+      "before": "functionality",
+      "after": "function",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_dad2ab553365",
+      "op": "replace_span",
+      "target": {
+        "anchor": "f6d60e2d38b074ed",
+        "doc_index": 113,
+        "block_type": "paragraph",
+        "span_start": 31,
+        "span_end": 38,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'give'.",
+      "before": "provide",
+      "after": "give",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_d0dde768cdac",
+      "op": "replace_span",
+      "target": {
+        "anchor": "f6d60e2d38b074ed",
+        "doc_index": 113,
+        "block_type": "paragraph",
+        "span_start": 39,
+        "span_end": 52,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'function'.",
+      "before": "functionality",
+      "after": "function",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_299ae9f4e957",
+      "op": "replace_span",
+      "target": {
+        "anchor": "700eefd13574e5f9",
+        "doc_index": 139,
+        "block_type": "paragraph",
+        "span_start": 78,
+        "span_end": 85,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ask'.",
+      "before": "request",
+      "after": "ask",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_c95d8e78e07c",
+      "op": "replace_span",
+      "target": {
+        "anchor": "c5439ddfb3dde204",
+        "doc_index": 142,
+        "block_type": "paragraph",
+        "span_start": 189,
+        "span_end": 203,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'besides'. Consider 'in addition to'.",
+      "before": "in addition to",
+      "after": "in addition to",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_4f14f2b93f68",
+      "op": "replace_span",
+      "target": {
+        "anchor": "c5439ddfb3dde204",
+        "doc_index": 142,
+        "block_type": "paragraph",
+        "span_start": 410,
+        "span_end": 420,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_8469d914a80c",
+      "op": "replace_span",
+      "target": {
+        "anchor": "5a7cbf4f35f8d11c",
+        "doc_index": 143,
+        "block_type": "paragraph",
+        "span_start": 9,
+        "span_end": 21,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'digital twin'.",
+      "before": "Digital Twin",
+      "after": "digital twin",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_db8990cfb789",
+      "op": "replace_span",
+      "target": {
+        "anchor": "5a7cbf4f35f8d11c",
+        "doc_index": 143,
+        "block_type": "paragraph",
+        "span_start": 234,
+        "span_end": 247,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'digital twins'.",
+      "before": "Digital Twins",
+      "after": "digital twins",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_9dc816da3964",
+      "op": "replace_span",
+      "target": {
+        "anchor": "1f7b3f1ccc7272b8",
+        "doc_index": 144,
+        "block_type": "paragraph",
+        "span_start": 117,
+        "span_end": 130,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'digital twins'.",
+      "before": "Digital Twins",
+      "after": "digital twins",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_f1fcb0473996",
+      "op": "replace_span",
+      "target": {
+        "anchor": "8b6d319b71d38fcf",
+        "doc_index": 152,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 14,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'besides'. Consider 'In addition to'.",
+      "before": "In addition to",
+      "after": "In addition to",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_178c54d3c7eb",
+      "op": "replace_span",
+      "target": {
+        "anchor": "1e5aed8573b93e37",
+        "doc_index": 156,
+        "block_type": "paragraph",
+        "span_start": 66,
+        "span_end": 84,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'IoT'.",
+      "before": "Internet of Things",
+      "after": "IoT",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_9cf3ed44087a",
+      "op": "replace_span",
+      "target": {
+        "anchor": "40ad3938d2088d2b",
+        "doc_index": 158,
+        "block_type": "paragraph",
+        "span_start": 84,
+        "span_end": 102,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'first'. Consider 'in the first place'.",
+      "before": "in the first place",
+      "after": "in the first place",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_f0f96edf1525",
+      "op": "replace_span",
+      "target": {
+        "anchor": "a9709b2b53f91584",
+        "doc_index": 167,
+        "block_type": "paragraph",
+        "span_start": 295,
+        "span_end": 313,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'first'. Consider 'in the first place'.",
+      "before": "in the first place",
+      "after": "in the first place",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_f34e02d2ce86",
+      "op": "replace_span",
+      "target": {
+        "anchor": "c05fa2cb121bb0ea",
+        "doc_index": 172,
+        "block_type": "paragraph",
+        "span_start": 207,
+        "span_end": 217,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_12514092a920",
+      "op": "replace_span",
+      "target": {
+        "anchor": "f0d61e5329fba66a",
+        "doc_index": 173,
+        "block_type": "paragraph",
+        "span_start": 29,
+        "span_end": 39,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_74a3a3a3ea0b",
+      "op": "replace_span",
+      "target": {
+        "anchor": "b63ee9fc2a044bee",
+        "doc_index": 174,
+        "block_type": "paragraph",
+        "span_start": 68,
+        "span_end": 78,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_ab8232edaca9",
+      "op": "replace_span",
+      "target": {
+        "anchor": "6d549488ed77cfad",
+        "doc_index": 175,
+        "block_type": "paragraph",
+        "span_start": 576,
+        "span_end": 593,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'mostly'. Consider 'for the most part'.",
+      "before": "for the most part",
+      "after": "for the most part",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_e886374c04b2",
+      "op": "replace_span",
+      "target": {
+        "anchor": "6d549488ed77cfad",
+        "doc_index": 175,
+        "block_type": "paragraph",
+        "span_start": 753,
+        "span_end": 763,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_26dd78d09847",
+      "op": "replace_span",
+      "target": {
+        "anchor": "e50480bd46ca3cf7",
+        "doc_index": 178,
+        "block_type": "paragraph",
+        "span_start": 135,
+        "span_end": 149,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'besides'. Consider 'In addition to'.",
+      "before": "In addition to",
+      "after": "In addition to",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_7892c68c2684",
+      "op": "replace_span",
+      "target": {
+        "anchor": "e50480bd46ca3cf7",
+        "doc_index": 178,
+        "block_type": "paragraph",
+        "span_start": 298,
+        "span_end": 311,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'sometimes'. Consider 'in some cases'.",
+      "before": "in some cases",
+      "after": "in some cases",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_76614e910705",
+      "op": "replace_span",
+      "target": {
+        "anchor": "e50480bd46ca3cf7",
+        "doc_index": 178,
+        "block_type": "paragraph",
+        "span_start": 298,
+        "span_end": 311,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'sometimes'.",
+      "before": "in some cases",
+      "after": "sometimes",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_d0ba5dda9046",
+      "op": "replace_span",
+      "target": {
+        "anchor": "9266247aed3f03fd",
+        "doc_index": 185,
+        "block_type": "paragraph",
+        "span_start": 169,
+        "span_end": 187,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'first'. Consider 'in the first place'.",
+      "before": "in the first place",
+      "after": "in the first place",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_a269cf4438e4",
+      "op": "replace_span",
+      "target": {
+        "anchor": "9266247aed3f03fd",
+        "doc_index": 185,
+        "block_type": "paragraph",
+        "span_start": 397,
+        "span_end": 407,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_3fb571615be2",
+      "op": "replace_span",
+      "target": {
+        "anchor": "9266247aed3f03fd",
+        "doc_index": 185,
+        "block_type": "paragraph",
+        "span_start": 741,
+        "span_end": 752,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'regarding'.",
+      "before": "in terms of",
+      "after": "regarding",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_f8af551b2447",
+      "op": "replace_span",
+      "target": {
+        "anchor": "9266247aed3f03fd",
+        "doc_index": 185,
+        "block_type": "paragraph",
+        "span_start": 741,
+        "span_end": 752,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "before": "in terms of",
+      "after": "in terms of",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "vale_13889d40833c",
+      "op": "replace_span",
+      "target": {
+        "anchor": "8223433fd3ecd86c",
+        "doc_index": 189,
+        "block_type": "paragraph",
+        "span_start": 106,
+        "span_end": 117,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'near'. Consider 'adjacent to'.",
+      "before": "adjacent to",
+      "after": "adjacent to",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_2f71057b05e7",
+      "op": "replace_span",
+      "target": {
+        "anchor": "5dc4f328b9cc05e2",
+        "doc_index": 197,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 10,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'more'.",
+      "before": "Additional",
+      "after": "more",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_0143812a3623",
+      "op": "replace_span",
+      "target": {
+        "anchor": "47aadeb1d4d6e916",
+        "doc_index": 220,
+        "block_type": "paragraph",
+        "span_start": 4,
+        "span_end": 16,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'digital twin'.",
+      "before": "Digital Twin",
+      "after": "digital twin",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_5d6a3b9b52ec",
+      "op": "replace_span",
+      "target": {
+        "anchor": "10f5b5c50bdb5e9e",
+        "doc_index": 221,
+        "block_type": "paragraph",
+        "span_start": 99,
+        "span_end": 109,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_61cced381154",
+      "op": "replace_span",
+      "target": {
+        "anchor": "066f3972e52cedea",
+        "doc_index": 257,
+        "block_type": "paragraph",
+        "span_start": 288,
+        "span_end": 298,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'limits'.",
+      "before": "parameters",
+      "after": "limits",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_8fc5686f0d6b",
+      "op": "replace_span",
+      "target": {
+        "anchor": "6ae4c9c6acd551f4",
+        "doc_index": 298,
+        "block_type": "paragraph",
+        "span_start": 14,
+        "span_end": 25,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'regarding'.",
+      "before": "in terms of",
+      "after": "regarding",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_01886209782c",
+      "op": "replace_span",
+      "target": {
+        "anchor": "6ae4c9c6acd551f4",
+        "doc_index": 298,
+        "block_type": "paragraph",
+        "span_start": 14,
+        "span_end": 25,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "before": "in terms of",
+      "after": "in terms of",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "vale_4fec48f9b924",
+      "op": "replace_span",
+      "target": {
+        "anchor": "83040f2fb76e1746",
+        "doc_index": 299,
+        "block_type": "paragraph",
+        "span_start": 11,
+        "span_end": 22,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "before": "in terms of",
+      "after": "in terms of",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_cdd09aa8ee98",
+      "op": "replace_span",
+      "target": {
+        "anchor": "83040f2fb76e1746",
+        "doc_index": 299,
+        "block_type": "paragraph",
+        "span_start": 11,
+        "span_end": 22,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'regarding'.",
+      "before": "in terms of",
+      "after": "regarding",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_5cb472f22f0b",
+      "op": "replace_span",
+      "target": {
+        "anchor": "aabbc4b68f6a1c1e",
+        "doc_index": 300,
+        "block_type": "paragraph",
+        "span_start": 18,
+        "span_end": 29,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'regarding'.",
+      "before": "in terms of",
+      "after": "regarding",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "vale_3e878091390a",
+      "op": "replace_span",
+      "target": {
+        "anchor": "aabbc4b68f6a1c1e",
+        "doc_index": 300,
+        "block_type": "paragraph",
+        "span_start": 18,
+        "span_end": 29,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Wordiness",
+      "rationale": "Wordy phrase 'for'. Consider 'in terms of'.",
+      "before": "in terms of",
+      "after": "in terms of",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "vale_d526854fc84d",
+      "op": "replace_span",
+      "target": {
+        "anchor": "e40b435b89c8e9ff",
+        "doc_index": 309,
+        "block_type": "paragraph",
+        "span_start": 482,
+        "span_end": 492,
+        "occurrence": null
+      },
+      "intent": "vale_style",
+      "engine": "vale",
+      "rule_id": "vale.dtc.Terms",
+      "rationale": "Use preferred term: 'ability'.",
+      "before": "capability",
+      "after": "ability",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_5719277a44ee",
+      "op": "replace_span",
+      "target": {
+        "anchor": "0021eaf164bb2c03",
+        "doc_index": 15,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 250,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=36, clauses~=4).",
+      "before": "The benefits to implementing these capabilities well is that computing within and across the multiple tiers enables new applications and features, which can increase efficiency, revenue, and value, and improve the overall experience for the customer.",
+      "after": "The benefits of implementing these capabilities well include enabling computing within and across the multiple tiers. This computing capability enables new applications and features, which can increase efficiency, revenue, and value, and improve the overall experience for the customer.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_48967a7b591a",
+      "op": "replace_span",
+      "target": {
+        "anchor": "84008b76ef5f273b",
+        "doc_index": 16,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 464,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=65, clauses~=2).",
+      "before": "This white paper examines some of the earlier research by the Edge Fog Consortium, followed by some of the implementation concepts originating in the ETSI standards group, and then concludes with an implementation approach first championed within the TM Forum and now being used to plan smart infrastructure projects surrounding combined telecommunications and electric power distribution as well as transportation, public safety, manufacturing, and  applications.",
+      "after": "This white paper examines some of the earlier research by the Edge Fog Consortium. It then reviews implementation concepts originating in the ETSI standards group. Finally, it concludes with an implementation approach first championed within the TM Forum and now being used to plan smart infrastructure projects surrounding combined telecommunications and electric power distribution as well as transportation, public safety, manufacturing, and applications.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_eb7e9b060783",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 382,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=57, clauses~=2).",
+      "before": "As has been researched extensively by the Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum, the evolution of smart infrastructure is now maturing and needs to add “smartness” within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "after": "The Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum have researched this extensively. The evolution of smart infrastructure is now maturing. It needs to add \"smartness\" within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "llm_39078ab0c416",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 382,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.throat_clearing_opening",
+      "rationale": "LLM rewrite: Throat-clearing / pompous opening.",
+      "before": "As has been researched extensively by the Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum, the evolution of smart infrastructure is now maturing and needs to add “smartness” within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "after": "The Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum have extensively researched how the evolution of smart infrastructure is now maturing and needs to add \"smartness\" within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "llm_bb4c0f6c0e48",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 606,
+        "span_end": 926,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=51, clauses~=3).",
+      "before": "That has relatively recently given rise to cloud computing and a return to a centralization of network intelligence in large computing data centers, which then drove the need to provide more sensitive controls close to “things” at remote locations that connect them to the cloud to reduce latency and improve efficiency.",
+      "after": "That has relatively recently given rise to cloud computing and a return to a centralization of network intelligence in large computing data centers. This then drove the need to provide more sensitive controls close to \"things\" at remote locations that connect them to the cloud. These controls reduce latency and improve efficiency.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "llm_b25233fbe729",
+      "op": "replace_span",
+      "target": {
+        "anchor": "83f4bc1d7708af53",
+        "doc_index": 26,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 290,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=42, clauses~=1).",
+      "before": "Scale – the plethora of billions of smart elements operating at the edge needing unique circumstantial support outstripping the ability to simplify actions where micromanagement is just not feasible because of the complexity and pure size of the mathematical combinations of considerations.",
+      "after": "Scale – billions of smart elements operate at the edge, each needing unique circumstantial support. This outstrips the ability to simplify actions. Micromanagement is not feasible because of the complexity and pure size of the mathematical combinations of considerations.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_bad2de7af677",
+      "op": "replace_span",
+      "target": {
+        "anchor": "d99e1da4a58ce460",
+        "doc_index": 44,
+        "block_type": "paragraph",
+        "span_start": 1114,
+        "span_end": 1402,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=45, clauses~=2).",
+      "before": "The original data, detected issue, and the immediate initiated response can be passed along to other potentially more centralized network intelligence centers in parallel for further processing, but the key Is that the critical initial response at the edge is not delayed in the meantime.",
+      "after": "The original data, detected issue, and the immediate initiated response can be passed along to other potentially more centralized network intelligence centers in parallel for further processing. However, the key is that the critical initial response at the edge is not delayed in the meantime.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_8e7938ed870d",
+      "op": "replace_span",
+      "target": {
+        "anchor": "eab5b0c965230171",
+        "doc_index": 49,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 153,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=18, clauses~=3).",
+      "before": "Localization of data and computation can improve privacy, security, reliability, resilience, and safety, which, taken together, comprise trustworthiness.",
+      "after": "Localization of data and computation can improve privacy, security, reliability, resilience, and safety. These qualities, taken together, comprise trustworthiness.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_ea449187d5ca",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2b89c40943bedd0e",
+        "doc_index": 53,
+        "block_type": "paragraph",
+        "span_start": 97,
+        "span_end": 407,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=44, clauses~=2).",
+      "before": "It is a critical architecture for today’s connected world as it enables low latency, reliable operation, and removes the requirement for persistent cloud connectivity to address emerging use cases in Internet of Things (IoT), 5G, Artificial Intelligence (AI), Virtual Reality and Tactile Internet applications.",
+      "after": "It is a critical architecture for today's connected world. It enables low latency, reliable operation, and removes the requirement for persistent cloud connectivity. This addresses emerging use cases in Internet of Things (IoT), 5G, Artificial Intelligence (AI), Virtual Reality and Tactile Internet applications.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "llm_f23b9918df23",
+      "op": "replace_span",
+      "target": {
+        "anchor": "68fc15e6ce6fe8cd",
+        "doc_index": 54,
+        "block_type": "paragraph",
+        "span_start": 192,
+        "span_end": 301,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.throat_clearing_opening",
+      "rationale": "LLM rewrite: Throat-clearing / pompous opening.",
+      "before": "It is important to note that cloud and fog computing are on a mutually beneficial, inter-dependent continuum.",
+      "after": "Cloud and fog computing are on a mutually beneficial, inter-dependent continuum.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "llm_7a64e933a2e3",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2a68a2c304a63911",
+        "doc_index": 55,
+        "block_type": "paragraph",
+        "span_start": 338,
+        "span_end": 747,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=69, clauses~=3).",
+      "before": "However, the bandwidth to transport the sensor and actuator data to and from the cloud could cost thousands of dollars per month; those connections could be susceptible to hackers; it may take several hundred milliseconds to react to an abnormal sensor reading, during which time a major leak could spill significant oil; and if the connection to the cloud is down or the cloud is overloaded, control is lost.",
+      "after": "However, the bandwidth to transport the sensor and actuator data to and from the cloud could cost thousands of dollars per month. Those connections could be susceptible to hackers. It may take several hundred milliseconds to react to an abnormal sensor reading, during which time a major leak could spill significant oil. If the connection to the cloud is down or the cloud is overloaded, control is lost.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_0d03a7f37847",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2a68a2c304a63911",
+        "doc_index": 55,
+        "block_type": "paragraph",
+        "span_start": 748,
+        "span_end": 921,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=28, clauses~=3).",
+      "before": "In that same scenario, if a hierarchy of local fog nodes is placed near the pipeline, they can connect to sensors and actuators with inexpensive local networking facilities.",
+      "after": "In that same scenario, a hierarchy of local fog nodes can be placed near the pipeline. They can connect to sensors and actuators with inexpensive local networking facilities.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_cd80ef6db6c0",
+      "op": "replace_span",
+      "target": {
+        "anchor": "7dbe2312f96c6f09",
+        "doc_index": 57,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 296,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=42, clauses~=2).",
+      "before": "Platform as a service (PaaS) is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage web applications without the complexity of building and maintaining the infrastructure typically associated with developing and launching an application.",
+      "after": "Platform as a service (PaaS) is a category of cloud computing services that provides a platform for customers. This platform allows customers to develop, run, and manage web applications. PaaS eliminates the complexity of building and maintaining the infrastructure typically associated with developing and launching an application.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_c31d73b62e89",
+      "op": "replace_span",
+      "target": {
+        "anchor": "772001886fa59c40",
+        "doc_index": 58,
+        "block_type": "paragraph",
+        "span_start": 279,
+        "span_end": 488,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=23, clauses~=4).",
+      "before": "This architecture is applicable across many different markets including, but not limited to, transportation, agriculture, smart-cities, smart–buildings, healthcare, hospitality, energy, and financial services.",
+      "after": "This architecture is applicable across many different markets. These markets include, but are not limited to, transportation, agriculture, smart-cities, smart–buildings, healthcare, hospitality, energy, and financial services.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_a1c400a6d411",
+      "op": "replace_span",
+      "target": {
+        "anchor": "6b528c5c2940ac81",
+        "doc_index": 65,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 157,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=24, clauses~=3).",
+      "before": "Manageability: Managing all aspects of fog deployments, which include RAS, DevOps, etc., is a critical aspect across all layers of a fog computing hierarchy.",
+      "after": "Manageability: Managing all aspects of fog deployments is a critical aspect across all layers of a fog computing hierarchy. These deployments include RAS, DevOps, etc.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_3607ba13a482",
+      "op": "replace_span",
+      "target": {
+        "anchor": "092d6784fee05e12",
+        "doc_index": 74,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 342,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=46, clauses~=1).",
+      "before": "In synchronization with the thinking coming out of the Open Fog Consortium, the European Telecommunications Standards Institute (ETSI) has generated some more specific recommendations towards implementation of this new approach to tiered smart infrastructure that provides ideas on the implementation focused on guidance for mobile operators.",
+      "after": "In synchronization with the thinking coming out of the Open Fog Consortium, the European Telecommunications Standards Institute (ETSI) has generated more specific recommendations for implementing this new approach to tiered smart infrastructure. These recommendations provide implementation ideas focused on guidance for mobile operators.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_e5ffa4b1b5d4",
+      "op": "replace_span",
+      "target": {
+        "anchor": "cf427d93353d860f",
+        "doc_index": 75,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 377,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=64, clauses~=2).",
+      "before": "The vocabulary coming from ETSI for this concept is the Multi-access Edge Computing  (“MEC”) discussion (which is why we are using this term for continuity) and it will draw the next wave of investments by Mobile operators who want to take advantage of low latency services that 5G promises - which means running services closer to the consumers (that is close to radio sites).",
+      "after": "The vocabulary coming from ETSI for this concept is the Multi-access Edge Computing (\"MEC\") discussion, which is why we are using this term for continuity. This concept will draw the next wave of investments by Mobile operators who want to take advantage of low latency services that 5G promises. This means running services closer to the consumers, close to radio sites.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_e7fd08cee753",
+      "op": "replace_span",
+      "target": {
+        "anchor": "df6d560eb699d4e7",
+        "doc_index": 88,
+        "block_type": "paragraph",
+        "span_start": 289,
+        "span_end": 461,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=30, clauses~=3).",
+      "before": "On the left side you see the servers that are turned into virtualized infrastructure, while on the right site is VIM that manages virtual resources on top of these servers.",
+      "after": "On the left side you see the servers that are turned into virtualized infrastructure. On the right side is VIM that manages virtual resources on top of these servers.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_fedbfe32eda4",
+      "op": "replace_span",
+      "target": {
+        "anchor": "36d343ed389a5af7",
+        "doc_index": 102,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 200,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=36, clauses~=3).",
+      "before": "The beauty of MEC ETSI architecture is that MEC Apps are network-aware (so that MEC Apps can act based on that) and that is where MEC Service can help by exposing the network information through APIs.",
+      "after": "The beauty of MEC ETSI architecture is that MEC Apps are network-aware, allowing them to act based on network conditions. MEC Service supports this capability by exposing network information through APIs.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_dc9b4592031d",
+      "op": "replace_span",
+      "target": {
+        "anchor": "5a7cbf4f35f8d11c",
+        "doc_index": 143,
+        "block_type": "paragraph",
+        "span_start": 251,
+        "span_end": 574,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=52, clauses~=1).",
+      "before": "The new vision for the MEC spans and automates the compute and connectivity product and service catalog configuration requirements for fulfilment from Cloud to Edge and for operations from Edge back to Cloud incorporating appropriate use of private edge / on device, on premise, far edge, near edge through to public cloud.",
+      "after": "The new vision for the MEC spans and automates the compute and connectivity product and service catalog configuration requirements. This includes fulfilment from Cloud to Edge and operations from Edge back to Cloud. The vision incorporates appropriate use of private edge / on device, on premise, far edge, near edge through to public cloud.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_d3b5cf15f83e",
+      "op": "replace_span",
+      "target": {
+        "anchor": "1f7b3f1ccc7272b8",
+        "doc_index": 144,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 351,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=53, clauses~=5).",
+      "before": "The MEC will enable Vertical Product Managers to easily add their application services and solutions, such as AI and Digital Twins and then easily define, offer, sell, fulfill, manage and bill complex bundled solutions which include multi-sourced partner offerings for target markets, such as SMB, Smart Airports, Smart Agriculture, or Smart City etc.",
+      "after": "The MEC will enable Vertical Product Managers to easily add their application services and solutions, such as AI and Digital Twins. They can then easily define, offer, sell, fulfill, manage and bill complex bundled solutions which include multi-sourced partner offerings for target markets, such as SMB, Smart Airports, Smart Agriculture, or Smart City etc.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "llm_2e81f4aef212",
+      "op": "replace_span",
+      "target": {
+        "anchor": "8b6d319b71d38fcf",
+        "doc_index": 152,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 431,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=67, clauses~=2).",
+      "before": "In addition to just the physical nodes that provide the resources for the tiered environment, the MEC has a logical architecture associated with providing for the Platform as a Service for microservices running in the nodes, but it also provides for the horizontal services needed to provide the management of the distributed systems environment as well as the cybersecurity elements needed to protect the remote computation nodes.",
+      "after": "The MEC has a logical architecture that extends beyond just the physical nodes providing resources for the tiered environment. This architecture provides Platform as a Service for microservices running in the nodes. It also provides horizontal services needed for managing the distributed systems environment and cybersecurity elements needed to protect the remote computation nodes.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_e0b49234917f",
+      "op": "replace_span",
+      "target": {
+        "anchor": "5866d67f53c63038",
+        "doc_index": 163,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 283,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=42, clauses~=2).",
+      "before": "For the convenience of simplifying the implementation of the tiers, a common pattern is used for supporting the tiered distributed applications and microservices pods and containers, as well as the elements that provide for the traditional needs of a distributed systems environment.",
+      "after": "To simplify the implementation of the tiers, a common pattern is used. This pattern supports the tiered distributed applications and microservices pods and containers. It also supports the elements that provide for the traditional needs of a distributed systems environment.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_b7e4dc89e450",
+      "op": "replace_span",
+      "target": {
+        "anchor": "6d549488ed77cfad",
+        "doc_index": 175,
+        "block_type": "paragraph",
+        "span_start": 453,
+        "span_end": 732,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=52, clauses~=2).",
+      "before": "DDS has a feature of allowing the creation of domains such that all local events can be sequestered into just the one node for the most part, and then only those events that need to be used for internodal communications are allowed to travel outside of the node to the next node.",
+      "after": "DDS has a feature of allowing the creation of domains such that all local events can be sequestered into just the one node for the most part. Then only those events that need to be used for internodal communications are allowed to travel outside of the node to the next node.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_dd4bc1e2dee0",
+      "op": "replace_span",
+      "target": {
+        "anchor": "d5e3da7e72ea13ed",
+        "doc_index": 176,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 190,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=31, clauses~=3).",
+      "before": "Now, within each container running in the pod environment, there will be a microservice that can be used to subscribe to various “topics” that are associated with the different DDS messages.",
+      "after": "Now, within each container running in the pod environment, there will be a microservice. This microservice can be used to subscribe to various \"topics\" that are associated with the different DDS messages.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_21d7141ed360",
+      "op": "replace_span",
+      "target": {
+        "anchor": "9c068cd7770439a5",
+        "doc_index": 180,
+        "block_type": "paragraph",
+        "span_start": 207,
+        "span_end": 482,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=42, clauses~=0).",
+      "before": "But a distributed logging service like the AnyLog technique operates like a very large sharded database on a massively parallel processing supercomputer where the initial data gathering step and intermediate analysis is performed at the edge as opposed to a central computer.",
+      "after": "But a distributed logging service like the AnyLog technique operates like a very large sharded database on a massively parallel processing supercomputer. The initial data gathering step and intermediate analysis is performed at the edge as opposed to a central computer.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_794af169225f",
+      "op": "replace_span",
+      "target": {
+        "anchor": "9266247aed3f03fd",
+        "doc_index": 185,
+        "block_type": "paragraph",
+        "span_start": 307,
+        "span_end": 604,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=49, clauses~=0).",
+      "before": "As such, there is a continuing need to have a “Rosetta Stone” form of ontological mapping capability in any event communications facility such as we are discussing for dealing with both the syntax of messages and the semantic meaning of the data itself in the incoming and outgoing communications.",
+      "after": "As such, there is a continuing need to have a \"Rosetta Stone\" form of ontological mapping capability in any event communications facility such as we are discussing. This capability must deal with both the syntax of messages and the semantic meaning of the data itself in the incoming and outgoing communications.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {
+        "reason": "before_mismatch"
+      },
+      "status": "rejected"
+    },
+    {
+      "id": "llm_f0dbe4ea3b48",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2195dc2a06b7b320",
+        "doc_index": 203,
+        "block_type": "paragraph",
+        "span_start": 158,
+        "span_end": 417,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=46, clauses~=0).",
+      "before": "The public cloud is still a very important aspect of the overall system of systems, but it needs to be used for its typical uses and then be augmented by the virtual supercomputer sharded approach at the edges to solve the latency and network traffic problem.",
+      "after": "The public cloud is still a very important aspect of the overall system of systems. However, it needs to be used for its typical uses and then be augmented by the virtual supercomputer sharded approach at the edges. This approach solves the latency and network traffic problem.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_c24121e8db2e",
+      "op": "replace_span",
+      "target": {
+        "anchor": "1c95203ce0c263c1",
+        "doc_index": 230,
+        "block_type": "paragraph",
+        "span_start": 201,
+        "span_end": 452,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=42, clauses~=1).",
+      "before": "As we examine the details a little more closely, the subfunctions begin to decompose into subsystems on the management side as shown in the diagram below, and the agent functions begin to decompose into rings of security for defense in depth purposes.",
+      "after": "As we examine the details a little more closely, the subfunctions begin to decompose into subsystems on the management side as shown in the diagram below. The agent functions begin to decompose into rings of security for defense in depth purposes.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_3b16ef69057d",
+      "op": "replace_span",
+      "target": {
+        "anchor": "9df54418f1d5f2f8",
+        "doc_index": 277,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 443,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=69, clauses~=2).",
+      "before": "The concept of the distribution is to establish a secure private slice network for the distribution, but then use an intelligent delivery process that stages the distributions in a bit of a multicast approach using the spine for broadcasting the containers down into their appointed nodes using a waterfall sequence, position them for smoke testing and field integration testing, and then wait for activation using a blue/green swap technique.",
+      "after": "The concept of the distribution is to establish a secure private slice network for the distribution. The system then uses an intelligent delivery process that stages the distributions in a bit of a multicast approach using the spine for broadcasting the containers down into their appointed nodes using a waterfall sequence. The containers are positioned for smoke testing and field integration testing, and then wait for activation using a blue/green swap technique.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_ac1ae87e69a1",
+      "op": "replace_span",
+      "target": {
+        "anchor": "f742fdba32457f73",
+        "doc_index": 283,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 288,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=45, clauses~=3).",
+      "before": "The assembly and testing of delivered containers is done using Infrastructure as Code in which the configuration control involves not only just variables, but also actual scripts that control the assembly process as well as the testing process that accompanies each step of the operation.",
+      "after": "The assembly and testing of delivered containers is done using Infrastructure as Code. The configuration control involves not only variables, but also actual scripts that control the assembly process. These scripts also control the testing process that accompanies each step of the operation.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "llm_1c56a21f5628",
+      "op": "replace_span",
+      "target": {
+        "anchor": "e40b435b89c8e9ff",
+        "doc_index": 309,
+        "block_type": "paragraph",
+        "span_start": 201,
+        "span_end": 493,
+        "occurrence": null
+      },
+      "intent": "prose_rewrite",
+      "engine": "llm_proposal",
+      "rule_id": "llm.prose.runon_or_complex",
+      "rationale": "LLM rewrite: Possible run-on/complex sentence (words=48, clauses~=1).",
+      "before": "As this model is used in actual implementations across multiple industries, the lessons learned need to be accumulated so that the model can be dynamically updated for easier use and to speed the proliferation of the technique as a part of the global public and private networking capability.",
+      "after": "As this model is used in actual implementations across multiple industries, the lessons learned need to be accumulated. This accumulation allows the model to be dynamically updated for easier use. It also speeds the proliferation of the technique as a part of the global public and private networking capability.",
+      "confidence": 0.85,
+      "requires_review": true,
+      "risk_tier": "high",
+      "verification": {},
+      "status": "failed"
+    }
+  ]
+}

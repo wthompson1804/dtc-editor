@@ -1,0 +1,71 @@
+Review Bundle — 2026-01-13T23:34:39Z
+
+Artifacts
+- Original: whitepaper_vale_output3/MEC White Paper Draft copy_20260113_233439Z/MEC White Paper Draft copy.original.docx
+- Clean:    whitepaper_vale_output3/MEC White Paper Draft copy_20260113_233439Z/MEC White Paper Draft copy.clean.docx
+- Redline:  [not generated]
+
+PersnicketyBot
+- OK: True
+- Note: All core DTC + representation + verification capabilities present.
+
+Redline Generation
+- Backend: none
+- Status:  skipped
+- Notes:   No compare backend available. Last error: RuntimeError: Word COM requires Windows.
+
+Stats
+- editops_total: 4
+- editops_applied: 4
+- editops_rejected: 0
+- editops_llm: 0
+- editops_vale: 0
+- findings_total: 40
+
+Findings
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=36, clauses~=4).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=65, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=57, clauses~=2).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=51, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=45, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=18, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=44, clauses~=2).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=69, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=28, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=23, clauses~=4).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=24, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=46, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=64, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=30, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=36, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=52, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=53, clauses~=5).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=67, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=52, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=31, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=49, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=46, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=69, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=45, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=48, clauses~=1).
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twin'.
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twins'.
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twins'.
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twin'.
+
+EditOps (first 50)
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=45a740d32cb38241
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=2b89c40943bedd0e
+- applied: clarity.throat_clearing.it_is_important (clarity) @ anchor=68fc15e6ce6fe8cd
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=1e5aed8573b93e37

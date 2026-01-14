@@ -1,0 +1,68 @@
+extends: existence
+message: "Weak hedging: '%s'. Consider being more direct or providing specific qualifications."
+level: suggestion
+ignorecase: true
+
+# HEDGING IN TECHNICAL WRITING
+#
+# IMPORTANT: Some hedging is NECESSARY and APPROPRIATE in technical writing:
+# - "approximately" for imprecise measurements
+# - "may" / "might" for genuine possibilities
+# - "should" for expected behavior
+# - "typically" / "generally" for patterns
+# - "we believe" with supporting evidence
+#
+# This rule only flags WEAK hedging that adds nothing:
+# - Informal qualifiers ("kind of", "sort of")
+# - Excessive stacking of hedges
+# - Weasel attributions without specifics
+
+tokens:
+  # === INFORMAL/CONVERSATIONAL HEDGING ===
+  # These are always too casual for technical writing
+  - "kind of"
+  - "sort of"
+  - "a bit"
+  - "a little"
+  - "like maybe"
+  - "just maybe"
+  - "pretty much"
+  - "more or less"
+  - "in a way"
+  - "in a sense"
+  - "for the most part"
+
+  # === DOUBLE/STACKED HEDGING ===
+  # Over-hedging weakens claims unnecessarily
+  - "could possibly"
+  - "might possibly"
+  - "may possibly"
+  - "quite possibly"
+  - "it is possible that it may"
+  - "may or may not"
+  - "could potentially"
+  - "might potentially"
+
+  # === WEASEL ATTRIBUTIONS ===
+  # Vague attributions that should be specific or removed
+  - "it could be argued"
+  - "it could be said"
+  - "one might argue"
+  - "one might say"
+  - "some might say"
+  - "some would argue"
+  - "it has been argued"
+  - "it has been suggested"
+
+  # === UNNECESSARY QUALIFIERS ===
+  # These often add no information
+  - "to a certain extent"
+  - "to a large extent"
+  - "up to a point"
+  - "I think that"
+  - "I feel that"
+  - "I believe that"
+
+  # Note: "we believe", "we think", "it seems", "appears to", "may", "might"
+  # are deliberately NOT included - these are appropriate in technical writing
+  # when expressing genuine uncertainty or preliminary conclusions

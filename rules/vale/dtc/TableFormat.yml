@@ -1,0 +1,6 @@
+extends: existence
+message: "Table captions should use DTC format: 'Table X-Y'."
+level: warning
+scope: paragraph
+tokens:
+  - '^Table\s+\d+-\d+\b'

@@ -1,0 +1,107 @@
+Review Bundle — 2026-01-13T23:37:06Z
+
+Artifacts
+- Original: whitepaper_full/MEC White Paper Draft copy_20260113_233706Z/MEC White Paper Draft copy.original.docx
+- Clean:    whitepaper_full/MEC White Paper Draft copy_20260113_233706Z/MEC White Paper Draft copy.clean.docx
+- Redline:  [not generated]
+
+PersnicketyBot
+- OK: True
+- Note: All core DTC + representation + verification capabilities present.
+
+Redline Generation
+- Backend: none
+- Status:  skipped
+- Notes:   No compare backend available. Last error: RuntimeError: Word COM requires Windows.
+
+Stats
+- editops_total: 40
+- editops_applied: 37
+- editops_rejected: 3
+- editops_llm: 32
+- editops_vale: 4
+- findings_total: 40
+
+Findings
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=36, clauses~=4).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=65, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=57, clauses~=2).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=51, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=45, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=18, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=44, clauses~=2).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=69, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=28, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=23, clauses~=4).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=24, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=46, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=64, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=30, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=36, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=52, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=53, clauses~=5).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=67, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=52, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=31, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=49, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=46, clauses~=0).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=42, clauses~=1).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=69, clauses~=2).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=45, clauses~=3).
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=48, clauses~=1).
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twin'.
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twins'.
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twins'.
+- [WARNING] vale vale.dtc.Terms: Use DTC preferred term: 'digital twin'.
+
+EditOps (first 50)
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=45a740d32cb38241
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=2b89c40943bedd0e
+- applied: clarity.throat_clearing.it_is_important (clarity) @ anchor=68fc15e6ce6fe8cd
+- applied: dtc.terminology.internet_of_things (dtc_style) @ anchor=1e5aed8573b93e37
+- applied: vale.dtc.Terms (vale_style) @ anchor=5a7cbf4f35f8d11c
+- applied: vale.dtc.Terms (vale_style) @ anchor=5a7cbf4f35f8d11c
+- applied: vale.dtc.Terms (vale_style) @ anchor=1f7b3f1ccc7272b8
+- applied: vale.dtc.Terms (vale_style) @ anchor=47aadeb1d4d6e916
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=0021eaf164bb2c03
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=84008b76ef5f273b
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=45a740d32cb38241
+- rejected: llm.prose.throat_clearing_opening (prose_rewrite) @ anchor=45a740d32cb38241
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=45a740d32cb38241
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=83f4bc1d7708af53
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=d99e1da4a58ce460
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=eab5b0c965230171
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=2b89c40943bedd0e
+- rejected: llm.prose.throat_clearing_opening (prose_rewrite) @ anchor=68fc15e6ce6fe8cd
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=2a68a2c304a63911
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=2a68a2c304a63911
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=7dbe2312f96c6f09
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=772001886fa59c40
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=6b528c5c2940ac81
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=092d6784fee05e12
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=cf427d93353d860f
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=df6d560eb699d4e7
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=36d343ed389a5af7
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=5a7cbf4f35f8d11c
+- rejected: llm.prose.runon_or_complex (prose_rewrite) @ anchor=1f7b3f1ccc7272b8
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=8b6d319b71d38fcf
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=5866d67f53c63038
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=6d549488ed77cfad
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=d5e3da7e72ea13ed
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=9c068cd7770439a5
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=9266247aed3f03fd
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=2195dc2a06b7b320
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=1c95203ce0c263c1
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=9df54418f1d5f2f8
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=f742fdba32457f73
+- applied: llm.prose.runon_or_complex (prose_rewrite) @ anchor=e40b435b89c8e9ff

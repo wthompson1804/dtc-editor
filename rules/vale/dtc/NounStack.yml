@@ -1,0 +1,42 @@
+extends: existence
+message: "Dense noun phrase '%s' - consider restructuring for clarity."
+level: suggestion
+ignorecase: true
+
+# NOUN STACKS - Dense noun phrases that are hard to parse
+#
+# This rule targets truly problematic patterns, not all technical terms.
+# Technical writing legitimately needs some noun stacking ("digital twin capability").
+# But 5+ word noun phrases or specific patterns are usually too dense.
+#
+# Focus on:
+# 1. Very long noun chains (5+ modifiers)
+# 2. Specific patterns that are always confusing
+# 3. Chains ending in abstract nouns that could be unpacked
+
+tokens:
+  # === PREPOSITIONAL CHAINS (always problematic) ===
+  # "of the X of the Y" can almost always be restructured
+  - '\bof the \w+ of the \w+\b'
+  - '\bfor the \w+ of the \w+\b'
+  - '\bto the \w+ of the \w+\b'
+  - '\bin the \w+ of the \w+\b'
+
+  # === VERY LONG NOUN PHRASES (5+ words before main noun) ===
+  # These are genuinely hard to parse
+  - '\b\w+ \w+ \w+ \w+ (implementation|implementations)\b'
+  - '\b\w+ \w+ \w+ \w+ (architecture|architectures)\b'
+  - '\b\w+ \w+ \w+ \w+ (infrastructure|infrastructures)\b'
+  - '\b\w+ \w+ \w+ \w+ (management|framework|strategy)\b'
+
+  # === SPECIFIC PROBLEM PATTERNS ===
+  # These particular combinations are consistently confusing
+  - '\b(edge|fog|cloud) computing (infrastructure|architecture) (management|deployment|implementation)\b'
+  - '\bdigital twin (capability|system|platform) (management|implementation|deployment) (strategy|framework)\b'
+  - '\bnetwork (infrastructure|architecture) (optimization|management) (system|framework)\b'
+  - '\bdata (processing|management|analytics) (infrastructure|architecture|platform) (implementation|deployment)\b'
+
+  # === ZOMBIE NOUN SUBJECTS ===
+  # Sentences starting with dense abstract noun phrases
+  - '^The (implementation|deployment|optimization|management|utilization) of the \w+ \w+ \w+\b'
+  - '^The (establishment|achievement|realization|actualization) of \w+ \w+ \w+\b'

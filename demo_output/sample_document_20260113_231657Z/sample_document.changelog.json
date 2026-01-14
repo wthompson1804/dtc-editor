@@ -1,0 +1,249 @@
+{
+  "timestamp_utc": "2026-01-13T23:16:57Z",
+  "mode": "safe",
+  "persnicketybot": {
+    "ok": true,
+    "missing": [],
+    "notes": [
+      "All core DTC + representation + verification capabilities present."
+    ]
+  },
+  "artifacts": {
+    "original_docx": "demo_output/sample_document_20260113_231657Z/sample_document.original.docx",
+    "clean_docx": "demo_output/sample_document_20260113_231657Z/sample_document.clean.docx",
+    "redline_docx": null
+  },
+  "redline_engine": {
+    "backend": "none",
+    "status": "skipped",
+    "message": "No compare backend available. Last error: RuntimeError: Word COM requires Windows."
+  },
+  "google_export": null,
+  "llm": {
+    "enabled": false,
+    "model": null,
+    "prose_candidates_attempted": 0,
+    "editops_generated": 0
+  },
+  "stats": {
+    "editops_total": 3,
+    "editops_applied": 3,
+    "editops_rejected": 0,
+    "editops_llm": 0,
+    "findings_total": 7
+  },
+  "structure": {
+    "pre": {
+      "headings": [],
+      "heading_styles": [],
+      "paragraph_count": 8,
+      "table_count": 0,
+      "has_abstract": true,
+      "has_references": true,
+      "has_authors": true
+    },
+    "post": {
+      "headings": [],
+      "heading_styles": [],
+      "paragraph_count": 8,
+      "table_count": 0,
+      "has_abstract": true,
+      "has_references": true,
+      "has_authors": true
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dtc.captions.figure_format",
+      "severity": "warning",
+      "category": "dtc_style",
+      "message": "Figure caption should use Chapter-Figure format (e.g., Figure 3-1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 5,
+        "block_index": 5
+      },
+      "before": "Figure 1 shows the basic architec",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "eef11ff002411328"
+      }
+    },
+    {
+      "rule_id": "dtc.captions.table_format",
+      "severity": "warning",
+      "category": "dtc_style",
+      "message": "Table caption should use Chapter-Table format (e.g., Table 3-1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 5,
+        "block_index": 5
+      },
+      "before": " the basic architecture. Table 2 provides configuration p",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "eef11ff002411328"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 1,
+        "block_index": 1
+      },
+      "before": "guidance on implementing a Digital Twin system for industrial ap",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "c5d7bd641d77e8ea"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 2,
+        "block_index": 2
+      },
+      "before": "r to successfully deploy a Digital Twin, organizations must firs",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "f8397d36ecac2513"
+      }
+    },
+    {
+      "rule_id": "prose.throat_clearing_opening",
+      "severity": "info",
+      "category": "prose_quality",
+      "message": "Throat-clearing / pompous opening.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 2,
+        "block_index": 2
+      },
+      "before": "It is important to note that proper data synchronization is critical for real-time operations.",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "f8397d36ecac2513"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=46, clauses~=6).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 3,
+        "block_index": 3
+      },
+      "before": "Each phase should be validated before proceeding to the next stage, which includes data collection, model creation, and integration testing, because these steps build upon each other and require careful coordination between multiple teams that may have different priorities and timelines that need to be aligned.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "46",
+        "clause_estimate": "6",
+        "anchor": "35891f1c849b35fe"
+      }
+    },
+    {
+      "rule_id": "prose.throat_clearing_opening",
+      "severity": "info",
+      "category": "prose_quality",
+      "message": "Throat-clearing / pompous opening.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 4,
+        "block_index": 4
+      },
+      "before": "As has been demonstrated in previous implementations, organizations that skip the validation phase often encounter significant issues later in the deployment process.",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "5088443bdba86b22"
+      }
+    }
+  ],
+  "editops": [
+    {
+      "id": "84ef64ced1f3",
+      "op": "replace_span",
+      "target": {
+        "anchor": "f8397d36ecac2513",
+        "doc_index": 2,
+        "block_type": "paragraph",
+        "span_start": 0,
+        "span_end": 11,
+        "occurrence": 1
+      },
+      "intent": "clarity",
+      "engine": "deterministic_rule",
+      "rule_id": "clarity.in_order_to.to",
+      "rationale": "Simplify",
+      "before": "In order to",
+      "after": "to",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "a74ae3c51ae0",
+      "op": "replace_span",
+      "target": {
+        "anchor": "f8397d36ecac2513",
+        "doc_index": 2,
+        "block_type": "paragraph",
+        "span_start": 191,
+        "span_end": 220,
+        "occurrence": 1
+      },
+      "intent": "clarity",
+      "engine": "deterministic_rule",
+      "rule_id": "clarity.throat_clearing.it_is_important",
+      "rationale": "Remove throat-clearing",
+      "before": "It is important to note that ",
+      "after": "",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "49df2018229a",
+      "op": "replace_span",
+      "target": {
+        "anchor": "f8397d36ecac2513",
+        "doc_index": 2,
+        "block_type": "paragraph",
+        "span_start": 113,
+        "span_end": 133,
+        "occurrence": 1
+      },
+      "intent": "clarity",
+      "engine": "deterministic_rule",
+      "rule_id": "prose.wordy.due_to_the_fact_that",
+      "rationale": "Simplify",
+      "before": "Due to the fact that",
+      "after": "because",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    }
+  ]
+}

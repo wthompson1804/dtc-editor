@@ -1,0 +1,39 @@
+extends: existence
+message: "Sentence starts with abstract '%s' - consider leading with the real subject."
+level: suggestion
+ignorecase: false
+
+# ABSTRACT/EXPLETIVE SENTENCE STARTERS
+#
+# "It is important that we..." → "We must..."
+# "There are many factors that..." → "Many factors..."
+# "This is a system that..." → "This system..."
+#
+# These constructions delay the real subject and actor, making prose feel
+# distant and impersonal. They're grammatically correct but often weak.
+#
+# Strunk & White: "Use the active voice... Place the emphatic words at the end"
+# But first, you need a real subject at the beginning.
+
+tokens:
+  # === "IT IS" CONSTRUCTIONS ===
+  # Almost always can be rewritten more directly
+  - '^It is (important|essential|critical|crucial|necessary|vital|imperative|clear|evident|obvious|apparent) (that|to)\b'
+  - '^It is (worth|interesting|notable|noteworthy) (noting|mentioning|observing) that\b'
+  - '^It is (possible|likely|probable|conceivable|plausible) that\b'
+  - '^It is (recommended|suggested|advised|proposed|expected|anticipated|assumed|believed|understood) that\b'
+  - '^It (should|must|can|may|might|could|would) be (noted|emphasized|stressed|observed|mentioned|recognized|acknowledged) that\b'
+  - '^It (has been|was|is being|will be) (determined|decided|established|shown|demonstrated|found|discovered|observed|noted) that\b'
+  - '^It is (a |the )?(fact|case|situation|reality|truth) that\b'
+
+  # === "THERE IS/ARE" CONSTRUCTIONS ===
+  # Usually can lead with the actual subject
+  - '^There (is|are|was|were|will be|has been|have been) (a |an |the |many |several |some |few |no |various |numerous )?(\w+) (that|which|who)\b'
+  - '^There (is|are|was|were) (a |an )?(need|requirement|tendency|possibility|likelihood|chance|risk|opportunity) (to|for|that)\b'
+  - '^There (exists?|remain|remains) (a |an |the )?\b'
+
+  # === VAGUE "THIS/THAT" REFERENCES ===
+  # Often unclear what "this" refers to
+  - '^This is (a |an |the )?(key|important|critical|crucial|significant|major|primary|fundamental)\b'
+  - '^This is (because|due to|owing to|a result of|attributed to)\b'
+  - '^That is (to say|why|because|not to say)\b'

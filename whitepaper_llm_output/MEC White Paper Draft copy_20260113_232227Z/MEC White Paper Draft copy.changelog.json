@@ -1,0 +1,823 @@
+{
+  "timestamp_utc": "2026-01-13T23:22:27Z",
+  "mode": "rewrite",
+  "persnicketybot": {
+    "ok": true,
+    "missing": [],
+    "notes": [
+      "All core DTC + representation + verification capabilities present."
+    ]
+  },
+  "artifacts": {
+    "original_docx": "whitepaper_llm_output/MEC White Paper Draft copy_20260113_232227Z/MEC White Paper Draft copy.original.docx",
+    "clean_docx": "whitepaper_llm_output/MEC White Paper Draft copy_20260113_232227Z/MEC White Paper Draft copy.clean.docx",
+    "redline_docx": null
+  },
+  "redline_engine": {
+    "backend": "none",
+    "status": "skipped",
+    "message": "No compare backend available. Last error: RuntimeError: Word COM requires Windows."
+  },
+  "google_export": null,
+  "llm": {
+    "enabled": true,
+    "model": "claude-sonnet-4-20250514",
+    "prose_candidates_attempted": 32,
+    "editops_generated": 0
+  },
+  "stats": {
+    "editops_total": 4,
+    "editops_applied": 4,
+    "editops_rejected": 0,
+    "editops_llm": 0,
+    "findings_total": 36
+  },
+  "structure": {
+    "pre": {
+      "headings": [],
+      "heading_styles": [],
+      "paragraph_count": 267,
+      "table_count": 0,
+      "has_abstract": true,
+      "has_references": true,
+      "has_authors": true
+    },
+    "post": {
+      "headings": [],
+      "heading_styles": [],
+      "paragraph_count": 267,
+      "table_count": 0,
+      "has_abstract": true,
+      "has_references": true,
+      "has_authors": true
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 178,
+        "block_index": 155
+      },
+      "before": "some cases one needs for a digital twin monitor to eavesdrop on ",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "e50480bd46ca3cf7"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 220,
+        "block_index": 190
+      },
+      "before": "The Digital Twin Containers",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "47aadeb1d4d6e916"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 221,
+        "block_index": 191
+      },
+      "before": "nt to place the logic of a digital twin capability out at an edg",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "10f5b5c50bdb5e9e"
+      }
+    },
+    {
+      "rule_id": "dtc.capitalization.digital_twin_common_noun",
+      "severity": "info",
+      "category": "dtc_style",
+      "message": "Common noun 'digital twin' should be lowercase (except proper nouns).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 228,
+        "block_index": 195
+      },
+      "before": "on will begin to blur as the digital twin operations begin to take",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "c2d71bc886e1e02f"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=36, clauses~=4).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 15,
+        "block_index": 12
+      },
+      "before": "The benefits to implementing these capabilities well is that computing within and across the multiple tiers enables new applications and features, which can increase efficiency, revenue, and value, and improve the overall experience for the customer.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "36",
+        "clause_estimate": "4",
+        "anchor": "0021eaf164bb2c03"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=65, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 16,
+        "block_index": 13
+      },
+      "before": "This white paper examines some of the earlier research by the Edge Fog Consortium, followed by some of the implementation concepts originating in the ETSI standards group, and then concludes with an implementation approach first championed within the TM Forum and now being used to plan smart infrastructure projects surrounding combined telecommunications and electric power distribution as well as transportation, public safety, manufacturing, and  applications.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "65",
+        "clause_estimate": "2",
+        "anchor": "84008b76ef5f273b"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=57, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "As has been researched extensively by the Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum, the evolution of smart infrastructure is now maturing and needs to add “smartness” within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "57",
+        "clause_estimate": "2",
+        "anchor": "45a740d32cb38241"
+      }
+    },
+    {
+      "rule_id": "prose.throat_clearing_opening",
+      "severity": "info",
+      "category": "prose_quality",
+      "message": "Throat-clearing / pompous opening.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "As has been researched extensively by the Open Fog Consortium, the Industrial Internet of Things Consortium, the European Telecommunications Standards Institute, and the Tele Management Forum, the evolution of smart infrastructure is now maturing and needs to add “smartness” within and across more network tiers as human pursuits continue to expand in meaningful ways on the Earth.",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "45a740d32cb38241"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=51, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 22,
+        "block_index": 17
+      },
+      "before": "That has relatively recently given rise to cloud computing and a return to a centralization of network intelligence in large computing data centers, which then drove the need to provide more sensitive controls close to “things” at remote locations that connect them to the cloud to reduce latency and improve efficiency.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "51",
+        "clause_estimate": "3",
+        "anchor": "45a740d32cb38241"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 26,
+        "block_index": 21
+      },
+      "before": "Scale – the plethora of billions of smart elements operating at the edge needing unique circumstantial support outstripping the ability to simplify actions where micromanagement is just not feasible because of the complexity and pure size of the mathematical combinations of considerations.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "1",
+        "anchor": "83f4bc1d7708af53"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=45, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 44,
+        "block_index": 39
+      },
+      "before": "The original data, detected issue, and the immediate initiated response can be passed along to other potentially more centralized network intelligence centers in parallel for further processing, but the key Is that the critical initial response at the edge is not delayed in the meantime.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "45",
+        "clause_estimate": "2",
+        "anchor": "d99e1da4a58ce460"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=18, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 49,
+        "block_index": 44
+      },
+      "before": "Localization of data and computation can improve privacy, security, reliability, resilience, and safety, which, taken together, comprise trustworthiness.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "18",
+        "clause_estimate": "3",
+        "anchor": "eab5b0c965230171"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=44, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 53,
+        "block_index": 48
+      },
+      "before": "It is a critical architecture for today’s connected world as it enables low latency, reliable operation, and removes the requirement for persistent cloud connectivity to address emerging use cases in Internet of Things (IoT), 5G, Artificial Intelligence (AI), Virtual Reality and Tactile Internet applications.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "44",
+        "clause_estimate": "2",
+        "anchor": "2b89c40943bedd0e"
+      }
+    },
+    {
+      "rule_id": "prose.throat_clearing_opening",
+      "severity": "info",
+      "category": "prose_quality",
+      "message": "Throat-clearing / pompous opening.",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 54,
+        "block_index": 49
+      },
+      "before": "It is important to note that cloud and fog computing are on a mutually beneficial, inter-dependent continuum.",
+      "after": null,
+      "risk_tier": "low",
+      "details": {
+        "anchor": "68fc15e6ce6fe8cd"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=69, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "However, the bandwidth to transport the sensor and actuator data to and from the cloud could cost thousands of dollars per month; those connections could be susceptible to hackers; it may take several hundred milliseconds to react to an abnormal sensor reading, during which time a major leak could spill significant oil; and if the connection to the cloud is down or the cloud is overloaded, control is lost.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "69",
+        "clause_estimate": "3",
+        "anchor": "2a68a2c304a63911"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=28, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 55,
+        "block_index": 50
+      },
+      "before": "In that same scenario, if a hierarchy of local fog nodes is placed near the pipeline, they can connect to sensors and actuators with inexpensive local networking facilities.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "28",
+        "clause_estimate": "3",
+        "anchor": "2a68a2c304a63911"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 57,
+        "block_index": 52
+      },
+      "before": "Platform as a service (PaaS) is a category of cloud computing services that provides a platform allowing customers to develop, run, and manage web applications without the complexity of building and maintaining the infrastructure typically associated with developing and launching an application.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "2",
+        "anchor": "7dbe2312f96c6f09"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=23, clauses~=4).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 58,
+        "block_index": 53
+      },
+      "before": "This architecture is applicable across many different markets including, but not limited to, transportation, agriculture, smart-cities, smart–buildings, healthcare, hospitality, energy, and financial services.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "23",
+        "clause_estimate": "4",
+        "anchor": "772001886fa59c40"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=24, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 65,
+        "block_index": 58
+      },
+      "before": "Manageability: Managing all aspects of fog deployments, which include RAS, DevOps, etc., is a critical aspect across all layers of a fog computing hierarchy.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "24",
+        "clause_estimate": "3",
+        "anchor": "6b528c5c2940ac81"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=46, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 74,
+        "block_index": 67
+      },
+      "before": "In synchronization with the thinking coming out of the Open Fog Consortium, the European Telecommunications Standards Institute (ETSI) has generated some more specific recommendations towards implementation of this new approach to tiered smart infrastructure that provides ideas on the implementation focused on guidance for mobile operators.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "46",
+        "clause_estimate": "1",
+        "anchor": "092d6784fee05e12"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=64, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 75,
+        "block_index": 68
+      },
+      "before": "The vocabulary coming from ETSI for this concept is the Multi-access Edge Computing  (“MEC”) discussion (which is why we are using this term for continuity) and it will draw the next wave of investments by Mobile operators who want to take advantage of low latency services that 5G promises - which means running services closer to the consumers (that is close to radio sites).",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "64",
+        "clause_estimate": "2",
+        "anchor": "cf427d93353d860f"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=30, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 88,
+        "block_index": 80
+      },
+      "before": "On the left side you see the servers that are turned into virtualized infrastructure, while on the right site is VIM that manages virtual resources on top of these servers.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "30",
+        "clause_estimate": "3",
+        "anchor": "df6d560eb699d4e7"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=36, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 102,
+        "block_index": 91
+      },
+      "before": "The beauty of MEC ETSI architecture is that MEC Apps are network-aware (so that MEC Apps can act based on that) and that is where MEC Service can help by exposing the network information through APIs.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "36",
+        "clause_estimate": "3",
+        "anchor": "36d343ed389a5af7"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=52, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 143,
+        "block_index": 127
+      },
+      "before": "The new vision for the MEC spans and automates the compute and connectivity product and service catalog configuration requirements for fulfilment from Cloud to Edge and for operations from Edge back to Cloud incorporating appropriate use of private edge / on device, on premise, far edge, near edge through to public cloud.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "52",
+        "clause_estimate": "1",
+        "anchor": "5a7cbf4f35f8d11c"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=53, clauses~=5).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 144,
+        "block_index": 128
+      },
+      "before": "The MEC will enable Vertical Product Managers to easily add their application services and solutions, such as AI and Digital Twins and then easily define, offer, sell, fulfill, manage and bill complex bundled solutions which include multi-sourced partner offerings for target markets, such as SMB, Smart Airports, Smart Agriculture, or Smart City etc.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "53",
+        "clause_estimate": "5",
+        "anchor": "1f7b3f1ccc7272b8"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=67, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 152,
+        "block_index": 134
+      },
+      "before": "In addition to just the physical nodes that provide the resources for the tiered environment, the MEC has a logical architecture associated with providing for the Platform as a Service for microservices running in the nodes, but it also provides for the horizontal services needed to provide the management of the distributed systems environment as well as the cybersecurity elements needed to protect the remote computation nodes.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "67",
+        "clause_estimate": "2",
+        "anchor": "8b6d319b71d38fcf"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 163,
+        "block_index": 144
+      },
+      "before": "For the convenience of simplifying the implementation of the tiers, a common pattern is used for supporting the tiered distributed applications and microservices pods and containers, as well as the elements that provide for the traditional needs of a distributed systems environment.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "2",
+        "anchor": "5866d67f53c63038"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=52, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 175,
+        "block_index": 152
+      },
+      "before": "DDS has a feature of allowing the creation of domains such that all local events can be sequestered into just the one node for the most part, and then only those events that need to be used for internodal communications are allowed to travel outside of the node to the next node.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "52",
+        "clause_estimate": "2",
+        "anchor": "6d549488ed77cfad"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=31, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 176,
+        "block_index": 153
+      },
+      "before": "Now, within each container running in the pod environment, there will be a microservice that can be used to subscribe to various “topics” that are associated with the different DDS messages.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "31",
+        "clause_estimate": "3",
+        "anchor": "d5e3da7e72ea13ed"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=0).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 180,
+        "block_index": 157
+      },
+      "before": "But a distributed logging service like the AnyLog technique operates like a very large sharded database on a massively parallel processing supercomputer where the initial data gathering step and intermediate analysis is performed at the edge as opposed to a central computer.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "0",
+        "anchor": "9c068cd7770439a5"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=49, clauses~=0).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 185,
+        "block_index": 162
+      },
+      "before": "As such, there is a continuing need to have a “Rosetta Stone” form of ontological mapping capability in any event communications facility such as we are discussing for dealing with both the syntax of messages and the semantic meaning of the data itself in the incoming and outgoing communications.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "49",
+        "clause_estimate": "0",
+        "anchor": "9266247aed3f03fd"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=46, clauses~=0).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 203,
+        "block_index": 177
+      },
+      "before": "The public cloud is still a very important aspect of the overall system of systems, but it needs to be used for its typical uses and then be augmented by the virtual supercomputer sharded approach at the edges to solve the latency and network traffic problem.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "46",
+        "clause_estimate": "0",
+        "anchor": "2195dc2a06b7b320"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=42, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 230,
+        "block_index": 197
+      },
+      "before": "As we examine the details a little more closely, the subfunctions begin to decompose into subsystems on the management side as shown in the diagram below, and the agent functions begin to decompose into rings of security for defense in depth purposes.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "42",
+        "clause_estimate": "1",
+        "anchor": "1c95203ce0c263c1"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=69, clauses~=2).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 277,
+        "block_index": 236
+      },
+      "before": "The concept of the distribution is to establish a secure private slice network for the distribution, but then use an intelligent delivery process that stages the distributions in a bit of a multicast approach using the spine for broadcasting the containers down into their appointed nodes using a waterfall sequence, position them for smoke testing and field integration testing, and then wait for activation using a blue/green swap technique.",
+      "after": null,
+      "risk_tier": "high",
+      "details": {
+        "words": "69",
+        "clause_estimate": "2",
+        "anchor": "9df54418f1d5f2f8"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=45, clauses~=3).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 283,
+        "block_index": 240
+      },
+      "before": "The assembly and testing of delivered containers is done using Infrastructure as Code in which the configuration control involves not only just variables, but also actual scripts that control the assembly process as well as the testing process that accompanies each step of the operation.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "45",
+        "clause_estimate": "3",
+        "anchor": "f742fdba32457f73"
+      }
+    },
+    {
+      "rule_id": "prose.runon_or_complex",
+      "severity": "warning",
+      "category": "prose_quality",
+      "message": "Possible run-on/complex sentence (words=48, clauses~=1).",
+      "ref": {
+        "block_type": "paragraph",
+        "doc_index": 309,
+        "block_index": 262
+      },
+      "before": "As this model is used in actual implementations across multiple industries, the lessons learned need to be accumulated so that the model can be dynamically updated for easier use and to speed the proliferation of the technique as a part of the global public and private networking capability.",
+      "after": null,
+      "risk_tier": "medium",
+      "details": {
+        "words": "48",
+        "clause_estimate": "1",
+        "anchor": "e40b435b89c8e9ff"
+      }
+    }
+  ],
+  "editops": [
+    {
+      "id": "d179d0a9d926",
+      "op": "replace_span",
+      "target": {
+        "anchor": "45a740d32cb38241",
+        "doc_index": 22,
+        "block_type": "paragraph",
+        "span_start": 78,
+        "span_end": 96,
+        "occurrence": 1
+      },
+      "intent": "dtc_style",
+      "engine": "deterministic_rule",
+      "rule_id": "dtc.terminology.internet_of_things",
+      "rationale": "Capitalize IoT full form",
+      "before": "Internet of Things",
+      "after": "Internet of Things",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "6be744771c77",
+      "op": "replace_span",
+      "target": {
+        "anchor": "2b89c40943bedd0e",
+        "doc_index": 53,
+        "block_type": "paragraph",
+        "span_start": 297,
+        "span_end": 315,
+        "occurrence": 1
+      },
+      "intent": "dtc_style",
+      "engine": "deterministic_rule",
+      "rule_id": "dtc.terminology.internet_of_things",
+      "rationale": "Capitalize IoT full form",
+      "before": "Internet of Things",
+      "after": "Internet of Things",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "38b6cf12af4b",
+      "op": "replace_span",
+      "target": {
+        "anchor": "68fc15e6ce6fe8cd",
+        "doc_index": 54,
+        "block_type": "paragraph",
+        "span_start": 192,
+        "span_end": 221,
+        "occurrence": 1
+      },
+      "intent": "clarity",
+      "engine": "deterministic_rule",
+      "rule_id": "clarity.throat_clearing.it_is_important",
+      "rationale": "Remove throat-clearing",
+      "before": "It is important to note that ",
+      "after": "",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    },
+    {
+      "id": "e765ac2062a2",
+      "op": "replace_span",
+      "target": {
+        "anchor": "1e5aed8573b93e37",
+        "doc_index": 156,
+        "block_type": "paragraph",
+        "span_start": 66,
+        "span_end": 84,
+        "occurrence": 1
+      },
+      "intent": "dtc_style",
+      "engine": "deterministic_rule",
+      "rule_id": "dtc.terminology.internet_of_things",
+      "rationale": "Capitalize IoT full form",
+      "before": "Internet of Things",
+      "after": "Internet of Things",
+      "confidence": 1.0,
+      "requires_review": false,
+      "risk_tier": "low",
+      "verification": {},
+      "status": "applied"
+    }
+  ]
+}

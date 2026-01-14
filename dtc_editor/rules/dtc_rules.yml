@@ -1,0 +1,51 @@
+capabilities:
+  - dtc.title.max_words
+  - dtc.required_sections
+  - dtc.captions.figure_table_format
+  - dtc.capitalization.digital_twin_common_noun
+  - protected_terms.enabled
+  - outputs.bundle.clean_redline_changelog
+  - representation.editops
+  - verification.invariants
+  - verification.structure_inventory
+
+replacement_rules:
+  - id: clarity.in_order_to.to
+    category: clarity
+    rationale: Simplify
+    search: "in order to"
+    replace: "to"
+    requires_review: false
+    risk_tier: low
+
+  - id: clarity.throat_clearing.it_is_important
+    category: clarity
+    rationale: Remove throat-clearing
+    search: "It is important to note that "
+    replace: ""
+    requires_review: false
+    risk_tier: low
+
+  - id: dtc.terminology.internet_of_things
+    category: dtc_style
+    rationale: Capitalize IoT full form
+    search: "internet of things"
+    replace: "Internet of Things"
+    requires_review: false
+    risk_tier: low
+
+validators:
+  title:
+    max_words: 7
+  required_sections:
+    - name: "Abstract"
+      severity: "critical"
+    - name: "References"
+      severity: "warning"
+    - name: "Authors"
+      severity: "warning"
+  captions:
+    figure_format_hint: "Figure 3-1"
+    table_format_hint: "Table 3-1"
+  capitalization:
+    digital_twin_common_noun: true

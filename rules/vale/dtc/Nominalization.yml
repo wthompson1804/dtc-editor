@@ -1,0 +1,43 @@
+extends: existence
+message: "Nominalization '%s' - consider using the verb form for more vigorous prose."
+level: suggestion
+ignorecase: true
+
+# NOMINALIZATION: Turning verbs into nouns makes prose static and lifeless
+#
+# "The implementation of the system" → "implementing the system" or "we implemented"
+# "The utilization of resources" → "using resources" or "we use"
+#
+# Orwell: "Never use a noun where a verb will do"
+#
+# These patterns flag nominalizations that often have simpler verb alternatives.
+# Level is "suggestion" because context determines if the noun form is necessary.
+
+tokens:
+  # === HIGH-VALUE TARGETS (almost always better as verbs) ===
+  # These nominalizations rarely add value over their verb forms
+  - '\b(the |a |an )?(implementation|implementations) of\b'
+  - '\b(the |a |an )?(utilization|utilizations) of\b'
+  - '\b(the |a |an )?(establishment|establishments) of\b'
+  - '\b(the |a |an )?(achievement|achievements) of\b'
+  - '\b(the |a |an )?(accomplishment|accomplishments) of\b'
+  - '\b(the |a |an )?(realization|realizations) of\b'
+  - '\b(the |a |an )?(actualization|actualizations) of\b'
+  - '\b(the |a |an )?(maximization|minimization) of\b'
+  - '\b(the |a |an )?(optimization|optimizations) of\b'
+  - '\b(the |a |an )?(prioritization|prioritizations) of\b'
+  - '\b(the |a |an )?(operationalization) of\b'
+  - '\b(the |a |an )?(conceptualization) of\b'
+
+  # === WEAK VERB + NOMINALIZATION COMBOS ===
+  # These are always better as single strong verbs
+  - '\b(make|made|makes|making) (a |an |the )?(decision|determination|recommendation|assessment)\b'
+  - '\b(perform|performed|performs) (a |an |the )?(analysis|evaluation|assessment|review|examination)\b'
+  - '\b(conduct|conducted|conducts) (a |an |the )?(analysis|evaluation|assessment|review|investigation|examination)\b'
+  - '\b(provide|provided|provides) (a |an |the )?(description|explanation|demonstration|illustration)\b'
+  - '\b(achieve|achieved|achieves) (a |an |the )?(reduction|improvement|increase|enhancement)\b'
+  - '\b(reach|reached|reaches) (a |an |the )?(conclusion|decision|agreement|determination)\b'
+  - '\b(give|gave|gives) (a |an |the )?(presentation|demonstration|explanation|description)\b'
+  - '\b(take|took|takes) (into )?(consideration|account)\b'
+  - '\b(have|has|had) (a |an |the )?(tendency|preference|requirement|need) (to|for)\b'
+  - '\b(is|are|was|were) (in |)(a |an |the )?(violation|compliance|agreement|accordance) (of|with)\b'

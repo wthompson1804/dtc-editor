@@ -1,0 +1,46 @@
+extends: existence
+message: "Static construction '%s' - consider using a stronger, more active verb."
+level: suggestion
+ignorecase: true
+
+# STATIC SENTENCES: Be-verb + adjective/noun without action
+#
+# "The system is capable of processing data" → "The system processes data"
+# "The architecture is supportive of scaling" → "The architecture supports scaling"
+#
+# Be-verbs (is, are, was, were) state existence, not action.
+# Sentences built only on be-verbs feel static and lifeless.
+#
+# Orwell: "Never use the passive where you can use the active"
+# (And never use a state-of-being where you can use an action)
+
+tokens:
+  # === "IS/ARE CAPABLE OF" ===
+  # Almost always better as direct verb
+  - '\b(is|are|was|were) capable of (\w+ing)\b'
+  - '\b(is|are|was|were) able to\b'
+  - '\b(is|are|was|were) in a position to\b'
+  - '\b(is|are|was|were) designed to\b'
+  - '\b(is|are|was|were) intended to\b'
+  - '\b(is|are|was|were) meant to\b'
+  - '\b(is|are|was|were) used to\b'
+  - '\b(is|are|was|were) utilized to\b'
+
+  # === "IS/ARE SUPPORTIVE/INDICATIVE OF" ===
+  - '\b(is|are|was|were) (supportive|indicative|representative|reflective|suggestive|illustrative) of\b'
+
+  # === "IS/ARE DEPENDENT ON" ===
+  - '\b(is|are|was|were) (dependent|reliant|contingent|based|predicated) (on|upon)\b'
+
+  # === "IS/ARE RESPONSIBLE FOR" ===
+  - '\b(is|are|was|were) responsible for (\w+ing)\b'
+
+  # === "IS/ARE IN THE PROCESS OF" ===
+  - '\b(is|are|was|were) in the process of\b'
+  - '\b(is|are|was|were) in the midst of\b'
+  - '\b(is|are|was|were) in the course of\b'
+
+  # === EXISTENCE STATEMENTS THAT SHOULD BE ACTIONS ===
+  - '\b(is|are|was|were) (a|an|the) (key|critical|important|essential|primary|major|significant) (factor|element|component|part|aspect|consideration)\b'
+  - '\b(is|are|was|were) (a|an|the) (result|consequence|outcome|product) of\b'
+  - '\b(is|are|was|were) (a|an|the) (source|cause|driver|enabler) of\b'

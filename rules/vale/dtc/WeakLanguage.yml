@@ -1,0 +1,71 @@
+extends: existence
+message: "Potentially vague intensifier: '%s'. If it adds meaning, keep it; otherwise consider removing."
+level: suggestion
+ignorecase: true
+
+# WEAK LANGUAGE IN TECHNICAL WRITING
+#
+# IMPORTANT: Many "weak" words are perfectly appropriate in technical writing:
+# - "generally", "typically", "usually" - appropriate for patterns
+# - "significantly" - appropriate for statistical significance
+# - "often" - legitimate for frequency
+# - "primarily", "mainly" - appropriate for emphasis
+# - "probably", "possibly" - appropriate for uncertainty
+# - "relatively" - appropriate for comparisons
+#
+# This rule only flags words that are TYPICALLY meaningless filler,
+# especially when used as intensifiers. Level is "suggestion" because
+# context determines appropriateness.
+
+tokens:
+  # === EMPTY INTENSIFIERS ===
+  # These rarely add meaning
+  - "really"
+  - "very"
+  - "truly"
+  - "totally"
+  - "completely"
+  - "absolutely"
+  - "entirely"
+  - "extremely"
+  - "incredibly"
+  - "literally"
+  - "actually"
+  - "basically"
+
+  # === FILLER WORDS ===
+  # Often add nothing to prose
+  - "just"
+  - "quite"
+  - "rather"
+  - "pretty"
+  - "fairly"
+  - "somewhat"
+  - "slightly"
+
+  # === PRESUMPTUOUS WORDS ===
+  # Can be condescending to readers
+  - "obviously"
+  - "clearly"
+  - "simply"
+  - "easily"
+  - "naturally"
+  - "of course"
+  - "undoubtedly"
+  - "surely"
+  - "certainly"
+
+  # === INFORMAL DISCOURSE MARKERS ===
+  # Too casual for formal technical writing
+  - "frankly"
+  - "honestly"
+  - "personally"
+  - "interestingly"
+  - "remarkably"
+  - "unfortunately"
+  - "hopefully"
+
+  # Note: "generally", "typically", "usually", "primarily", "mainly",
+  # "often", "significantly", "relatively", "probably", "possibly",
+  # "perhaps", "normally" are deliberately NOT included - these are
+  # appropriate in technical writing for precise qualification.

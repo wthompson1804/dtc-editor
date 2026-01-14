@@ -1,0 +1,36 @@
+Review Bundle — 2026-01-13T23:16:57Z
+
+Artifacts
+- Original: demo_output/sample_document_20260113_231657Z/sample_document.original.docx
+- Clean:    demo_output/sample_document_20260113_231657Z/sample_document.clean.docx
+- Redline:  [not generated]
+
+PersnicketyBot
+- OK: True
+- Note: All core DTC + representation + verification capabilities present.
+
+Redline Generation
+- Backend: none
+- Status:  skipped
+- Notes:   No compare backend available. Last error: RuntimeError: Word COM requires Windows.
+
+Stats
+- editops_total: 3
+- editops_applied: 3
+- editops_rejected: 0
+- editops_llm: 0
+- findings_total: 7
+
+Findings
+- [WARNING] dtc_style dtc.captions.figure_format: Figure caption should use Chapter-Figure format (e.g., Figure 3-1).
+- [WARNING] dtc_style dtc.captions.table_format: Table caption should use Chapter-Table format (e.g., Table 3-1).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] dtc_style dtc.capitalization.digital_twin_common_noun: Common noun 'digital twin' should be lowercase (except proper nouns).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+- [WARNING] prose_quality prose.runon_or_complex: Possible run-on/complex sentence (words=46, clauses~=6).
+- [INFO] prose_quality prose.throat_clearing_opening: Throat-clearing / pompous opening.
+
+EditOps (first 50)
+- applied: clarity.in_order_to.to (clarity) @ anchor=f8397d36ecac2513
+- applied: clarity.throat_clearing.it_is_important (clarity) @ anchor=f8397d36ecac2513
+- applied: prose.wordy.due_to_the_fact_that (clarity) @ anchor=f8397d36ecac2513
