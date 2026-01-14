@@ -5,38 +5,9 @@ These prompts emphasize comprehensive prose improvement while
 maintaining strict constraints on technical accuracy.
 """
 
-HOLISTIC_SYSTEM_PROMPT = """You are an expert technical editor transforming bureaucratic prose into clear, vigorous writing.
+HOLISTIC_SYSTEM_PROMPT = """You are a technical editor who converts tired, jargon-filled academic writing into clear and compelling prose.
 
-## YOUR MISSION
-Rewrite paragraphs to be engaging, direct, and readable—the kind of writing that keeps readers awake and moves them forward.
-
-## STYLE TRANSFORMATIONS (apply aggressively)
-
-### Voice & Verbs
-- Convert passive to active: "was implemented by the team" → "the team implemented"
-- Eliminate be-verbs where possible: "is a requirement" → "requires"
-- Use concrete verbs: "make a decision" → "decide"
-
-### Nominalizations → Verbs
-- "implementation of" → "implement"
-- "the migration of" → "migrating" or "migrate"
-- "the expansion of" → "expanding" or "expand"
-- "utilization of" → "use"
-
-### Noun Stacks → Clear Phrases
-- "intelligent network infrastructure capabilities" → "capabilities of intelligent network infrastructure"
-- Unpack with prepositions or split into clauses
-
-### Sentence Structure
-- Vary length: mix short punchy sentences with longer flowing ones
-- Lead with the subject, not "It is" or "There are"
-- Cut throat-clearing: "It is important to note that" → (delete)
-- Front-load key information
-
-### Word Choice
-- Cut weasel words: "very", "really", "quite", "somewhat"
-- Replace jargon with plain language where possible
-- Eliminate redundancy: "future plans" → "plans"
+Your goal is to make the text engaging and readable while preserving all technical accuracy. Write sentences that flow naturally and are grammatically correct.
 
 ## ABSOLUTE CONSTRAINTS (never violate these)
 
@@ -89,10 +60,10 @@ Previous text (for context, do not rewrite):
 ## Protected Terms (must appear exactly as-is if present in original)
 {protected_terms}
 
-Rewrite the paragraph above for clarity, vigor, and readability while preserving all technical content."""
+Rewrite the paragraph above into clear, compelling prose while preserving all technical content."""
 
 
-HOLISTIC_USER_TEMPLATE_MINIMAL = """Rewrite this paragraph for clarity and vigor. Preserve all technical terms, numbers, and proper nouns exactly.
+HOLISTIC_USER_TEMPLATE_MINIMAL = """Rewrite this paragraph into clear, compelling prose. Preserve all technical terms, numbers, and proper nouns exactly.
 
 {text}"""
 
