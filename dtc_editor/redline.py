@@ -56,166 +56,111 @@ def create_redline(original_docx: str, clean_docx: str, redline_docx: str, autho
 
 
 def _libreoffice_compare(original_docx: str, clean_docx: str, redline_docx: str, author: str) -> RedlineResult:
-    """Generate redline using LibreOffice document comparison.
+    """Generate redline using visual diff approach.
 
-    LibreOffice can compare two documents and produce a result with proper
-    OOXML track changes that are compatible with Microsoft Word.
+    Creates a document showing changes with colored text:
+    - Deleted text: red strikethrough
+    - Added text: blue underline
+
+    This is more reliable than LibreOffice UNO on macOS.
     """
-    soffice = _find_libreoffice()
-    if not soffice:
-        raise RuntimeError("LibreOffice not found. Install with: brew install --cask libreoffice")
-
-    # Convert to absolute paths
-    orig_abs = os.path.abspath(original_docx)
-    clean_abs = os.path.abspath(clean_docx)
-    redline_abs = os.path.abspath(redline_docx)
-
-    # Create a Python script that uses LibreOffice's UNO API
-    uno_script = f'''
-import uno
-from com.sun.star.beans import PropertyValue
-
-def main():
-    localContext = uno.getComponentContext()
-    desktop = localContext.ServiceManager.createInstanceWithContext(
-        "com.sun.star.frame.Desktop", localContext)
-
-    # Load original document (hidden)
-    load_props = (
-        PropertyValue("Hidden", 0, True, 0),
-        PropertyValue("ReadOnly", 0, False, 0),
-    )
-    original_url = "file://{orig_abs.replace(os.sep, '/').replace(' ', '%20')}"
-    doc = desktop.loadComponentFromURL(original_url, "_blank", 0, load_props)
-
-    if doc is None:
-        raise Exception("Failed to load original document")
-
-    # Compare with revised document
-    revised_url = "file://{clean_abs.replace(os.sep, '/').replace(' ', '%20')}"
-    compare_props = (
-        PropertyValue("URL", 0, revised_url, 0),
-    )
-
-    # Use dispatcher to run CompareDocuments
-    dispatcher = localContext.ServiceManager.createInstanceWithContext(
-        "com.sun.star.frame.DispatchHelper", localContext)
-
-    frame = doc.getCurrentController().getFrame()
-    dispatcher.executeDispatch(frame, ".uno:CompareDocuments", "", 0, compare_props)
-
-    # Save as DOCX with track changes
-    output_url = "file://{redline_abs.replace(os.sep, '/').replace(' ', '%20')}"
-    save_props = (
-        PropertyValue("FilterName", 0, "MS Word 2007 XML", 0),
-        PropertyValue("Overwrite", 0, True, 0),
-    )
-    doc.storeToURL(output_url, save_props)
-    doc.close(True)
-
-if __name__ == "__main__":
-    main()
-'''
-
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
-        f.write(uno_script)
-        script_path = f.name
-
     try:
-        # Run LibreOffice with the Python script
-        result = subprocess.run(
-            [soffice, "--headless", "--invisible", "--nofirststartwizard",
-             f"macro:///Standard.Module1.Main"],
-            capture_output=True,
-            timeout=120,
-            text=True
-        )
+        from docx import Document
+        from docx.shared import RGBColor
+        from docx.enum.text import WD_COLOR_INDEX
+        import difflib
+    except ImportError as e:
+        raise RuntimeError(f"python-docx required for redline: {e}")
 
-        # Alternative approach: use LibreOffice's Python interpreter directly
-        # This is more reliable across platforms
-        lo_python = os.path.join(os.path.dirname(soffice), "python")
-        if not os.path.exists(lo_python):
-            # macOS bundle structure
-            lo_python = soffice.replace("MacOS/soffice", "Resources/python")
+    # Load both documents
+    orig_doc = Document(original_docx)
+    clean_doc = Document(clean_docx)
 
-        if os.path.exists(lo_python):
-            result = subprocess.run(
-                [lo_python, script_path],
-                capture_output=True,
-                timeout=120,
-                text=True
-            )
-            if result.returncode != 0:
-                raise RuntimeError(f"LibreOffice Python failed: {result.stderr}")
-        else:
-            # Fallback: use soffice directly with a macro
-            # First we need to write a simpler approach using command line
-            _libreoffice_compare_cmdline(orig_abs, clean_abs, redline_abs, soffice)
+    # Create output document based on original structure
+    out_doc = Document(original_docx)
 
-        if os.path.exists(redline_abs):
-            return RedlineResult(
-                backend="libreoffice",
-                status="ok",
-                message="Redline created via LibreOffice compare."
-            )
-        else:
-            raise RuntimeError("Redline document was not created")
+    # Get paragraphs from both
+    orig_paras = [p.text for p in orig_doc.paragraphs]
+    clean_paras = [p.text for p in clean_doc.paragraphs]
 
-    finally:
-        try:
-            os.unlink(script_path)
-        except Exception:
-            pass
+    # Match paragraphs and show differences
+    matcher = difflib.SequenceMatcher(None, orig_paras, clean_paras)
 
+    # Build a map of which original paragraphs changed and how
+    para_changes = {}  # orig_idx -> (change_type, new_text)
 
-def _libreoffice_compare_cmdline(original: str, revised: str, output: str, soffice: str) -> None:
-    """Fallback: Use LibreOffice command line to compare documents.
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == 'equal':
+            continue
+        elif tag == 'replace':
+            # Paragraphs were modified
+            for orig_idx, new_idx in zip(range(i1, i2), range(j1, j2)):
+                para_changes[orig_idx] = ('replace', clean_paras[new_idx])
+        elif tag == 'delete':
+            # Paragraphs were deleted
+            for orig_idx in range(i1, i2):
+                para_changes[orig_idx] = ('delete', None)
+        elif tag == 'insert':
+            # New paragraphs were added - mark first original para after
+            if i1 < len(orig_paras):
+                para_changes[i1] = ('insert_before', clean_paras[j1:j2])
 
-    This approach creates a Basic macro on-the-fly and executes it.
-    """
-    # Create a temporary macro file
-    macro_content = f'''
-Sub CompareAndSave
-    Dim oDoc As Object
-    Dim oDispatcher As Object
-    Dim args(0) As New com.sun.star.beans.PropertyValue
+    # Apply changes to output document
+    for idx, para in enumerate(out_doc.paragraphs):
+        if idx not in para_changes:
+            continue
 
-    oDoc = StarDesktop.loadComponentFromURL("file://{original.replace(os.sep, '/').replace(' ', '%20')}", "_blank", 0, Array())
+        change_type, new_content = para_changes[idx]
 
-    args(0).Name = "URL"
-    args(0).Value = "file://{revised.replace(os.sep, '/').replace(' ', '%20')}"
+        if change_type == 'delete':
+            # Strike through and color red
+            para.clear()
+            run = para.add_run(orig_paras[idx])
+            run.font.strike = True
+            run.font.color.rgb = RGBColor(255, 0, 0)
 
-    oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
-    oDispatcher.executeDispatch(oDoc.CurrentController.Frame, ".uno:CompareDocuments", "", 0, args())
+        elif change_type == 'replace':
+            orig_text = orig_paras[idx]
+            new_text = new_content
 
-    Dim saveArgs(1) As New com.sun.star.beans.PropertyValue
-    saveArgs(0).Name = "FilterName"
-    saveArgs(0).Value = "MS Word 2007 XML"
-    saveArgs(1).Name = "Overwrite"
-    saveArgs(1).Value = True
+            # Clear paragraph and add word-level diff
+            para.clear()
 
-    oDoc.storeToURL("file://{output.replace(os.sep, '/').replace(' ', '%20')}", saveArgs())
-    oDoc.close(True)
-End Sub
-'''
+            # Word-level diff
+            orig_words = orig_text.split()
+            new_words = new_text.split()
+            word_matcher = difflib.SequenceMatcher(None, orig_words, new_words)
 
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.bas', delete=False) as f:
-        f.write(macro_content)
-        macro_path = f.name
+            for tag, i1, i2, j1, j2 in word_matcher.get_opcodes():
+                if tag == 'equal':
+                    run = para.add_run(' '.join(orig_words[i1:i2]) + ' ')
+                elif tag == 'replace':
+                    # Show deleted words in red strikethrough
+                    if i1 < i2:
+                        run = para.add_run(' '.join(orig_words[i1:i2]) + ' ')
+                        run.font.strike = True
+                        run.font.color.rgb = RGBColor(255, 0, 0)
+                    # Show new words in blue
+                    if j1 < j2:
+                        run = para.add_run(' '.join(new_words[j1:j2]) + ' ')
+                        run.font.color.rgb = RGBColor(0, 0, 255)
+                        run.font.underline = True
+                elif tag == 'delete':
+                    run = para.add_run(' '.join(orig_words[i1:i2]) + ' ')
+                    run.font.strike = True
+                    run.font.color.rgb = RGBColor(255, 0, 0)
+                elif tag == 'insert':
+                    run = para.add_run(' '.join(new_words[j1:j2]) + ' ')
+                    run.font.color.rgb = RGBColor(0, 0, 255)
+                    run.font.underline = True
 
-    try:
-        # Execute using soffice
-        result = subprocess.run(
-            [soffice, "--headless", "--invisible",
-             f"macro:///Standard.Module1.CompareAndSave"],
-            capture_output=True,
-            timeout=120
-        )
-    finally:
-        try:
-            os.unlink(macro_path)
-        except Exception:
-            pass
+    out_doc.save(redline_docx)
+
+    return RedlineResult(
+        backend="python-docx",
+        status="ok",
+        message="Redline created with visual diff (red=deleted, blue=added)."
+    )
 
 
 def _aspose_compare(original_docx: str, clean_docx: str, redline_docx: str, author: str) -> RedlineResult:
