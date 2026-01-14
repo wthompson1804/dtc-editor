@@ -299,9 +299,13 @@ def run_holistic_pipeline(
     )
 
 
-def generate_review_report(result: PipelineResult) -> str:
+def generate_review_report(result: PipelineResult, compliance=None) -> str:
     """
     Generate a human-readable review report.
+
+    Args:
+        result: Pipeline result with rewrite decisions
+        compliance: Optional template compliance result
     """
     lines = [
         "# Holistic Rewrite Review Report",
@@ -316,6 +320,41 @@ def generate_review_report(result: PipelineResult) -> str:
         f"- Processing time: {result.stats.total_time_s:.1f}s",
         "",
     ]
+
+    # Add template compliance section if provided
+    if compliance is not None:
+        lines.append("## Template Compliance")
+        lines.append("")
+        lines.append(f"**Compliance Score:** {compliance.score:.0%}")
+        lines.append("")
+
+        if compliance.issues:
+            lines.append("### Issues Found")
+            lines.append("")
+            for issue in compliance.issues:
+                lines.append(f"- {issue}")
+            lines.append("")
+
+        if compliance.missing_styles:
+            lines.append("### Missing Styles")
+            lines.append("")
+            for style in compliance.missing_styles:
+                lines.append(f"- {style}")
+            lines.append("")
+
+        if hasattr(compliance, 'recommendation') and compliance.recommendation:
+            lines.append("### Recommendation")
+            lines.append("")
+            if compliance.recommendation == "full_reconstruct":
+                lines.append("Consider applying DTC template styles to this document for full compliance.")
+            elif compliance.recommendation == "minor_fixes":
+                lines.append("Minor style adjustments needed for full compliance.")
+            else:
+                lines.append(f"{compliance.recommendation}")
+            lines.append("")
+
+        lines.append("---")
+        lines.append("")
 
     # Show flagged items first
     flagged = [d for d in result.decisions if d.decision == "flagged"]

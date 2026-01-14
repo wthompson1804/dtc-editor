@@ -133,7 +133,7 @@ def _run_holistic_mode(args):
         print(f"TOC: {toc_stats['toc_entries']} entries, TOF: {toc_stats['tof_entries']} figures, TOT: {toc_stats['tot_entries']} tables")
 
     # Generate review report
-    review_report = generate_review_report(result)
+    review_report = generate_review_report(result, compliance=compliance)
     review_dest = bundle_dir / f"{doc_stem}.review.md"
     review_dest.write_text(review_report)
 
