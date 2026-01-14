@@ -1,0 +1,14 @@
+# DTC Style Guide: Oxford Comma
+# Rule: Use the Oxford comma in lists (A, B, and C)
+extends: existence
+message: "Missing Oxford comma: '%s' - consider 'A, B, and C' format."
+level: warning
+ignorecase: true
+
+# This pattern catches "A, B and C" without the Oxford comma
+# It looks for: word, word and word (missing comma before "and")
+tokens:
+  # Basic pattern: "X, Y and Z" without comma before "and"
+  - '\b\w+,\s+\w+\s+and\s+\w+\b'
+  # Also catch "X, Y or Z" for consistency
+  - '\b\w+,\s+\w+\s+or\s+\w+\b'

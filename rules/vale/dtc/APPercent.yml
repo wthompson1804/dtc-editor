@@ -1,0 +1,11 @@
+# AP Style: Percent Symbol
+# Rule: Use "percent" spelled out in body text, not "%"
+extends: existence
+message: "AP Style: Use 'percent' instead of '%%' in body text: '%s'"
+level: suggestion
+
+tokens:
+  # Number followed by percent sign
+  - '\d+%'
+  # Also catch decimal percentages
+  - '\d+\.\d+%'

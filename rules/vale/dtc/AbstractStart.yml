@@ -1,6 +1,6 @@
 extends: existence
 message: "Sentence starts with abstract '%s' - consider leading with the real subject."
-level: suggestion
+level: info
 ignorecase: false
 
 # ABSTRACT/EXPLETIVE SENTENCE STARTERS

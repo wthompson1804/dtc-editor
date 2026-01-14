@@ -1,0 +1,17 @@
+# DTC Style Guide: Inline Citations
+# Rule: Use inline citations (Author, Year) instead of bracketed reference numbers
+extends: existence
+message: "Use inline citations (Author, Year) instead of bracketed references: '%s'"
+level: warning
+
+tokens:
+  # Single bracketed number [1]
+  - '\[\d+\]'
+  # Multiple bracketed numbers [1, 2] or [1,2]
+  - '\[\d+,\s*\d+\]'
+  # Range of bracketed numbers [1-3] or [1–3]
+  - '\[\d+[-–]\d+\]'
+  # Combined patterns [1, 2-4]
+  - '\[\d+[-–,\s]+\d+\]'
+  # Superscript-style markers (common Unicode superscripts)
+  - '[⁰¹²³⁴⁵⁶⁷⁸⁹]+'

@@ -1,0 +1,17 @@
+# AP Style: Time Formatting
+# Rule: Use "a.m." and "p.m." lowercase with periods
+extends: existence
+message: "AP Style: Use 'a.m.' or 'p.m.' (lowercase with periods). Found: '%s'"
+level: suggestion
+ignorecase: false
+
+tokens:
+  # Uppercase AM/PM without periods
+  - '\d{1,2}\s*AM\b'
+  - '\d{1,2}\s*PM\b'
+  # Lowercase without periods
+  - '\d{1,2}\s*am\b'
+  - '\d{1,2}\s*pm\b'
+  # Uppercase with periods (should be lowercase)
+  - '\d{1,2}\s*A\.M\.'
+  - '\d{1,2}\s*P\.M\.'

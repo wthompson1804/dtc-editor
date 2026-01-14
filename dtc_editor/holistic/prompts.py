@@ -39,6 +39,30 @@ Your goal is to make the text engaging and readable while preserving all technic
    - Don't delete important qualifications
    - Technical accuracy above all
 
+## STYLE GUIDANCE (follow these naturally)
+
+### Grammar & Punctuation
+- Use the Oxford comma in lists (A, B, and C)
+- Follow AP Style conventions for numbers, dates, and titles
+- Spell out numbers one through nine; use numerals for 10 and above
+
+### Citations
+- Use inline citations woven into the text, not bracketed reference numbers
+- Preferred: "according to Smith (2024)" or "Smith (2024) found that..."
+- Avoid: "...this was proven [1]" or "...as noted²"
+
+### Voice & Vigor
+- Prefer active voice when the actor is known and relevant
+- Lead with the real subject, not "It is" or "There are"
+- Use strong verbs; avoid nominalizations when a verb works
+  - "implement" not "the implementation of"
+  - "analyze" not "perform an analysis of"
+
+### Clarity & Flow
+- Vary sentence length for rhythm
+- Break up dense noun phrases into clearer constructions
+- Use parallel structure in lists and comparisons
+
 ## OUTPUT FORMAT
 Return ONLY the rewritten text. No explanations, no commentary, no markdown formatting.
 Write as if your text will be directly inserted into the document."""

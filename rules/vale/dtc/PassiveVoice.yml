@@ -1,6 +1,6 @@
 extends: existence
 message: "Passive construction: '%s'. Consider if active voice would be clearer (but passive is often appropriate in technical writing)."
-level: suggestion
+level: info
 ignorecase: true
 
 # PASSIVE VOICE IN TECHNICAL WRITING
