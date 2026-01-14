@@ -17,5 +17,8 @@ google = ["google-api-python-client>=2.100.0", "google-auth>=2.25.0"]
 dtc-edit = "dtc_editor.cli:main"
 dtc-edit-gui = "dtc_editor.gui:launch_gui"
 
+[tool.setuptools.packages.find]
+include = ["dtc_editor*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
