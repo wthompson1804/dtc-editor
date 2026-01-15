@@ -67,7 +67,7 @@ if uploaded_file and api_key:
                     api_key=api_key,
                     model="claude-sonnet-4-20250514",
                     chunk_strategy="paragraph",
-                    max_concurrent=2,
+                    max_concurrent=1,  # Reduced to avoid rate limits
                     vale_config=str(Path(__file__).parent / "rules" / "vale" / ".vale.ini"),
                     auto_accept=True,
                 )
