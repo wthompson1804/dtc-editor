@@ -242,7 +242,22 @@ def _parse_vale_output(
                     else:
                         logger.warning(f"Could not find '{match_text}' in block text for {check}")
 
-    return findings, editops
+    # Deduplicate EditOps - multiple rules may match the same text at the same location
+    # Keep only the first EditOp for each (anchor, span_start, span_end) tuple
+    seen_locations = set()
+    deduped_editops = []
+    for op in editops:
+        location = (op.target.anchor, op.target.span_start, op.target.span_end)
+        if location not in seen_locations:
+            seen_locations.add(location)
+            deduped_editops.append(op)
+        else:
+            logger.debug(f"Skipping duplicate EditOp at {location[:8]}... for rule {op.rule_id}")
+
+    if len(editops) != len(deduped_editops):
+        logger.info(f"Deduplicated EditOps: {len(editops)} → {len(deduped_editops)}")
+
+    return findings, deduped_editops
 
 
 def run_vale(

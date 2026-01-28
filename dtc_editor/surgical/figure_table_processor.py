@@ -220,8 +220,12 @@ class FigureTableProcessor:
                 issues.append(result["issue"])
 
         # Step 7: Fix in-text references
+        # IMPORTANT: Re-scan references after figure/table processing because
+        # adding captions may have shifted paragraph indices
         references_fixed = 0
         if self.config.fix_in_text_references:
+            self.references = []  # Clear stale references
+            self._scan_references()  # Re-scan with updated indices
             references_fixed = self._fix_references()
             if references_fixed > 0:
                 changes.append({"type": "references_fixed", "count": references_fixed})
