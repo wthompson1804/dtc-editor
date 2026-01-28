@@ -457,8 +457,11 @@ Instructions:
         text = para.text
 
         # Build the expanded form
+        # Per AP style, the expansion is lowercase (it's a generic term, not a proper noun)
+        # The acronym remains uppercase in parentheses
+        expansion_lower = expansion.lower()
         expanded = self.config.expansion_format.format(
-            expansion=expansion,
+            expansion=expansion_lower,
             acronym=occurrence.acronym
         )
 

@@ -1,7 +1,20 @@
 from __future__ import annotations
 from typing import List, Dict, Tuple
+import re
 from dtc_editor.ir import DocumentIR
 from dtc_editor.editops import EditOp
+
+
+def _normalize_whitespace(text: str) -> str:
+    """
+    Normalize whitespace in text:
+    - Replace multiple spaces with single space
+    - Preserve paragraph structure (don't collapse newlines)
+    """
+    # Replace multiple spaces (but not newlines) with single space
+    text = re.sub(r'[^\S\n]+', ' ', text)
+    return text
+
 
 def apply_editops(ir: DocumentIR, ops: List[EditOp]) -> Tuple[DocumentIR, List[EditOp]]:
     # Group ops by block anchor for deterministic application
@@ -29,7 +42,8 @@ def apply_editops(ir: DocumentIR, ops: List[EditOp]) -> Tuple[DocumentIR, List[E
                 continue
             text = text[:start] + op.after + text[end:]
             op.status = "applied"
-        block.text = text
+        # Normalize whitespace (fix double spaces from source or edits)
+        block.text = _normalize_whitespace(text)
 
         # block-level replacements (rare; future)
         for op in [o for o in bops if o.op == "replace_block"]:

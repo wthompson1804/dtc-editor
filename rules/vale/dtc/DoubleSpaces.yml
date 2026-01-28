@@ -1,0 +1,17 @@
+# DTC Style: Double Space Detection
+#
+# RULE: Text should not contain double (or multiple) spaces.
+# These are typically typos or formatting errors.
+#
+# The surgical pipeline will auto-fix these, but we flag them
+# so they appear in the findings report.
+
+extends: substitution
+message: "Remove extra space: '%s'"
+level: warning
+ignorecase: false
+
+swap:
+  '  ': ' '
+  '   ': ' '
+  '    ': ' '
