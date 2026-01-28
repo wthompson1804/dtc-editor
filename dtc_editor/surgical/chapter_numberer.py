@@ -1,17 +1,17 @@
 """
-Chapter Numberer for Surgical Pipeline
+Chapter/Section Numberer for Surgical Pipeline
 
 Handles:
-1. Detection of H1 headings (Heading 1 style)
-2. Adding sequential chapter numbers to unnumbered chapters
-3. Preserving special chapters without numbers (Abstract, References, etc.)
-4. Normalizing existing chapter numbers to sequential order
+1. Detection of ALL heading levels (Heading 1, 2, 3, etc.)
+2. Stripping ALL existing numbers from headings
+3. Applying consistent hierarchical numbering (1, 1.1, 1.1.1, 2, 2.1, etc.)
+4. Preserving special sections without numbers (Abstract, References, etc.)
 
 Reference: dtc_editor/rules/surgical_rules_manifest.yml (structure.chapters.numbered)
 """
 from __future__ import annotations
 from dataclasses import dataclass, field
-from typing import List, Set, Optional, Dict
+from typing import List, Set, Optional, Dict, Tuple
 from pathlib import Path
 import re
 import logging
@@ -28,27 +28,26 @@ logger = logging.getLogger(__name__)
 # =============================================================================
 
 @dataclass
-class ChapterHeading:
-    """Information about a chapter heading."""
+class HeadingInfo:
+    """Information about a heading at any level."""
     para_index: int
+    level: int  # 1, 2, 3, etc.
     original_text: str
-    existing_number: Optional[str]  # "1", "2.0", etc. if numbered
+    existing_number: Optional[str]  # "1", "1.2", "1.2.3" etc. if numbered
     title_text: str  # Text after number (or full text if unnumbered)
     is_special: bool  # True for Abstract, References, etc.
-    assigned_number: Optional[int]  # New number to assign
+    assigned_number: Optional[str]  # New hierarchical number to assign ("1", "1.1", etc.)
 
 
 @dataclass
 class ChapterNumbererConfig:
-    """Configuration for chapter numbering."""
-    # Special chapters that don't get numbers
-    # NOTE: "Introduction" IS numbered (it's Chapter 1 typically)
-    # Only truly special sections like References should be unnumbered
-    unnumbered_chapters: Set[str] = field(default_factory=lambda: {
+    """Configuration for chapter/section numbering."""
+    # Special sections that don't get numbers (checked against title text)
+    unnumbered_sections: Set[str] = field(default_factory=lambda: {
         # Front matter / Title page content
         "abstract",
         "executive summary",
-        "white paper",  # e.g., "A Digital Twin Consortium White Paper"
+        "white paper",
         "technical paper",
         "working paper",
         "position paper",
@@ -65,31 +64,40 @@ class ChapterNumbererConfig:
         "toc",
         "bibliography",
         "index",
-        # Common document titles (shouldn't be numbered)
-        "consortium",  # Catches "Digital Twin Consortium" titles
+        # Common document titles
+        "consortium",
         "preface",
         "foreword",
+        "figures",
+        "tables",
     })
 
-    # Format for chapter numbers
-    number_format: str = "{number}"  # Could be "{number}." or "{number}.0"
+    # Maximum heading level to number (1=H1 only, 2=H1+H2, 3=H1+H2+H3, etc.)
+    max_level: int = 3
 
     # Whether to add separator between number and title
-    separator: str = " "  # Space between "1" and "Introduction"
-
-    # Whether to fix already-numbered chapters that are out of sequence
-    renumber_existing: bool = True
+    separator: str = " "  # Space between "1.2" and "Section Title"
 
 
 @dataclass
 class ChapterNumbererResult:
-    """Result of chapter numbering."""
-    chapters_found: int
-    chapters_numbered: int
-    chapters_renumbered: int
-    special_chapters: int
+    """Result of chapter/section numbering."""
+    headings_found: int
+    headings_numbered: int
+    headings_renumbered: int
+    special_sections: int
     changes: List[Dict]
     issues: List[str]
+    # For backwards compatibility
+    @property
+    def chapters_found(self) -> int:
+        return self.headings_found
+    @property
+    def chapters_numbered(self) -> int:
+        return self.headings_numbered
+    @property
+    def chapters_renumbered(self) -> int:
+        return self.headings_renumbered
 
 
 # =============================================================================
@@ -98,87 +106,84 @@ class ChapterNumbererResult:
 
 class ChapterNumberer:
     """
-    Adds/corrects chapter numbers in a DOCX document.
+    Adds/corrects hierarchical section numbers in a DOCX document.
+
+    Handles ALL heading levels with proper hierarchical numbering:
+    - Heading 1 → 1, 2, 3, ...
+    - Heading 2 → 1.1, 1.2, 2.1, ...
+    - Heading 3 → 1.1.1, 1.1.2, 2.1.1, ...
 
     Workflow:
-    1. Scan document for H1 headings (Heading 1 style)
-    2. Identify special chapters (Abstract, References, etc.)
-    3. Assign sequential numbers to content chapters
-    4. Update heading text with proper numbers
+    1. Scan document for ALL heading styles
+    2. Strip ALL existing numbers from headings
+    3. Identify special sections (Abstract, References, etc.)
+    4. Assign hierarchical numbers to content sections
+    5. Rewrite all headings with clean formatting
     """
 
-    def __init__(self, config: ChapterNumbererConfig):
-        self.config = config
-        self.chapters: List[ChapterHeading] = []
+    def __init__(self, config: ChapterNumbererConfig = None):
+        self.config = config or ChapterNumbererConfig()
+        self.headings: List[HeadingInfo] = []
         self.doc: Optional[Document] = None
 
     def process(self, doc: Document) -> ChapterNumbererResult:
-        """
-        Process all chapter headings in the document.
-
-        Args:
-            doc: python-docx Document object
-
-        Returns:
-            ChapterNumbererResult with statistics and changes
-        """
+        """Process all headings in the document."""
         self.doc = doc
-        self.chapters = []
+        self.headings = []
 
         changes = []
         issues = []
 
-        # Step 1: Scan all H1 headings
-        self._scan_headings()
-        logger.info(f"Found {len(self.chapters)} chapter headings")
+        # Step 1: Scan ALL headings
+        self._scan_all_headings()
+        logger.info(f"Found {len(self.headings)} headings")
 
-        # Step 2: Assign numbers
-        self._assign_numbers()
+        # Step 2: Assign hierarchical numbers
+        self._assign_hierarchical_numbers()
 
-        # Step 3: Apply changes
-        # IMPORTANT: Always rewrite headings to ensure clean formatting
-        # This prevents duplication from malformed source text or extra whitespace
-        chapters_numbered = 0
-        chapters_renumbered = 0
-        special_chapters = 0
+        # Step 3: Apply changes - ALWAYS rewrite to ensure clean formatting
+        headings_numbered = 0
+        headings_renumbered = 0
+        special_sections = 0
 
-        for chapter in self.chapters:
-            if chapter.is_special:
-                special_chapters += 1
+        for heading in self.headings:
+            if heading.is_special:
+                special_sections += 1
+                # Still rewrite special sections to strip any stray numbers
+                self._rewrite_heading_without_number(heading)
                 continue
 
-            if chapter.assigned_number is None:
+            if heading.assigned_number is None:
                 continue
 
-            # ALWAYS rewrite the heading with proper formatting
-            # This ensures we strip any existing number and apply clean formatting
-            result = self._rewrite_chapter_heading(chapter)
-            if result:
-                if chapter.existing_number is None:
-                    chapters_numbered += 1
-                    changes.append({
-                        "type": "chapter_numbered",
-                        "para_index": chapter.para_index,
-                        "title": chapter.title_text,
-                        "new_number": chapter.assigned_number,
-                    })
-                else:
-                    # Had existing number - count as renumbered even if same
-                    # (ensures clean formatting)
-                    chapters_renumbered += 1
-                    changes.append({
-                        "type": "chapter_renumbered",
-                        "para_index": chapter.para_index,
-                        "title": chapter.title_text,
-                        "old_number": chapter.existing_number,
-                        "new_number": chapter.assigned_number,
-                    })
+            # ALWAYS rewrite the heading
+            self._rewrite_heading(heading)
+
+            if heading.existing_number is None:
+                headings_numbered += 1
+                changes.append({
+                    "type": "heading_numbered",
+                    "para_index": heading.para_index,
+                    "level": heading.level,
+                    "title": heading.title_text,
+                    "new_number": heading.assigned_number,
+                })
+            else:
+                headings_renumbered += 1
+                changes.append({
+                    "type": "heading_renumbered",
+                    "para_index": heading.para_index,
+                    "level": heading.level,
+                    "title": heading.title_text,
+                    "old_number": heading.existing_number,
+                    "new_number": heading.assigned_number,
+                })
 
         return ChapterNumbererResult(
-            chapters_found=len(self.chapters),
-            chapters_numbered=chapters_numbered,
-            chapters_renumbered=chapters_renumbered,
-            special_chapters=special_chapters,
+            headings_found=len(self.headings),
+            headings_numbered=headings_numbered,
+            headings_renumbered=headings_renumbered,
+            special_sections=special_sections,
             changes=changes,
             issues=issues,
         )
@@ -187,54 +192,79 @@ class ChapterNumberer:
     # Scanning Methods
     # =========================================================================
 
-    def _scan_headings(self) -> None:
-        """Scan document for H1 headings."""
-        for i, para in enumerate(self.doc.paragraphs):
-            style_name = para.style.name.lower() if para.style else ""
+    def _get_heading_level(self, style_name: str) -> Optional[int]:
+        """Extract heading level from style name."""
+        style_lower = style_name.lower()
 
-            # Check for Heading 1 style
-            if "heading 1" not in style_name:
+        # Match "heading 1", "heading 2", etc.
+        match = re.search(r'heading\s*(\d+)', style_lower)
+        if match:
+            level = int(match.group(1))
+            if 1 <= level <= self.config.max_level:
+                return level
+        return None
+
+    def _strip_leading_numbers(self, text: str) -> Tuple[Optional[str], str]:
+        """
+        Strip ALL leading numbers from text.
+
+        Returns:
+            (existing_number, clean_title)
+
+        Handles patterns like:
+        - "1 Title" → ("1", "Title")
+        - "1.2 Title" → ("1.2", "Title")
+        - "1.2.3 Title" → ("1.2.3", "Title")
+        - "4    4 Title" (corrupted) → ("4", "Title")
+        - "1. Title" → ("1.", "Title")
+        """
+        existing_number = None
+        title_text = text.strip()
+
+        # Loop to strip ALL leading number patterns
+        while True:
+            # Match: digit(s), optional decimal parts, optional trailing dot, optional whitespace
+            match = re.match(r'^(\d+(?:\.\d+)*\.?)\s*(.*)$', title_text)
+            if match and match.group(2).strip():
+                # Found a leading number - save first one found
+                if existing_number is None:
+                    existing_number = match.group(1)
+                title_text = match.group(2).strip()
+            else:
+                break
+
+        # Safety check: if we stripped everything, restore original
+        if not title_text.strip():
+            return None, text.strip()
+
+        return existing_number, title_text
+
+    def _scan_all_headings(self) -> None:
+        """Scan document for all heading styles up to max_level."""
+        for i, para in enumerate(self.doc.paragraphs):
+            style_name = para.style.name if para.style else ""
+            level = self._get_heading_level(style_name)
+
+            if level is None:
                 continue
 
             text = para.text.strip()
             if not text:
                 continue
 
-            # Parse existing number if present
-            # IMPORTANT: Always strip leading numbers to avoid duplication
-            # Handles: "1 Title", "1. Title", "1.0 Title", "1.Title" (no space), etc.
-            # Also handles corrupted "4    4 VPP..." patterns by stripping all leading numbers
-            existing_number = None
-            title_text = text
+            # Strip existing numbers
+            existing_number, title_text = self._strip_leading_numbers(text)
 
-            # Pattern: Any leading number pattern (with or without space after)
-            # Use a loop to strip ALL leading number patterns (handles "4 4 Title" cases)
-            while True:
-                # Match: digit(s), optional decimal parts, optional trailing dot, optional whitespace
-                match = re.match(r'^(\d+(?:\.\d+)*\.?)\s*(.*)$', title_text)
-                if match and match.group(2):
-                    # Found a leading number - save it (first one found) and strip it
-                    if existing_number is None:
-                        existing_number = match.group(1)
-                    title_text = match.group(2).strip()
-                    # Continue loop to strip any additional leading numbers
-                else:
-                    break
-
-            # Safety check: if we stripped everything, restore original
-            if not title_text.strip():
-                title_text = text
-                existing_number = None
-
-            # Check if this is a special chapter
+            # Check if this is a special section
             title_lower = title_text.lower().strip()
             is_special = any(
                 special in title_lower or title_lower in special
-                for special in self.config.unnumbered_chapters
+                for special in self.config.unnumbered_sections
             )
 
-            self.chapters.append(ChapterHeading(
+            self.headings.append(HeadingInfo(
                 para_index=i,
+                level=level,
                 original_text=text,
                 existing_number=existing_number,
                 title_text=title_text,
@@ -242,58 +272,63 @@ class ChapterNumberer:
                 assigned_number=None,
             ))
 
-    def _assign_numbers(self) -> None:
-        """Assign sequential numbers to non-special chapters."""
-        current_number = 1
+    def _assign_hierarchical_numbers(self) -> None:
+        """Assign hierarchical numbers to non-special headings."""
+        # Counters for each level
+        counters = [0] * (self.config.max_level + 1)  # Index 0 unused, 1-based
 
-        for chapter in self.chapters:
-            if chapter.is_special:
-                chapter.assigned_number = None
-            else:
-                chapter.assigned_number = current_number
-                current_number += 1
+        for heading in self.headings:
+            if heading.is_special:
+                heading.assigned_number = None
+                continue
+
+            level = heading.level
+
+            # Increment counter at this level
+            counters[level] += 1
+
+            # Reset all counters below this level
+            for l in range(level + 1, len(counters)):
+                counters[l] = 0
+
+            # Build hierarchical number string
+            number_parts = [str(counters[l]) for l in range(1, level + 1)]
+            heading.assigned_number = ".".join(number_parts)
 
     # =========================================================================
     # Modification Methods
     # =========================================================================
 
-    def _rewrite_chapter_heading(self, chapter: ChapterHeading) -> bool:
-        """
-        Rewrite chapter heading with proper number and formatting.
-
-        ALWAYS rewrites the heading to ensure:
-        1. Any existing number is stripped (via title_text)
-        2. New number is applied consistently
-        3. Clean formatting without extra whitespace
-
-        This prevents duplication issues from malformed source text.
-        """
-        if chapter.assigned_number is None:
+    def _rewrite_heading(self, heading: HeadingInfo) -> bool:
+        """Rewrite heading with proper number and formatting."""
+        if heading.assigned_number is None:
             return False
 
-        para = self.doc.paragraphs[chapter.para_index]
+        para = self.doc.paragraphs[heading.para_index]
 
-        # Format new number
-        number_str = self.config.number_format.format(number=chapter.assigned_number)
+        # Build new text: "1.2 Section Title"
+        clean_title = heading.title_text.strip()
+        new_text = f"{heading.assigned_number}{self.config.separator}{clean_title}"
 
-        # Use title_text which has existing number stripped
-        # Also strip to remove any leading/trailing whitespace
-        clean_title = chapter.title_text.strip()
-        new_text = f"{number_str}{self.config.separator}{clean_title}"
-
-        # Preserve formatting by updating runs
         self._update_paragraph_text(para, new_text)
+        logger.info(f"Rewrote H{heading.level}: '{heading.original_text}' → '{new_text}'")
+        return True
 
-        logger.info(f"Rewrote chapter heading: '{chapter.original_text}' → '{new_text}'")
+    def _rewrite_heading_without_number(self, heading: HeadingInfo) -> bool:
+        """Rewrite special heading to strip any existing number."""
+        para = self.doc.paragraphs[heading.para_index]
+
+        # Just use the clean title text (numbers already stripped)
+        clean_title = heading.title_text.strip()
+
+        # Only rewrite if there was an existing number to strip
+        if heading.existing_number:
+            self._update_paragraph_text(para, clean_title)
+            logger.info(f"Stripped number from special heading: '{heading.original_text}' → '{clean_title}'")
         return True
 
     def _update_paragraph_text(self, para, new_text: str) -> None:
-        """
-        Update paragraph text while trying to preserve formatting.
-
-        This is tricky because Word stores text in multiple runs with
-        different formatting. We try to preserve the first run's formatting.
-        """
+        """Update paragraph text while preserving formatting."""
         # Get formatting from first run if available
         first_run = para.runs[0] if para.runs else None
         font_name = None
@@ -319,7 +354,7 @@ class ChapterNumberer:
 
 
 # =============================================================================
-# Convenience Function
+# Convenience Functions
 # =============================================================================
 
 def number_chapters(
@@ -327,17 +362,7 @@ def number_chapters(
     output_path: str,
     config: Optional[ChapterNumbererConfig] = None,
 ) -> ChapterNumbererResult:
-    """
-    Add/correct chapter numbers in a DOCX file.
-
-    Args:
-        docx_path: Path to input DOCX
-        output_path: Path to save output DOCX
-        config: Optional configuration
-
-    Returns:
-        ChapterNumbererResult with statistics
-    """
+    """Add/correct section numbers in a DOCX file."""
     if config is None:
         config = ChapterNumbererConfig()
 
@@ -346,37 +371,28 @@ def number_chapters(
     result = processor.process(doc)
 
     doc.save(output_path)
-
     return result
 
 
-# =============================================================================
-# Analysis Function (for diagnostics)
-# =============================================================================
-
 def analyze_chapters(docx_path: str) -> List[Dict]:
-    """
-    Analyze chapter structure without making changes.
-
-    Returns list of chapter info dicts for inspection.
-    """
+    """Analyze heading structure without making changes."""
     doc = Document(docx_path)
     config = ChapterNumbererConfig()
     processor = ChapterNumberer(config)
 
     processor.doc = doc
-    processor._scan_headings()
-    processor._assign_numbers()
+    processor._scan_all_headings()
+    processor._assign_hierarchical_numbers()
 
-    chapters = []
-    for ch in processor.chapters:
-        chapters.append({
-            "para_index": ch.para_index,
-            "original": ch.original_text,
-            "existing_number": ch.existing_number,
-            "title": ch.title_text,
-            "is_special": ch.is_special,
-            "assigned_number": ch.assigned_number,
-        })
-
-    return chapters
+    return [
+        {
+            "para_index": h.para_index,
+            "level": h.level,
+            "original": h.original_text,
+            "existing_number": h.existing_number,
+            "title": h.title_text,
+            "is_special": h.is_special,
+            "assigned_number": h.assigned_number,
+        }
+        for h in processor.headings
+    ]
