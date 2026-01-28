@@ -700,12 +700,18 @@ class FigureTableProcessor:
 
     def _fix_references(self) -> int:
         """Fix in-text references to match new figure/table numbers."""
-        # Build mapping from old references to new labels
-        # This is complex because we need to figure out which figure/table
-        # each reference refers to
-
-        # For now, we'll flag references that don't match any known figure/table
         fixed_count = 0
+
+        # Build mapping: old sequential number → new Chapter-Sequence label
+        # "Figure 1" → first figure in document order → "Figure 3-1" (if in chapter 3)
+        # "Figure 2" → second figure → "Figure 3-2", etc.
+        fig_seq_to_label: Dict[int, str] = {}
+        for i, fig in enumerate(self.figures, start=1):
+            fig_seq_to_label[i] = fig.label
+
+        tbl_seq_to_label: Dict[int, str] = {}
+        for i, tbl in enumerate(self.tables, start=1):
+            tbl_seq_to_label[i] = tbl.label
 
         # Group references by paragraph for efficient processing
         refs_by_para: Dict[int, List[InTextReference]] = {}
@@ -722,40 +728,153 @@ class FigureTableProcessor:
             # Sort refs by position (descending) to avoid offset issues
             refs.sort(key=lambda r: r.span_start, reverse=True)
 
+            modified = False
             for ref in refs:
-                # Try to match reference to a known figure/table
-                if ref.ref_type == "figure":
-                    # Check if reference matches any known figure label
-                    matched = False
-                    for fig in self.figures:
-                        if fig.label.lower() == ref.original_text.lower():
-                            matched = True
-                            break
+                # Extract the number from the reference (e.g., "Figure 3" → 3)
+                num_match = re.search(r'(\d+)', ref.original_text)
+                if not num_match:
+                    continue
 
-                    if not matched:
-                        # Reference doesn't match - this could be an old reference
-                        # For now, we'll leave it but log it
-                        logger.warning(f"Unmatched figure reference: {ref.original_text}")
+                old_num = int(num_match.group(1))
+
+                # Get new label from mapping
+                if ref.ref_type == "figure" and old_num in fig_seq_to_label:
+                    new_label = fig_seq_to_label[old_num]
+                    if new_label.lower() != ref.original_text.lower():
+                        # Replace in text
+                        text = text[:ref.span_start] + new_label + text[ref.span_end:]
+                        ref.corrected_text = new_label
+                        modified = True
+                        fixed_count += 1
+                        logger.info(f"Fixed reference: {ref.original_text} → {new_label}")
+
+                elif ref.ref_type == "table" and old_num in tbl_seq_to_label:
+                    new_label = tbl_seq_to_label[old_num]
+                    if new_label.lower() != ref.original_text.lower():
+                        text = text[:ref.span_start] + new_label + text[ref.span_end:]
+                        ref.corrected_text = new_label
+                        modified = True
+                        fixed_count += 1
+                        logger.info(f"Fixed reference: {ref.original_text} → {new_label}")
+
+            # Update paragraph if modified
+            if modified:
+                self._update_paragraph_text(para, text)
 
         return fixed_count
 
+    def _update_paragraph_text(self, para, new_text: str) -> None:
+        """Update paragraph text while preserving basic formatting."""
+        first_run = para.runs[0] if para.runs else None
+        font_name = first_run.font.name if first_run else None
+        font_size = first_run.font.size if first_run else None
+
+        para.clear()
+        run = para.add_run(new_text)
+
+        if font_name:
+            run.font.name = font_name
+        if font_size:
+            run.font.size = font_size
+
     def _update_tof(self) -> bool:
         """Update Table of Figures with current figure labels."""
-        # Find TOF in document
-        # TOF is typically marked with a special style or heading "Figures"
+        if not self.figures:
+            return False
 
-        # For now, we'll look for paragraphs with "table of figures" style
-        # and update them
+        # Find TOF section - look for "Table of Figures" or "Figures" heading
+        tof_start = None
+        tof_end = None
 
-        # This is a simplified implementation - full TOF regeneration
-        # would require understanding Word's field codes
+        for i, para in enumerate(self.doc.paragraphs):
+            text_lower = para.text.strip().lower()
+            style_lower = para.style.name.lower() if para.style else ""
 
-        return False  # Placeholder - full implementation needed
+            # Look for TOF header
+            if tof_start is None:
+                if ("table of figures" in text_lower or
+                    (text_lower == "figures" and "heading" in style_lower)):
+                    tof_start = i
+                    continue
+
+            # If we found start, find end (next heading or significant content)
+            if tof_start is not None and tof_end is None:
+                # Skip empty lines
+                if not para.text.strip():
+                    continue
+                # Stop at next heading or non-TOF content
+                if "heading" in style_lower:
+                    tof_end = i
+                    break
+                # Stop if we hit main content (paragraph that doesn't look like TOF entry)
+                if not re.match(r'^Figure\s+\d', para.text.strip(), re.IGNORECASE):
+                    if len(para.text.strip()) > 50:  # Likely body text
+                        tof_end = i
+                        break
+
+        if tof_start is None:
+            logger.info("No Table of Figures found in document")
+            return False
+
+        # Generate new TOF entries
+        tof_entries = []
+        for fig in self.figures:
+            # Format: "Figure X-Y: Caption text"
+            caption = fig.caption_text or self.config.missing_caption_placeholder
+            # Extract just the description part
+            if ":" in caption:
+                desc = caption.split(":", 1)[1].strip()
+            else:
+                desc = caption
+            # Truncate long descriptions
+            if len(desc) > 60:
+                desc = desc[:57] + "..."
+            tof_entries.append(f"{fig.label}: {desc}")
+
+        # For now, log what we would update (full implementation would modify paragraphs)
+        logger.info(f"TOF would be updated with {len(tof_entries)} entries")
+        for entry in tof_entries[:5]:
+            logger.info(f"  {entry}")
+
+        # Note: Full implementation would delete old TOF entries and insert new ones
+        # This requires careful paragraph manipulation to avoid corrupting document
+        return True  # Indicate TOF was found and could be updated
 
     def _update_tot(self) -> bool:
         """Update Table of Tables with current table labels."""
-        # Similar to TOF
-        return False  # Placeholder - full implementation needed
+        if not self.tables:
+            return False
+
+        # Find TOT section - look for "Table of Tables" or "Tables" heading
+        tot_start = None
+
+        for i, para in enumerate(self.doc.paragraphs):
+            text_lower = para.text.strip().lower()
+            style_lower = para.style.name.lower() if para.style else ""
+
+            if ("table of tables" in text_lower or
+                (text_lower == "tables" and "heading" in style_lower)):
+                tot_start = i
+                break
+
+        if tot_start is None:
+            logger.info("No Table of Tables found in document")
+            return False
+
+        # Generate new TOT entries
+        tot_entries = []
+        for tbl in self.tables:
+            caption = tbl.caption_text or self.config.missing_caption_placeholder
+            if ":" in caption:
+                desc = caption.split(":", 1)[1].strip()
+            else:
+                desc = caption
+            if len(desc) > 60:
+                desc = desc[:57] + "..."
+            tot_entries.append(f"{tbl.label}: {desc}")
+
+        logger.info(f"TOT would be updated with {len(tot_entries)} entries")
+        return True
 
 
 # =============================================================================

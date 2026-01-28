@@ -158,8 +158,9 @@ class AcronymExpander:
     4. Expand with "Full Name (ACRONYM)" format
     """
 
-    def __init__(self, config: AcronymExpanderConfig):
+    def __init__(self, config: AcronymExpanderConfig, llm_client=None):
         self.config = config
+        self.llm_client = llm_client  # Optional LLM client for unknown acronym lookup
         self.occurrences: List[AcronymOccurrence] = []
         self.defined: Set[str] = set()  # Acronyms already defined in document
         self.doc: Optional[Document] = None
@@ -197,6 +198,7 @@ class AcronymExpander:
         # Step 4: Expand each first use
         expansions_made = 0
         org_skipped = 0
+        llm_lookups = 0
 
         # Process in reverse order to avoid index shifting
         for occurrence in reversed(first_uses):
@@ -222,7 +224,26 @@ class AcronymExpander:
                         "para_index": occurrence.para_index,
                     })
             else:
-                # Unknown acronym
+                # Unknown acronym - try LLM lookup if enabled
+                if self.config.use_llm_lookup and self.llm_client and llm_lookups < self.config.max_llm_lookups:
+                    expansion = self._lookup_acronym_llm(acronym, occurrence.context)
+                    llm_lookups += 1
+
+                    if expansion:
+                        # Add to known acronyms for this session
+                        self.config.known_acronyms[acronym] = expansion
+                        success = self._expand_acronym(occurrence, expansion)
+                        if success:
+                            expansions_made += 1
+                            changes.append({
+                                "type": "acronym_expanded_llm",
+                                "acronym": acronym,
+                                "expansion": expansion,
+                                "para_index": occurrence.para_index,
+                            })
+                            continue
+
+                # Still unknown after LLM attempt
                 if acronym not in unknown_acronyms:
                     unknown_acronyms.append(acronym)
                     issues.append(f"Unknown acronym: {acronym} (para {occurrence.para_index})")
@@ -325,6 +346,38 @@ class AcronymExpander:
                 seen.add(occ.acronym)
 
         return first_uses
+
+    def _lookup_acronym_llm(self, acronym: str, context: str) -> Optional[str]:
+        """Look up an unknown acronym using LLM."""
+        if not self.llm_client:
+            return None
+
+        prompt = f"""What does the acronym "{acronym}" stand for in this context?
+
+Context: "{context}"
+
+If you know the expansion with high confidence, respond with ONLY the expansion (e.g., "Application Programming Interface").
+If you're unsure or the acronym could have multiple meanings, respond with "UNKNOWN".
+Do not include the acronym in parentheses, just the expansion."""
+
+        try:
+            response = self.llm_client.complete(prompt)
+            expansion = response.strip()
+
+            # Validate response
+            if expansion.upper() == "UNKNOWN" or len(expansion) < 3:
+                return None
+
+            # Basic sanity check - expansion should be longer than acronym
+            if len(expansion) <= len(acronym):
+                return None
+
+            logger.info(f"LLM lookup: {acronym} → {expansion}")
+            return expansion
+
+        except Exception as e:
+            logger.warning(f"LLM lookup failed for {acronym}: {e}")
+            return None
 
     # =========================================================================
     # Modification Methods
