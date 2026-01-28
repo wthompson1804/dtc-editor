@@ -1,55 +1,79 @@
-# DTC Style Guide: Technical Term Capitalization
-# Rule: Technical terms that are acronym expansions should be capitalized
-# These are proper technical terms, not common nouns
+# AP Style: Technical Term Capitalization
+#
+# RULE: Generic terms of art are NOT capitalized per AP style.
+# These terms are technical vocabulary, not formal names of companies,
+# programs, or publications.
+#
+# EXCEPTION: Capitalize when part of a formal name (e.g., "Virtual Power
+# Plant Association" - but this requires LLM context awareness).
+#
+# ACRONYM FORMAT: When introducing an acronym, use lowercase term with
+# capitalized acronym in parentheses: "virtual power plant (VPP)"
+#
+# NOTE: This rule lowercases over-capitalized terms. Authors frequently
+# capitalize every technical term, which violates AP style. These fixes
+# should be flagged for LLM review when context is ambiguous.
+
 extends: substitution
-message: "Capitalize technical term: '%s'"
+message: "Per AP style, lowercase generic terms of art: '%s' (unless part of a formal name)"
 level: warning
-ignorecase: true
+ignorecase: false
+
 swap:
-  # Energy/Grid Terms (acronym expansions)
-  'virtual power plant': "Virtual Power Plant"
-  'virtual power plants': "Virtual Power Plants"
-  'distributed energy resource': "Distributed Energy Resource"
-  'distributed energy resources': "Distributed Energy Resources"
-  'distributed energy resource management system': "Distributed Energy Resource Management System"
-  'energy management system': "Energy Management System"
-  'energy management systems': "Energy Management Systems"
-  'building management system': "Building Management System"
-  'building management systems': "Building Management Systems"
-  'building energy management system': "Building Energy Management System"
-  'energy storage system': "Energy Storage System"
-  'energy storage systems': "Energy Storage Systems"
-  'battery energy storage system': "Battery Energy Storage System"
-  'demand response': "Demand Response"
-  'demand side management': "Demand Side Management"
-  'advanced metering infrastructure': "Advanced Metering Infrastructure"
-  'automated demand response': "Automated Demand Response"
+  # === ENERGY/GRID TERMS ===
+  # These are generic technical terms, not proper nouns
+  "Virtual Power Plant": "virtual power plant"
+  "Virtual Power Plants": "virtual power plants"
+  "Distributed Energy Resource": "distributed energy resource"
+  "Distributed Energy Resources": "distributed energy resources"
+  "Distributed Energy Resource Management System": "distributed energy resource management system"
+  "Energy Management System": "energy management system"
+  "Energy Management Systems": "energy management systems"
+  "Building Management System": "building management system"
+  "Building Management Systems": "building management systems"
+  "Building Energy Management System": "building energy management system"
+  "Energy Storage System": "energy storage system"
+  "Energy Storage Systems": "energy storage systems"
+  "Battery Energy Storage System": "battery energy storage system"
+  "Demand Response": "demand response"
+  "Demand Side Management": "demand side management"
+  "Advanced Metering Infrastructure": "advanced metering infrastructure"
+  "Automated Demand Response": "automated demand response"
 
-  # Grid Operator Terms
-  'transmission system operator': "Transmission System Operator"
-  'transmission system operators': "Transmission System Operators"
-  'distribution system operator': "Distribution System Operator"
-  'distribution system operators': "Distribution System Operators"
-  'independent system operator': "Independent System Operator"
-  'regional transmission organization': "Regional Transmission Organization"
+  # === GRID OPERATOR TERMS ===
+  "Transmission System Operator": "transmission system operator"
+  "Transmission System Operators": "transmission system operators"
+  "Distribution System Operator": "distribution system operator"
+  "Distribution System Operators": "distribution system operators"
+  "Independent System Operator": "independent system operator"
+  "Regional Transmission Organization": "regional transmission organization"
 
-  # Digital Twin Terms
-  'digital twin as a service': "Digital Twin as a Service"
-  'cyber-physical system': "Cyber-Physical System"
-  'cyber-physical systems': "Cyber-Physical Systems"
-  'asset performance management': "Asset Performance Management"
-  'building information modeling': "Building Information Modeling"
-  'computerized maintenance management system': "Computerized Maintenance Management System"
+  # === DIGITAL TWIN TERMS ===
+  # Note: "digital twin" itself is handled by DigitalTwinCapitalization rule
+  "Digital Twin As A Service": "digital twin as a service"
+  "Cyber-Physical System": "cyber-physical system"
+  "Cyber-Physical Systems": "cyber-physical systems"
+  "Asset Performance Management": "asset performance management"
+  "Building Information Modeling": "building information modeling"
+  "Computerized Maintenance Management System": "computerized maintenance management system"
 
-  # Standards/Protocols
-  'common information model': "Common Information Model"
-  'open automated demand response': "Open Automated Demand Response"
+  # === STANDARDS/PROTOCOLS ===
+  "Common Information Model": "common information model"
+  "Open Automated Demand Response": "open automated demand response"
 
-  # Vehicle Terms
-  'electric vehicle': "Electric Vehicle"
-  'electric vehicles': "Electric Vehicles"
-  'vehicle-to-grid': "Vehicle-to-Grid"
-  'vehicle-to-everything': "Vehicle-to-Everything"
+  # === VEHICLE TERMS ===
+  "Electric Vehicle": "electric vehicle"
+  "Electric Vehicles": "electric vehicles"
+  "Vehicle-To-Grid": "vehicle-to-grid"
+  "Vehicle-to-Grid": "vehicle-to-grid"
+  "Vehicle-To-Everything": "vehicle-to-everything"
+  "Vehicle-to-Everything": "vehicle-to-everything"
 
-  # SCADA (keep together)
-  'supervisory control and data acquisition': "Supervisory Control and Data Acquisition"
+  # === OTHER TECHNICAL TERMS ===
+  "Supervisory Control And Data Acquisition": "supervisory control and data acquisition"
+  "Supervisory Control and Data Acquisition": "supervisory control and data acquisition"
+  "Internet Of Things": "internet of things"
+  "Machine Learning": "machine learning"
+  "Artificial Intelligence": "artificial intelligence"
+  "Cloud Computing": "cloud computing"
+  "Edge Computing": "edge computing"
