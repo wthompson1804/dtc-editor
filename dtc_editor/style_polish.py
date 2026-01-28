@@ -15,7 +15,8 @@ from typing import List, Set, Optional, Dict, Any
 from pathlib import Path
 import logging
 
-from dtc_editor.ir import DocumentIR, Finding, EditOp
+from dtc_editor.ir import DocumentIR, Finding
+from dtc_editor.editops import EditOp
 from dtc_editor.rules.load_rules import load_rule_pack, load_replacement_rules
 from dtc_editor.lint import lint_dtc, lint_prose_candidates
 from dtc_editor.propose import propose_from_rules
