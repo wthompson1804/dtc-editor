@@ -40,3 +40,4 @@ vale
 # Sample/test documents (keep only sample_document.docx)
 MEC*.docx
 DTC_Technical*.docx
+pipeline_output/
