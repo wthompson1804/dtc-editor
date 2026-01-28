@@ -1,0 +1,88 @@
+# DTC Style: Organization Name Protection
+#
+# RULE: Formal organization names must remain properly capitalized.
+# These are NOT generic terms - they are proper nouns (company names,
+# regulatory bodies, industry consortia, standards organizations).
+#
+# This rule RE-CAPITALIZES organization names that may have been
+# incorrectly lowercased by other rules or manual edits.
+#
+# NOTE: This rule should be processed AFTER TechnicalTermCapitalization
+# to override any accidental lowercasing of organization names.
+
+extends: substitution
+message: "Organization names must be capitalized: '%s'"
+level: warning
+ignorecase: true
+
+swap:
+  # === REGULATORY BODIES ===
+  "north american electric reliability corporation": "North American Electric Reliability Corporation"
+  "federal energy regulatory commission": "Federal Energy Regulatory Commission"
+  "environmental protection agency": "Environmental Protection Agency"
+  "department of energy": "Department of Energy"
+  "public utility commission": "Public Utility Commission"
+  "public utilities commission": "Public Utilities Commission"
+  "california public utilities commission": "California Public Utilities Commission"
+  "new york public service commission": "New York Public Service Commission"
+  "texas public utility commission": "Texas Public Utility Commission"
+
+  # === GRID OPERATORS (ISOs/RTOs) ===
+  "california independent system operator": "California Independent System Operator"
+  "electric reliability council of texas": "Electric Reliability Council of Texas"
+  "pennsylvania-new jersey-maryland interconnection": "Pennsylvania-New Jersey-Maryland Interconnection"
+  "pjm interconnection": "PJM Interconnection"
+  "midcontinent independent system operator": "Midcontinent Independent System Operator"
+  "new york independent system operator": "New York Independent System Operator"
+  "iso new england": "ISO New England"
+  "southwest power pool": "Southwest Power Pool"
+  "alberta electric system operator": "Alberta Electric System Operator"
+  "australian energy market operator": "Australian Energy Market Operator"
+
+  # === STANDARDS ORGANIZATIONS ===
+  "institute of electrical and electronics engineers": "Institute of Electrical and Electronics Engineers"
+  "international electrotechnical commission": "International Electrotechnical Commission"
+  "international organization for standardization": "International Organization for Standardization"
+  "national institute of standards and technology": "National Institute of Standards and Technology"
+  "american national standards institute": "American National Standards Institute"
+  "open geospatial consortium": "Open Geospatial Consortium"
+  "object management group": "Object Management Group"
+
+  # === INDUSTRY CONSORTIA ===
+  "digital twin consortium": "Digital Twin Consortium"
+  "smart electric power alliance": "Smart Electric Power Alliance"
+  "gridwise alliance": "GridWise Alliance"
+  "advanced energy economy": "Advanced Energy Economy"
+  "electric power research institute": "Electric Power Research Institute"
+  "solar energy industries association": "Solar Energy Industries Association"
+  "american wind energy association": "American Wind Energy Association"
+  "energy storage association": "Energy Storage Association"
+
+  # === UTILITIES (Major ones) ===
+  "pacific gas and electric": "Pacific Gas and Electric"
+  "southern california edison": "Southern California Edison"
+  "duke energy": "Duke Energy"
+  "dominion energy": "Dominion Energy"
+  "xcel energy": "Xcel Energy"
+  "national grid": "National Grid"
+  "con edison": "Con Edison"
+  "consolidated edison": "Consolidated Edison"
+
+  # === ACRONYM EXPANSIONS (ensure full names stay capitalized) ===
+  # When we expand acronyms, the full organization name must stay capitalized
+  "nerc": "NERC"
+  "ferc": "FERC"
+  "doe": "DOE"
+  "epa": "EPA"
+  "caiso": "CAISO"
+  "ercot": "ERCOT"
+  "pjm": "PJM"
+  "miso": "MISO"
+  "nyiso": "NYISO"
+  "spp": "SPP"
+  "ieee": "IEEE"
+  "iec": "IEC"
+  "iso": "ISO"
+  "nist": "NIST"
+  "ansi": "ANSI"
+  "epri": "EPRI"

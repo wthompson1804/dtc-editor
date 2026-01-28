@@ -77,3 +77,56 @@ swap:
   "Artificial Intelligence": "artificial intelligence"
   "Cloud Computing": "cloud computing"
   "Edge Computing": "edge computing"
+
+  # === ANALYTICS/DATA TERMS ===
+  "Predictive Analytics": "predictive analytics"
+  "Predictive Maintenance": "predictive maintenance"
+  "Real-Time Analytics": "real-time analytics"
+  "Real Time Analytics": "real-time analytics"
+  "Data Analytics": "data analytics"
+  "Big Data": "big data"
+  "Deep Learning": "deep learning"
+  "Load Forecasting": "load forecasting"
+  "Demand Forecasting": "demand forecasting"
+  "Energy Forecasting": "energy forecasting"
+
+  # === GRID OPERATIONS TERMS ===
+  "Grid Operations": "grid operations"
+  "Grid Optimization": "grid optimization"
+  "Grid Modernization": "grid modernization"
+  "Grid Integration": "grid integration"
+  "Load Balancing": "load balancing"
+  "Peak Shaving": "peak shaving"
+  "Frequency Regulation": "frequency regulation"
+  "Voltage Regulation": "voltage regulation"
+  "Ancillary Services": "ancillary services"
+  "Wholesale Market": "wholesale market"
+  "Retail Market": "retail market"
+  "Capacity Market": "capacity market"
+  "Energy Market": "energy market"
+
+  # === RENEWABLE ENERGY TERMS ===
+  "Renewable Energy": "renewable energy"
+  "Solar Power": "solar power"
+  "Wind Power": "wind power"
+  "Solar Energy": "solar energy"
+  "Wind Energy": "wind energy"
+  "Clean Energy": "clean energy"
+  "Green Energy": "green energy"
+  "Distributed Generation": "distributed generation"
+
+  # === SMART GRID TERMS ===
+  "Smart Grid": "smart grid"
+  "Smart Meter": "smart meter"
+  "Smart Meters": "smart meters"
+  "Smart Home": "smart home"
+  "Smart Building": "smart building"
+  "Smart City": "smart city"
+
+  # === RELIABILITY/RESILIENCE TERMS ===
+  "Grid Reliability": "grid reliability"
+  "Grid Resilience": "grid resilience"
+  "Power Quality": "power quality"
+  "Outage Management": "outage management"
+  "Fault Detection": "fault detection"
+  "Fault Isolation": "fault isolation"
