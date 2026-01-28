@@ -21,6 +21,7 @@ class ValeConfig:
     vale_binary: str = "vale"  # Path to vale binary
     styles_path: Optional[str] = None  # Path to .vale.ini or styles directory
     min_alert_level: str = "suggestion"  # suggestion, warning, error
+    pipeline_mode: str = "surgical"  # "surgical" or "holistic" - selects which rules to enable
 
 
 @dataclass
@@ -251,21 +252,40 @@ def run_vale(
         vale_dir = None
         if config.styles_path:
             config_path = Path(config.styles_path)
-            if config_path.is_file() and config_path.name == ".vale.ini":
+            if config_path.is_file() and config_path.suffix == ".ini":
                 cmd.extend(["--config", str(config_path)])
                 vale_dir = str(config_path.parent)
             elif config_path.is_dir():
-                vale_ini = config_path / ".vale.ini"
+                # Select config based on pipeline mode
+                if config.pipeline_mode == "holistic":
+                    vale_ini = config_path / ".vale.holistic.ini"
+                else:
+                    vale_ini = config_path / ".vale.surgical.ini"
+                # Fall back to default .vale.ini if mode-specific doesn't exist
+                if not vale_ini.exists():
+                    vale_ini = config_path / ".vale.ini"
                 if vale_ini.exists():
                     cmd.extend(["--config", str(vale_ini)])
                     vale_dir = str(config_path)
         else:
-            # Try to find .vale.ini in project
+            # Try to find config in project based on pipeline mode
             project_root = Path(__file__).parent.parent.parent
-            default_ini = project_root / "rules" / "vale" / ".vale.ini"
+            vale_path = project_root / "rules" / "vale"
+
+            # Select config based on pipeline mode
+            if config.pipeline_mode == "holistic":
+                default_ini = vale_path / ".vale.holistic.ini"
+            else:
+                default_ini = vale_path / ".vale.surgical.ini"
+
+            # Fall back to default .vale.ini if mode-specific doesn't exist
+            if not default_ini.exists():
+                default_ini = vale_path / ".vale.ini"
+
             if default_ini.exists():
                 cmd.extend(["--config", str(default_ini)])
                 vale_dir = str(default_ini.parent)
+                logger.info(f"Using Vale config: {default_ini} (pipeline_mode={config.pipeline_mode})")
 
         cmd.append(temp_path)
 

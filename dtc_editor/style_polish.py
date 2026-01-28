@@ -101,7 +101,7 @@ def run_style_polish(
 
     logger.info(f"Style polish: found {len(findings)} potential issues")
 
-    # Vale linting (if enabled)
+    # Vale linting (if enabled) - uses SURGICAL mode config
     vale_ops: List[EditOp] = []
     if config.use_vale:
         try:
@@ -109,16 +109,20 @@ def run_style_polish(
 
             vale_config_path = config.vale_config_path
             if not vale_config_path:
-                default_vale = Path(__file__).parent.parent / "rules" / "vale" / ".vale.ini"
+                default_vale = Path(__file__).parent.parent / "rules" / "vale"
                 if default_vale.exists():
                     vale_config_path = str(default_vale)
 
             if vale_config_path:
-                vale_config = ValeConfig(styles_path=vale_config_path)
+                # Style polish uses SURGICAL mode - no prose quality rules
+                vale_config = ValeConfig(
+                    styles_path=vale_config_path,
+                    pipeline_mode="surgical",
+                )
                 vale_result = run_vale(ir, vale_config)
                 findings.extend(vale_result.findings)
                 vale_ops = vale_result.editops
-                logger.info(f"Vale: found {len(vale_result.findings)} issues, {len(vale_ops)} auto-fixable")
+                logger.info(f"Vale (surgical): found {len(vale_result.findings)} issues, {len(vale_ops)} auto-fixable")
         except Exception as e:
             logger.warning(f"Vale linting failed: {e}")
 
