@@ -64,6 +64,8 @@ def _run_holistic_mode(args):
         vale_config=vale_config,
         protected_terms=protected_terms,
         auto_accept=args.auto_accept,
+        style_polish=getattr(args, 'style_polish', False),
+        style_polish_report_only=getattr(args, 'style_polish_report_only', False),
     )
 
     # Run pipeline
@@ -182,6 +184,15 @@ def _run_holistic_mode(args):
         "review_needed": result.review_needed,
         "review_file": str(review_dest),
     }
+
+    # Add style polish stats if enabled
+    if result.stats.style_polish.enabled:
+        output["style_polish"] = {
+            "findings": result.stats.style_polish.findings_count,
+            "edits_applied": result.stats.style_polish.editops_applied,
+            "edits_rejected": result.stats.style_polish.editops_rejected,
+            "summary": result.stats.style_polish.summary,
+        }
 
     # Add figure stats if processed
     if figure_stats:
@@ -305,6 +316,16 @@ def main():
         "--add-toc",
         action="store_true",
         help="Add Table of Contents, Figures, and Tables"
+    )
+    holistic_group.add_argument(
+        "--style-polish",
+        action="store_true",
+        help="Run surgical linter after holistic rewrite to ensure DTC/AP style conformance"
+    )
+    holistic_group.add_argument(
+        "--style-polish-report-only",
+        action="store_true",
+        help="With --style-polish: report style issues without applying fixes"
     )
 
     # GUI option

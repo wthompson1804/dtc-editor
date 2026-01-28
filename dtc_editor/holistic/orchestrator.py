@@ -57,6 +57,10 @@ class HolisticConfig:
     auto_accept: bool = False          # Auto-accept passing validations
     include_rejected: bool = False     # Include rejected rewrites in output (as original)
 
+    # Style polish (post-rewrite linting)
+    style_polish: bool = False         # Run surgical linter after holistic rewrite
+    style_polish_report_only: bool = False  # If True, report style issues without fixing
+
 
 @dataclass
 class ChunkDecision:
@@ -66,6 +70,16 @@ class ChunkDecision:
     validation: ValidationResult
     decision: Literal["accepted", "rejected", "flagged"]
     final_text: str
+
+
+@dataclass
+class StylePolishStats:
+    """Statistics from style polish pass."""
+    enabled: bool = False
+    findings_count: int = 0
+    editops_applied: int = 0
+    editops_rejected: int = 0
+    summary: str = ""
 
 
 @dataclass
@@ -80,6 +94,7 @@ class PipelineStats:
     total_words_final: int
     llm_latency_ms: float
     total_time_s: float
+    style_polish: StylePolishStats = field(default_factory=StylePolishStats)
 
 
 @dataclass
@@ -309,6 +324,38 @@ def run_holistic_pipeline(
     if progress_callback:
         progress_callback("assembling", 1, 1)
 
+    # Stage 6 (optional): Style polish - run surgical linter on assembled document
+    style_polish_stats = StylePolishStats(enabled=config.style_polish)
+    if config.style_polish:
+        logger.info("Running style polish pass")
+        if progress_callback:
+            progress_callback("style_polish", 0, 1)
+
+        from dtc_editor.style_polish import run_style_polish, StylePolishConfig
+
+        polish_config = StylePolishConfig(
+            protected_terms=config.protected_terms,
+            use_vale=config.vale_config is not None,
+            vale_config_path=config.vale_config,
+            report_only=config.style_polish_report_only,
+        )
+
+        polish_result = run_style_polish(final_ir, polish_config)
+        final_ir = polish_result.output_ir
+
+        style_polish_stats = StylePolishStats(
+            enabled=True,
+            findings_count=polish_result.findings_count,
+            editops_applied=polish_result.editops_applied,
+            editops_rejected=polish_result.editops_rejected,
+            summary=polish_result.summary,
+        )
+
+        logger.info(f"Style polish: {polish_result.summary}")
+
+        if progress_callback:
+            progress_callback("style_polish", 1, 1)
+
     # Calculate stats
     total_time = time.time() - start_time
     total_latency = sum(r.latency_ms for r in rewrites if r.latency_ms)
@@ -325,6 +372,7 @@ def run_holistic_pipeline(
         total_words_final=final_words,
         llm_latency_ms=total_latency,
         total_time_s=total_time,
+        style_polish=style_polish_stats,
     )
 
     logger.info(f"Pipeline complete: {accepted} accepted, {rejected} rejected, {flagged} flagged")
@@ -372,6 +420,19 @@ def generate_review_report(result: PipelineResult, compliance=None) -> str:
         lines.append(f"| Reduction | {reduction:.1%} |")
     lines.append(f"| Processing time | {result.stats.total_time_s:.1f}s |")
     lines.append("")
+
+    # --- Style Polish ---
+    if result.stats.style_polish.enabled:
+        lines.append("## Style Polish")
+        lines.append("")
+        lines.append("| Metric | Value |")
+        lines.append("|--------|-------|")
+        lines.append(f"| Findings | {result.stats.style_polish.findings_count} |")
+        lines.append(f"| Edits Applied | {result.stats.style_polish.editops_applied} |")
+        lines.append(f"| Edits Rejected | {result.stats.style_polish.editops_rejected} |")
+        lines.append("")
+        lines.append(f"**Summary:** {result.stats.style_polish.summary}")
+        lines.append("")
 
     # --- Template Compliance ---
     if compliance is not None:
