@@ -124,59 +124,80 @@ if uploaded_file and api_key:
                     vale_config = None
 
                 if mode == "style_only":
-                    # Run surgical pipeline only
+                    # Run the new style-only pipeline (Layer 1 + Layer 2)
                     status_text.text("Running style conformance checks...")
-                    progress_bar.progress(20, text="Running style conformance...")
+                    progress_bar.progress(20, text="Running structural fixes...")
 
-                    from dtc_editor.pipeline import run_pipeline
+                    from dtc_editor.surgical import (
+                        run_style_only_pipeline,
+                        StyleOnlyConfig,
+                        StructuralFixesConfig,
+                    )
 
-                    # Use a temp output dir for the surgical pipeline
-                    surgical_out = Path(tmpdir) / "surgical_out"
-                    surgical_out.mkdir()
-
-                    result = run_pipeline(
-                        input_docx=str(input_path),
-                        out_dir=str(surgical_out),
-                        mode="rewrite",
-                        use_llm=True,
-                        anthropic_api_key=api_key,
-                        use_vale=vale_config is not None,
+                    # Configure the style-only pipeline
+                    style_config = StyleOnlyConfig(
+                        structural=StructuralFixesConfig(),
+                        enable_vale=vale_config is not None,
                         vale_config_path=vale_config,
+                        create_redline=False,  # We'll create redline ourselves
+                    )
+
+                    progress_bar.progress(40, text="Running Vale linting...")
+
+                    # Run the pipeline
+                    result = run_style_only_pipeline(
+                        input_path=str(input_path),
+                        output_dir=str(output_dir),
+                        config=style_config,
                     )
 
                     progress_bar.progress(80, text="Generating outputs...")
 
-                    # Find the clean docx
-                    clean_files = list(surgical_out.rglob("*.clean.docx"))
-                    if clean_files:
-                        clean_path = clean_files[0]
-                    else:
-                        raise ValueError("Clean document not found in output")
-
-                    # Copy for our output
+                    # The pipeline creates a timestamped bundle; find the clean file
                     doc_stem = Path(uploaded_file.name).stem
-                    final_clean = output_dir / f"{doc_stem}.clean.docx"
-                    shutil.copy2(clean_path, final_clean)
+                    final_clean = Path(result.clean_path)
+
+                    # Copy to our expected location
+                    expected_clean = output_dir / f"{doc_stem}.clean.docx"
+                    if str(final_clean) != str(expected_clean):
+                        shutil.copy2(final_clean, expected_clean)
+                        final_clean = expected_clean
 
                     # Generate review content
+                    structural = result.structural
+                    vale = result.vale
+
                     review_content = f"""# Style Conformance Report
 
 ## Summary
 | Metric | Value |
 |--------|-------|
-| EditOps Applied | {result['stats']['editops_applied']} |
-| EditOps Rejected | {result['stats']['editops_rejected']} |
-| Total Findings | {result['stats']['findings_total']} |
+| Structural Changes | {structural.total_changes} |
+| Vale Edits Applied | {vale.editops_applied} |
+| Vale Findings | {vale.findings_count} |
+
+## Layer 1: Structural Fixes (python-docx)
+| Processor | Result |
+|-----------|--------|
+| Chapters | {structural.chapter_result.chapters_numbered if structural.chapter_result else 0} numbered |
+| Figures/Tables | {structural.figure_table_result.captions_added if structural.figure_table_result else 0} captions |
+| Acronyms | {structural.acronym_result.expansions_made if structural.acronym_result else 0} expanded |
+
+## Layer 2: Vale Linting
+Status: {vale.status}
+{vale.message}
 
 ## Mode
-Style conformance only (surgical pipeline)
+Style conformance only (surgical pipeline - no LLM rewriting)
 """
                     stats = {
                         'words_before': inventory.word_count,
                         'words_after': inventory.word_count,  # Minimal change expected
-                        'chunks': result['stats']['editops_applied'],
+                        'chunks': structural.total_changes + vale.editops_applied,
                         'reduction': 0,
                         'mode': 'style_only',
+                        'structural_changes': structural.total_changes,
+                        'vale_edits': vale.editops_applied,
                     }
 
                 else:
