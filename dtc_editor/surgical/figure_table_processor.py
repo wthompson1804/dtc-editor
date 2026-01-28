@@ -100,9 +100,11 @@ class FigureTableConfig:
     regenerate_tof_tot: bool = True
 
     # Special chapter names that don't get numbers
+    # NOTE: Must match ChapterNumbererConfig.unnumbered_chapters
     unnumbered_chapters: Set[str] = field(default_factory=lambda: {
-        "abstract", "references", "authors", "authors & legal notice",
-        "appendix", "annex", "acknowledgments", "glossary"
+        "abstract", "executive summary", "references", "authors",
+        "authors & legal notice", "appendix", "annex", "acknowledgments",
+        "acknowledgements", "glossary", "table of contents", "toc"
     })
 
 
