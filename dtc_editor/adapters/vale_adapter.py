@@ -11,8 +11,20 @@ import re
 
 from dtc_editor.ir import DocumentIR, TextBlock, BlockRef, Finding
 from dtc_editor.editops import EditOp, Target
+from dtc_editor.adapters.vale_substitutions import get_registry, SubstitutionRegistry
 
 logger = logging.getLogger(__name__)
+
+# Global substitution registry (lazy-loaded)
+_substitution_registry: SubstitutionRegistry = None
+
+
+def _get_substitution_registry(styles_path: str = None) -> SubstitutionRegistry:
+    """Get or create the substitution registry."""
+    global _substitution_registry
+    if _substitution_registry is None:
+        _substitution_registry = get_registry(styles_path)
+    return _substitution_registry
 
 
 @dataclass
@@ -112,12 +124,19 @@ def _parse_vale_output(
     vale_output: Dict[str, List[Dict]],
     ir: DocumentIR,
     line_to_block: Dict[int, BlockRef],
+    styles_path: str = None,
 ) -> tuple[List[Finding], List[EditOp]]:
     """
     Parse Vale JSON output into Findings and EditOps.
+
+    Uses the substitution registry to look up replacements since Vale 3.x
+    doesn't populate Action.Params for substitution rules.
     """
     findings: List[Finding] = []
     editops: List[EditOp] = []
+
+    # Get substitution registry for direct lookups
+    registry = _get_substitution_registry(styles_path)
 
     for filepath, alerts in vale_output.items():
         for alert in alerts:
@@ -139,6 +158,33 @@ def _parse_vale_output(
             else:
                 sev = "info"
 
+            # Try to get replacement - this is the key fix
+            replacement = None
+
+            # 1. PRIMARY: Look up in our substitution registry (parsed from YAML)
+            #    This is the most reliable source since Vale 3.x doesn't populate Action.Params
+            if match_text:
+                replacement = registry.get_replacement(check, match_text)
+                if replacement:
+                    logger.debug(f"Registry lookup: {check} '{match_text}' -> '{replacement}'")
+
+            # 2. FALLBACK: Try Action.Params (usually empty in Vale 3.x, but try anyway)
+            if not replacement and action and action.get("Name") == "replace":
+                params = action.get("Params", [])
+                if params:
+                    replacement = params[0] if isinstance(params, list) else str(params)
+                    logger.debug(f"Action.Params: {check} '{match_text}' -> '{replacement}'")
+
+            # 3. LAST RESORT: Parse from message (unreliable)
+            if not replacement and message:
+                replacement = _extract_replacement_from_message(message)
+                if replacement:
+                    logger.debug(f"Message parse: {check} '{match_text}' -> '{replacement}'")
+
+            # Determine if this finding has a fix
+            has_fix = replacement is not None and match_text is not None
+            is_substitution_rule = registry.is_substitution_rule(check)
+
             # Create Finding
             finding = Finding(
                 rule_id=f"vale.{check}",
@@ -148,29 +194,25 @@ def _parse_vale_output(
                 ref=block_ref,
                 before=match_text if match_text else None,
                 risk_tier="low" if sev == "info" else "medium",
-                details={"vale_check": check, "line": str(line_num)},
+                details={
+                    "vale_check": check,
+                    "line": str(line_num),
+                    "has_fix": has_fix,
+                    "is_substitution_rule": is_substitution_rule,
+                },
             )
             findings.append(finding)
-
-            # Try to create EditOp from Vale suggestion
-            replacement = None
-
-            # First try Action.Params (standard Vale format)
-            if action and action.get("Name") == "replace":
-                params = action.get("Params", [])
-                if params:
-                    replacement = params[0] if isinstance(params, list) else str(params)
-
-            # Fall back to parsing replacement from message
-            if not replacement and message:
-                replacement = _extract_replacement_from_message(message)
 
             # Create EditOp if we have a replacement
             if replacement and match_text and block_ref:
                 block = _find_block_by_ref(ir, block_ref)
                 if block:
-                    # Find the match in the block text
+                    # Find the match in the block text (case-insensitive search)
                     span_start = block.text.find(match_text)
+                    if span_start < 0:
+                        # Try case-insensitive
+                        span_start = block.text.lower().find(match_text.lower())
+
                     if span_start >= 0:
                         import hashlib
                         op_id = "vale_" + hashlib.sha1(
@@ -197,6 +239,8 @@ def _parse_vale_output(
                             requires_review=False,
                             risk_tier="low",
                         ))
+                    else:
+                        logger.warning(f"Could not find '{match_text}' in block text for {check}")
 
     return findings, editops
 
@@ -316,7 +360,7 @@ def run_vale(
             vale_output = {}
 
         # Parse findings and editops
-        findings, editops = _parse_vale_output(vale_output, ir, line_to_block)
+        findings, editops = _parse_vale_output(vale_output, ir, line_to_block, vale_dir)
 
         logger.info(f"Vale found {len(findings)} issues, generated {len(editops)} EditOps")
 

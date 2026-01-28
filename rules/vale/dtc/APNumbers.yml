@@ -1,15 +1,18 @@
 # AP Style: Number Formatting
 # Rule: Spell out numbers one through nine; use numerals for 10 and above
-extends: existence
-message: "AP Style: Spell out numbers one through nine. Found: '%s'"
+extends: substitution
+message: "AP Style: Spell out '%s'. Use '%s'."
 level: suggestion
 ignorecase: false
 
-# This catches standalone single digits (2-9) that should be spelled out
-# Note: "1" is excluded as "one" vs "1" is often ambiguous in context
-# Excludes: ranges (5-10), percentages (5%), times (5 p.m.), measurements
-tokens:
-  # Standalone digits 2-9 not in special contexts
-  # Negative lookbehind: not preceded by digit, hyphen, or decimal
-  # Negative lookahead: not followed by digit, hyphen, percent, colon (time), or units
-  - '(?<![0-9.\-–])\b[2-9]\b(?![0-9\-–%:.])'
+# Map standalone digits 2-9 to their word equivalents
+# Note: We use word boundaries to avoid matching digits in larger numbers
+swap:
+  '\b2\b': "two"
+  '\b3\b': "three"
+  '\b4\b': "four"
+  '\b5\b': "five"
+  '\b6\b': "six"
+  '\b7\b': "seven"
+  '\b8\b': "eight"
+  '\b9\b': "nine"

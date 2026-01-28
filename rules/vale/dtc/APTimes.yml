@@ -1,17 +1,44 @@
 # AP Style: Time Formatting
 # Rule: Use "a.m." and "p.m." lowercase with periods
-extends: existence
-message: "AP Style: Use 'a.m.' or 'p.m.' (lowercase with periods). Found: '%s'"
+extends: substitution
+message: "AP Style: Use '%s' (lowercase with periods)."
 level: suggestion
 ignorecase: false
 
-tokens:
-  # Uppercase AM/PM without periods
-  - '\d{1,2}\s*AM\b'
-  - '\d{1,2}\s*PM\b'
-  # Lowercase without periods
-  - '\d{1,2}\s*am\b'
-  - '\d{1,2}\s*pm\b'
+# Map various time suffix formats to AP Style
+# Note: These match the suffix portion; the digit is preserved in context
+swap:
+  # Uppercase without periods (with space)
+  " AM": " a.m."
+  " PM": " p.m."
+  # Lowercase without periods (with space)
+  " am": " a.m."
+  " pm": " p.m."
   # Uppercase with periods (should be lowercase)
-  - '\d{1,2}\s*A\.M\.'
-  - '\d{1,2}\s*P\.M\.'
+  " A.M.": " a.m."
+  " P.M.": " p.m."
+  # Common time expressions
+  "12 AM": "12 a.m."
+  "12 PM": "12 p.m."
+  "1 AM": "1 a.m."
+  "1 PM": "1 p.m."
+  "2 AM": "2 a.m."
+  "2 PM": "2 p.m."
+  "3 AM": "3 a.m."
+  "3 PM": "3 p.m."
+  "4 AM": "4 a.m."
+  "4 PM": "4 p.m."
+  "5 AM": "5 a.m."
+  "5 PM": "5 p.m."
+  "6 AM": "6 a.m."
+  "6 PM": "6 p.m."
+  "7 AM": "7 a.m."
+  "7 PM": "7 p.m."
+  "8 AM": "8 a.m."
+  "8 PM": "8 p.m."
+  "9 AM": "9 a.m."
+  "9 PM": "9 p.m."
+  "10 AM": "10 a.m."
+  "10 PM": "10 p.m."
+  "11 AM": "11 a.m."
+  "11 PM": "11 p.m."

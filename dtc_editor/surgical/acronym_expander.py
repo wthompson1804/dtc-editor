@@ -116,11 +116,14 @@ class AcronymExpanderConfig:
         "OK", "ID", "VS", "NO", "YES", "NA", "TBA",
     })
 
-    # Behavior
-    expand_unknown: bool = False  # Whether to flag unknown acronyms
-    use_llm_lookup: bool = False  # Whether to use LLM for unknown acronyms
-    confidence_threshold: float = 0.8  # For LLM lookups
-    max_llm_lookups: int = 5  # Limit LLM calls per document
+    # Behavior - LLM lookup is now ENABLED by default
+    expand_unknown: bool = True  # Expand unknown acronyms using LLM
+    use_llm_lookup: bool = True  # Use LLM for unknown acronyms
+    confidence_threshold: float = 0.7  # Lower threshold - expand even with uncertainty
+    max_llm_lookups: int = 50  # Increased limit for LLM calls per document
+
+    # API key for LLM lookups (optional - can be set via env var)
+    anthropic_api_key: Optional[str] = None
 
     # Format
     expansion_format: str = "{expansion} ({acronym})"
@@ -141,6 +144,8 @@ class AcronymExpanderResult:
     organization_acronyms_skipped: int
     changes: List[Dict]
     issues: List[str]
+    # NEW: Track items that need human review
+    requires_review: List[Dict] = field(default_factory=list)  # LLM-expanded items needing review
 
 
 # =============================================================================
@@ -156,14 +161,42 @@ class AcronymExpander:
     2. Track which have been expanded (already have "Expansion (ACR)" format)
     3. Find first occurrence of each unexpanded acronym
     4. Expand with "Full Name (ACRONYM)" format
+    5. For unknown acronyms, use LLM lookup and flag for review
     """
 
     def __init__(self, config: AcronymExpanderConfig, llm_client=None):
         self.config = config
-        self.llm_client = llm_client  # Optional LLM client for unknown acronym lookup
         self.occurrences: List[AcronymOccurrence] = []
         self.defined: Set[str] = set()  # Acronyms already defined in document
         self.doc: Optional[Document] = None
+        self._anthropic_client = None
+
+        # Set up LLM client if API key is available
+        if llm_client:
+            self.llm_client = llm_client
+        elif config.use_llm_lookup:
+            self.llm_client = self._create_llm_client()
+        else:
+            self.llm_client = None
+
+    def _create_llm_client(self):
+        """Create an Anthropic client for LLM lookups."""
+        import os
+        api_key = self.config.anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            logger.warning("No Anthropic API key found. LLM acronym lookup disabled.")
+            return None
+
+        try:
+            import anthropic
+            self._anthropic_client = anthropic.Anthropic(api_key=api_key)
+            return self._anthropic_client
+        except ImportError:
+            logger.warning("anthropic library not installed. LLM acronym lookup disabled.")
+            return None
+        except Exception as e:
+            logger.warning(f"Failed to create Anthropic client: {e}")
+            return None
 
     def process(self, doc: Document) -> AcronymExpanderResult:
         """
@@ -182,6 +215,7 @@ class AcronymExpander:
         changes = []
         issues = []
         unknown_acronyms = []
+        requires_review = []
 
         # Step 1: Scan for existing expansions (already defined)
         self._scan_existing_expansions()
@@ -209,40 +243,49 @@ class AcronymExpander:
                 org_skipped += 1
                 continue
 
-            # Get expansion
+            # Get expansion from known database
             expansion = self.config.known_acronyms.get(acronym)
+            is_llm_expansion = False
+
+            # If not in known database, try LLM lookup
+            if not expansion and self.config.use_llm_lookup and self.llm_client:
+                if llm_lookups < self.config.max_llm_lookups:
+                    llm_result = self._lookup_acronym_llm(acronym, occurrence.context)
+                    llm_lookups += 1
+
+                    if llm_result:
+                        expansion = llm_result.get("expansion")
+                        is_llm_expansion = True
+                        # Add to known acronyms for this session
+                        if expansion:
+                            self.config.known_acronyms[acronym] = expansion
 
             if expansion:
                 # Do the expansion
                 success = self._expand_acronym(occurrence, expansion)
                 if success:
                     expansions_made += 1
-                    changes.append({
-                        "type": "acronym_expanded",
+
+                    change_record = {
+                        "type": "acronym_expanded_llm" if is_llm_expansion else "acronym_expanded",
                         "acronym": acronym,
                         "expansion": expansion,
                         "para_index": occurrence.para_index,
-                    })
+                        "requires_review": is_llm_expansion,
+                    }
+                    changes.append(change_record)
+
+                    # LLM expansions always need human review
+                    if is_llm_expansion:
+                        requires_review.append({
+                            "type": "llm_acronym_expansion",
+                            "acronym": acronym,
+                            "expansion": expansion,
+                            "context": occurrence.context,
+                            "para_index": occurrence.para_index,
+                            "reason": "LLM-determined expansion - verify correctness",
+                        })
             else:
-                # Unknown acronym - try LLM lookup if enabled
-                if self.config.use_llm_lookup and self.llm_client and llm_lookups < self.config.max_llm_lookups:
-                    expansion = self._lookup_acronym_llm(acronym, occurrence.context)
-                    llm_lookups += 1
-
-                    if expansion:
-                        # Add to known acronyms for this session
-                        self.config.known_acronyms[acronym] = expansion
-                        success = self._expand_acronym(occurrence, expansion)
-                        if success:
-                            expansions_made += 1
-                            changes.append({
-                                "type": "acronym_expanded_llm",
-                                "acronym": acronym,
-                                "expansion": expansion,
-                                "para_index": occurrence.para_index,
-                            })
-                            continue
-
                 # Still unknown after LLM attempt
                 if acronym not in unknown_acronyms:
                     unknown_acronyms.append(acronym)
@@ -256,6 +299,7 @@ class AcronymExpander:
             organization_acronyms_skipped=org_skipped,
             changes=changes,
             issues=issues,
+            requires_review=requires_review,
         )
 
     # =========================================================================
@@ -347,22 +391,43 @@ class AcronymExpander:
 
         return first_uses
 
-    def _lookup_acronym_llm(self, acronym: str, context: str) -> Optional[str]:
-        """Look up an unknown acronym using LLM."""
+    def _lookup_acronym_llm(self, acronym: str, context: str) -> Optional[Dict]:
+        """
+        Look up an unknown acronym using LLM.
+
+        Returns:
+            Dict with 'expansion' key if found, None otherwise.
+            All LLM expansions are flagged for human review.
+        """
         if not self.llm_client:
             return None
 
-        prompt = f"""What does the acronym "{acronym}" stand for in this context?
+        prompt = f"""What does the acronym "{acronym}" stand for in this technical context?
 
 Context: "{context}"
 
-If you know the expansion with high confidence, respond with ONLY the expansion (e.g., "Application Programming Interface").
-If you're unsure or the acronym could have multiple meanings, respond with "UNKNOWN".
-Do not include the acronym in parentheses, just the expansion."""
+Instructions:
+1. If you know the expansion with reasonable confidence, respond with ONLY the expansion (e.g., "Application Programming Interface").
+2. If you're completely unsure, respond with "UNKNOWN".
+3. Do not include the acronym in parentheses, just the expansion.
+4. Prefer technical/industry-standard meanings over generic ones.
+5. If there are multiple possible meanings, choose the most likely one for this technical context."""
 
         try:
-            response = self.llm_client.complete(prompt)
-            expansion = response.strip()
+            # Use the Anthropic client directly
+            message = self.llm_client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=100,
+                temperature=0.2,  # Low temperature for factual lookups
+                messages=[{"role": "user", "content": prompt}],
+            )
+
+            # Extract response text
+            expansion = ""
+            for block in message.content:
+                if hasattr(block, "text"):
+                    expansion += block.text
+            expansion = expansion.strip()
 
             # Validate response
             if expansion.upper() == "UNKNOWN" or len(expansion) < 3:
@@ -372,8 +437,11 @@ Do not include the acronym in parentheses, just the expansion."""
             if len(expansion) <= len(acronym):
                 return None
 
+            # Clean up any quotes or extra formatting
+            expansion = expansion.strip('"\'')
+
             logger.info(f"LLM lookup: {acronym} → {expansion}")
-            return expansion
+            return {"expansion": expansion}
 
         except Exception as e:
             logger.warning(f"LLM lookup failed for {acronym}: {e}")
