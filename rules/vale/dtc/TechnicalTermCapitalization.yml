@@ -1,0 +1,55 @@
+# DTC Style Guide: Technical Term Capitalization
+# Rule: Technical terms that are acronym expansions should be capitalized
+# These are proper technical terms, not common nouns
+extends: substitution
+message: "Capitalize technical term: '%s'"
+level: warning
+ignorecase: true
+swap:
+  # Energy/Grid Terms (acronym expansions)
+  'virtual power plant': "Virtual Power Plant"
+  'virtual power plants': "Virtual Power Plants"
+  'distributed energy resource': "Distributed Energy Resource"
+  'distributed energy resources': "Distributed Energy Resources"
+  'distributed energy resource management system': "Distributed Energy Resource Management System"
+  'energy management system': "Energy Management System"
+  'energy management systems': "Energy Management Systems"
+  'building management system': "Building Management System"
+  'building management systems': "Building Management Systems"
+  'building energy management system': "Building Energy Management System"
+  'energy storage system': "Energy Storage System"
+  'energy storage systems': "Energy Storage Systems"
+  'battery energy storage system': "Battery Energy Storage System"
+  'demand response': "Demand Response"
+  'demand side management': "Demand Side Management"
+  'advanced metering infrastructure': "Advanced Metering Infrastructure"
+  'automated demand response': "Automated Demand Response"
+
+  # Grid Operator Terms
+  'transmission system operator': "Transmission System Operator"
+  'transmission system operators': "Transmission System Operators"
+  'distribution system operator': "Distribution System Operator"
+  'distribution system operators': "Distribution System Operators"
+  'independent system operator': "Independent System Operator"
+  'regional transmission organization': "Regional Transmission Organization"
+
+  # Digital Twin Terms
+  'digital twin as a service': "Digital Twin as a Service"
+  'cyber-physical system': "Cyber-Physical System"
+  'cyber-physical systems': "Cyber-Physical Systems"
+  'asset performance management': "Asset Performance Management"
+  'building information modeling': "Building Information Modeling"
+  'computerized maintenance management system': "Computerized Maintenance Management System"
+
+  # Standards/Protocols
+  'common information model': "Common Information Model"
+  'open automated demand response': "Open Automated Demand Response"
+
+  # Vehicle Terms
+  'electric vehicle': "Electric Vehicle"
+  'electric vehicles': "Electric Vehicles"
+  'vehicle-to-grid': "Vehicle-to-Grid"
+  'vehicle-to-everything': "Vehicle-to-Everything"
+
+  # SCADA (keep together)
+  'supervisory control and data acquisition': "Supervisory Control and Data Acquisition"

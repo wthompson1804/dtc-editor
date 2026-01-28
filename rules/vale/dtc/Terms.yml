@@ -27,12 +27,8 @@ ignorecase: true
 
 swap:
   # === DTC-SPECIFIC TERMINOLOGY ===
-  "Digital Twin": "digital twin"
-  "Digital twin": "digital twin"
-  "digital Twin": "digital twin"
-  "Digital Twins": "digital twins"
-  "Digital twins": "digital twins"
-  "digital Twins": "digital twins"
+  # NOTE: "Digital Twin" capitalization is handled by DigitalTwinCapitalization.yml
+  # which has proper exception for "Digital Twin Consortium". DO NOT add here.
   "Internet of Things": "IoT"
   "internet of things": "IoT"
 

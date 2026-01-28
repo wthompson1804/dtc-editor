@@ -45,8 +45,14 @@ class ChapterNumbererConfig:
     # NOTE: "Introduction" IS numbered (it's Chapter 1 typically)
     # Only truly special sections like References should be unnumbered
     unnumbered_chapters: Set[str] = field(default_factory=lambda: {
+        # Front matter / Title page content
         "abstract",
         "executive summary",
+        "white paper",  # e.g., "A Digital Twin Consortium White Paper"
+        "technical paper",
+        "working paper",
+        "position paper",
+        # Back matter
         "references",
         "authors",
         "authors & legal notice",
@@ -57,6 +63,12 @@ class ChapterNumbererConfig:
         "glossary",
         "table of contents",
         "toc",
+        "bibliography",
+        "index",
+        # Common document titles (shouldn't be numbered)
+        "consortium",  # Catches "Digital Twin Consortium" titles
+        "preface",
+        "foreword",
     })
 
     # Format for chapter numbers
