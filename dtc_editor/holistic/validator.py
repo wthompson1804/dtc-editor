@@ -110,8 +110,21 @@ class Validator:
         return found
 
     def _run_vale(self, text: str) -> List[Dict]:
-        """Run Vale on text and return issues."""
-        if not self.config.vale_config or not os.path.exists(self.config.vale_config):
+        """Run Vale on text and return issues (uses HOLISTIC config with all rules)."""
+        if not self.config.vale_config:
+            return []
+
+        # Determine config file - use holistic config if directory provided
+        config_path = self.config.vale_config
+        if os.path.isdir(config_path):
+            holistic_ini = os.path.join(config_path, '.vale.holistic.ini')
+            if os.path.exists(holistic_ini):
+                config_path = holistic_ini
+            else:
+                # Fall back to default
+                config_path = os.path.join(config_path, '.vale.ini')
+
+        if not os.path.exists(config_path):
             return []
 
         with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
@@ -120,7 +133,7 @@ class Validator:
 
         try:
             result = subprocess.run(
-                ['vale', '--config', self.config.vale_config, '--output', 'JSON', temp_path],
+                ['vale', '--config', config_path, '--output', 'JSON', temp_path],
                 capture_output=True,
                 text=True,
                 timeout=30,
