@@ -32,7 +32,8 @@ build/
 .claude/
 
 # Vale binary (users install via Homebrew)
-vale
+# Use /vale to only match root-level binary, not rules/vale directory
+/vale
 
 # Environment files
 .env
