@@ -1,0 +1,525 @@
+# DTC Editorial Engine - Comprehensive Rules Manifest
+# Version: 1.0
+#
+# This manifest defines ALL rules for both surgical and holistic pipelines.
+# Each rule explicitly declares which pipeline(s) it applies to.
+#
+# To add new rules:
+#   1. Add rule under appropriate category
+#   2. Set pipeline: surgical | holistic | both
+#   3. Set implemented: false until code is written
+#   4. Reference vale_rule if using Vale for detection
+#
+# Schema:
+#   id: unique identifier (category.subcategory.name)
+#   category: structure | figures_tables | capitalization | acronyms | references | clarity | prose_quality
+#   pipeline: surgical | holistic | both
+#   action: detect | auto-fix | llm-fix | llm-fix-with-retry
+#   vale_rule: path to Vale YAML (optional)
+#   description: what the rule does
+#   rationale: why this rule exists (from DTC template or style guide)
+#   priority: P0 (critical) | P1 (high) | P2 (medium)
+#   implemented: true | false
+#   placeholder_text: text to insert when human review needed (optional)
+
+version: "1.0"
+last_updated: "2025-01-28"
+
+# =============================================================================
+# STRUCTURE RULES - Document organization and formatting
+# =============================================================================
+structure:
+
+  # --- Abstract/Introduction ---
+  - id: structure.abstract.required
+    category: structure
+    pipeline: surgical
+    action: detect
+    vale_rule: null  # Custom implementation needed
+    description: Document must start with introductory text, not a chapter heading
+    rationale: "Template: 'Please start the document with one or more paragraphs of text, not a Chapter header'"
+    priority: P1
+    implemented: false
+
+  - id: structure.abstract.generate
+    category: structure
+    pipeline: surgical
+    action: llm-fix
+    vale_rule: null
+    description: Generate abstract from document content when missing
+    rationale: Required for DTC document compliance
+    priority: P1
+    implemented: false
+    placeholder_text: "INSERT ABSTRACT - Brief summary of document content and purpose."
+
+  # --- Chapter Numbering ---
+  - id: structure.chapters.numbered
+    category: structure
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null  # Custom implementation needed
+    description: All H1 headings must be numbered (1, 2, 3...)
+    rationale: Chapter numbers required for figure/table numbering (Figure X-Y format)
+    priority: P0
+    implemented: false
+    exceptions:
+      - "Abstract"
+      - "References"
+      - "Authors"
+      - "Authors & Legal Notice"
+      - "Appendix"
+      - "Annex"
+
+  # --- Heading Hierarchy ---
+  - id: structure.headings.hierarchy
+    category: structure
+    pipeline: surgical
+    action: detect
+    vale_rule: null
+    description: Heading levels must not skip (H1→H3 without H2 is invalid)
+    rationale: Proper document structure for accessibility and TOC generation
+    priority: P2
+    implemented: false
+
+  # --- TOC/TOF/TOT ---
+  - id: structure.toc.required
+    category: structure
+    pipeline: surgical
+    action: detect
+    vale_rule: null
+    description: Document must have Table of Contents
+    rationale: "Template: 'Please include tables for Figure & Table in the Table of Contents'"
+    priority: P1
+    implemented: false
+
+  - id: structure.tof.required
+    category: structure
+    pipeline: surgical
+    action: detect
+    vale_rule: null
+    description: Document with figures must have Table of Figures
+    rationale: Template requirement
+    priority: P1
+    implemented: false
+
+  - id: structure.tot.required
+    category: structure
+    pipeline: surgical
+    action: detect
+    vale_rule: null
+    description: Document with tables must have Table of Tables
+    rationale: Template requirement
+    priority: P1
+    implemented: false
+
+  - id: structure.toc.regenerate
+    category: structure
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null
+    description: Regenerate TOC/TOF/TOT to match actual document structure
+    rationale: Ensure consistency after chapter/figure renumbering
+    priority: P0
+    implemented: false
+
+# =============================================================================
+# FIGURES & TABLES RULES - Captions, numbering, attribution
+# =============================================================================
+figures_tables:
+
+  # --- Caption Presence ---
+  - id: figures_tables.caption.required
+    category: figures_tables
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null  # Custom detection via w:drawing XML
+    description: Every figure and table must have a caption
+    rationale: "Template: Figures & Tables must have captions"
+    priority: P0
+    implemented: true  # Partial - figure_captions.py exists but needs enhancement
+    placeholder_text: "INSERT EXPLANATION OF FIGURE OR TABLE. Source: DTC INSERT NAME Working Group."
+
+  # --- Caption Format ---
+  - id: figures_tables.caption.format
+    category: figures_tables
+    pipeline: both
+    action: auto-fix
+    vale_rule: rules/vale/dtc/FigureCaptionFormat.yml
+    description: "Caption format must be 'Figure X-Y: Description.' (Chapter-Sequence)"
+    rationale: "Template: 'The format for all Figure & Table captions is Chapter Number - Figure Number, followed by a colon'"
+    priority: P0
+    implemented: true  # Detection only - needs auto-fix
+    valid_patterns:
+      - "Figure {chapter}-{sequence}: {description}."
+      - "Table {chapter}-{sequence}: {description}."
+    invalid_patterns:
+      - "Figure {n}:"           # Missing chapter number
+      - "Figure {chapter}.{n}:" # Dot instead of hyphen
+      - "Figure {chapter}-{n} " # Missing colon
+
+  # --- Source Attribution ---
+  - id: figures_tables.caption.source
+    category: figures_tables
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null
+    description: Captions must include source attribution
+    rationale: "Template: 'Figures & Tables created from an outside source must be attributed'"
+    priority: P1
+    implemented: false
+    placeholder_text: "Source: DTC INSERT NAME Working Group."
+
+  # --- Caption Style ---
+  - id: figures_tables.caption.sentence_case
+    category: figures_tables
+    pipeline: both
+    action: auto-fix
+    vale_rule: rules/vale/dtc/CaptionSentenceCase.yml
+    description: Caption text must be sentence case (not Title Case)
+    rationale: "Template: 'Figure & Table captions should be written in sentence style and case'"
+    priority: P1
+    implemented: true  # Detection only
+
+  - id: figures_tables.caption.period
+    category: figures_tables
+    pipeline: both
+    action: auto-fix
+    vale_rule: rules/vale/dtc/CaptionPeriod.yml
+    description: Caption must end with a period
+    rationale: "Template: 'with a period at the end'"
+    priority: P1
+    implemented: true  # Detection only
+
+  # --- Cross-References ---
+  - id: figures_tables.crossref.required
+    category: figures_tables
+    pipeline: surgical
+    action: detect
+    vale_rule: rules/vale/dtc/CrossReference.yml
+    description: Every figure/table must be referenced in body text
+    rationale: "Template: 'Please include a cross-reference in the text for each Figure and Table'"
+    priority: P2
+    implemented: true  # Detection only
+
+  - id: figures_tables.crossref.sync
+    category: figures_tables
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null
+    description: In-text references must match caption numbers after renumbering
+    rationale: Consistency after figure/table renumbering
+    priority: P0
+    implemented: false
+
+  # --- Numbering Consistency ---
+  - id: figures_tables.numbering.sync
+    category: figures_tables
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null
+    description: Caption numbers must match TOF/TOT entries
+    rationale: Single source of truth for figure/table numbers
+    priority: P0
+    implemented: false
+
+# =============================================================================
+# CAPITALIZATION RULES
+# =============================================================================
+capitalization:
+
+  # --- Digital Twin ---
+  - id: capitalization.digital_twin.lowercase
+    category: capitalization
+    pipeline: both
+    action: auto-fix
+    vale_rule: rules/vale/dtc/DigitalTwinCapitalization.yml
+    description: "'digital twin' is lowercase except in 'Digital Twin Consortium'"
+    rationale: "Template: 'When used as a noun, \"digital twin\" is not capitalized. It is capitalized when used as a proper noun, i.e. \"Digital Twin Consortium\"'"
+    priority: P1
+    implemented: true
+    swap:
+      "Digital Twin": "digital twin"
+      "Digital Twins": "digital twins"
+    exceptions:
+      - "Digital Twin Consortium"
+
+  # --- Technical Terms (Ambiguous) ---
+  - id: capitalization.technical_terms.disambiguate
+    category: capitalization
+    pipeline: surgical
+    action: llm-fix
+    vale_rule: null
+    description: Disambiguate capitalization of technical terms (proper noun vs common noun)
+    rationale: Terms like "Edge Computing" may or may not be proper nouns depending on context
+    priority: P2
+    implemented: false
+    confidence_threshold: 0.8
+    examples:
+      - term: "Edge Computing"
+        proper_noun_context: "ETSI Edge Computing standards"
+        common_noun_context: "edge computing capabilities"
+
+# =============================================================================
+# ACRONYM RULES
+# =============================================================================
+acronyms:
+
+  # --- First-Use Expansion ---
+  - id: acronyms.first_use.expand
+    category: acronyms
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null
+    description: Acronyms must be expanded on first use
+    rationale: Standard technical writing practice
+    priority: P0
+    implemented: true  # In holistic only - needs port to surgical
+    format: "{expansion} ({acronym})"
+    known_expansions_file: dtc_editor/holistic/acronyms.py
+
+  # --- Unknown Acronym Lookup ---
+  - id: acronyms.unknown.lookup
+    category: acronyms
+    pipeline: surgical
+    action: llm-fix
+    vale_rule: null
+    description: Look up unknown acronyms using LLM (web search fallback)
+    rationale: Domain-specific acronyms not in dictionary need lookup
+    priority: P0
+    implemented: false
+    confidence_threshold: 0.8
+    web_search_threshold: 0.7
+    max_web_searches_per_doc: 5
+
+  # --- Organization Acronyms ---
+  - id: acronyms.organizations.no_expand
+    category: acronyms
+    pipeline: both
+    action: detect
+    vale_rule: null
+    description: Organization acronyms do not need expansion (ETSI, IEEE, DTC, etc.)
+    rationale: Well-known organization names don't require expansion
+    priority: P1
+    implemented: true
+    organization_list:
+      - ETSI
+      - IEEE
+      - DTC
+      - GSMA
+      - 3GPP
+      - IETF
+      - W3C
+      - ISO
+      - IEC
+      - NIST
+      - OASIS
+      - OMG
+      - OPC
+      - CNCF
+
+# =============================================================================
+# REFERENCES RULES
+# =============================================================================
+references:
+
+  # --- APA Format ---
+  - id: references.format.apa
+    category: references
+    pipeline: both
+    action: detect
+    vale_rule: rules/vale/dtc/APAReference.yml
+    description: References must follow APA format
+    rationale: "Template: 'References must be in APA format'"
+    priority: P1
+    implemented: true
+
+  # --- DOI/URL Required ---
+  - id: references.url.required
+    category: references
+    pipeline: both
+    action: detect
+    vale_rule: rules/vale/dtc/ReferenceURL.yml
+    description: References should include DOI or URL
+    rationale: "Template: 'please include the DOI... If a DOI number is not available... give the URL'"
+    priority: P1
+    implemented: true
+
+  # --- Hyperlinks ---
+  - id: references.hyperlinks.required
+    category: references
+    pipeline: surgical
+    action: detect
+    vale_rule: null
+    description: External URLs in references should be hyperlinked
+    rationale: "Template: 'Please add hyperlinks to all external references'"
+    priority: P2
+    implemented: false
+
+# =============================================================================
+# CLARITY RULES (Surgical Pipeline Only)
+# =============================================================================
+clarity:
+
+  # --- Wordy Phrases ---
+  - id: clarity.wordy.in_order_to
+    category: clarity
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: rules/vale/dtc/Wordiness.yml
+    description: "Replace 'in order to' with 'to'"
+    rationale: Reduce wordiness
+    priority: P1
+    implemented: true
+    swap:
+      "in order to": "to"
+
+  - id: clarity.wordy.due_to_fact
+    category: clarity
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: rules/vale/dtc/Wordiness.yml
+    description: "Replace 'due to the fact that' with 'because'"
+    rationale: Reduce wordiness
+    priority: P1
+    implemented: true
+    swap:
+      "due to the fact that": "because"
+
+  - id: clarity.wordy.at_this_point
+    category: clarity
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: rules/vale/dtc/Wordiness.yml
+    description: "Replace 'at this point in time' with 'now'"
+    rationale: Reduce wordiness
+    priority: P1
+    implemented: true
+    swap:
+      "at this point in time": "now"
+
+  - id: clarity.wordy.it_is_important
+    category: clarity
+    pipeline: surgical
+    action: auto-fix
+    vale_rule: null
+    description: Remove throat-clearing phrases
+    rationale: Get to the point
+    priority: P1
+    implemented: true
+    swap:
+      "It is important to note that ": ""
+
+# =============================================================================
+# PROSE QUALITY RULES (Holistic Pipeline Only)
+# =============================================================================
+# These rules are NOT applied in the surgical pipeline.
+# They are used in the holistic pipeline with LLM feedback loop.
+# =============================================================================
+prose_quality:
+
+  # --- Passive Voice ---
+  - id: prose_quality.passive_voice
+    category: prose_quality
+    pipeline: holistic  # NOT surgical
+    action: llm-fix-with-retry
+    vale_rule: rules/vale/dtc/PassiveVoice.yml
+    description: Flag passive voice constructions for LLM rewrite
+    rationale: Active voice is generally clearer, but passive is acceptable in technical writing
+    priority: P2
+    implemented: true
+    llm_retry_on_fail: true
+
+  # --- Hedging Language ---
+  - id: prose_quality.hedging
+    category: prose_quality
+    pipeline: holistic  # NOT surgical
+    action: llm-fix-with-retry
+    vale_rule: rules/vale/dtc/Hedging.yml
+    description: Flag hedging language for LLM review
+    rationale: Reduce unnecessary hedging while preserving appropriate qualification
+    priority: P2
+    implemented: true
+    llm_retry_on_fail: true
+
+  # --- Weak Language ---
+  - id: prose_quality.weak_language
+    category: prose_quality
+    pipeline: holistic  # NOT surgical
+    action: llm-fix-with-retry
+    vale_rule: rules/vale/dtc/WeakLanguage.yml
+    description: Flag weak language for LLM strengthening
+    rationale: Strengthen prose while preserving technical accuracy
+    priority: P2
+    implemented: true
+    llm_retry_on_fail: true
+
+  # --- Nominalization ---
+  - id: prose_quality.nominalization
+    category: prose_quality
+    pipeline: holistic  # NOT surgical
+    action: llm-fix-with-retry
+    vale_rule: rules/vale/dtc/Nominalization.yml
+    description: Convert nominalizations to verb forms where appropriate
+    rationale: "the implementation of" → "implementing"
+    priority: P2
+    implemented: true
+    llm_retry_on_fail: true
+
+  # --- Static Sentences ---
+  - id: prose_quality.static_sentences
+    category: prose_quality
+    pipeline: holistic  # NOT surgical
+    action: llm-fix-with-retry
+    vale_rule: rules/vale/dtc/StaticSentence.yml
+    description: Rewrite static/boring sentence constructions
+    rationale: Improve readability and engagement
+    priority: P2
+    implemented: true
+    llm_retry_on_fail: true
+
+# =============================================================================
+# PROTECTED TERMS - Never modify these
+# =============================================================================
+protected_terms:
+  - "Digital Twin Consortium"
+  - "DTC"
+  - "ETSI"
+  - "IEEE"
+  - "MEC"
+  - "Multi-access Edge Computing"
+
+# =============================================================================
+# PIPELINE CONFIGURATION
+# =============================================================================
+pipeline_config:
+  surgical:
+    description: "Light-touch conformance checking with minimal changes"
+    vale_rules_enabled:
+      - DigitalTwinCapitalization
+      - FigureCaptionFormat
+      - TableCaptionFormat
+      - CaptionPeriod
+      - CaptionSentenceCase
+      - CrossReference
+      - APAReference
+      - ReferenceURL
+      - Wordiness
+    vale_rules_disabled:
+      - PassiveVoice
+      - Hedging
+      - WeakLanguage
+      - Nominalization
+      - StaticSentence
+      - Vigor
+      - Orwell
+    custom_processors:
+      - figure_table_processor
+      - chapter_numberer
+      - acronym_expander
+      - structure_validator
+
+  holistic:
+    description: "Comprehensive rewriting with LLM and Vale validation loop"
+    vale_rules_enabled: all
+    llm_retry_enabled: true
+    llm_retry_max_attempts: 2
