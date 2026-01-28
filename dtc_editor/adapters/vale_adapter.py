@@ -248,13 +248,13 @@ def run_vale(
         # Build Vale command
         cmd = [vale_bin, "--output=JSON"]
 
-        # Add config path if specified
+        # Add config path if specified - ALWAYS use absolute paths
         vale_dir = None
         if config.styles_path:
-            config_path = Path(config.styles_path)
+            config_path = Path(config.styles_path).absolute()
             if config_path.is_file() and config_path.suffix == ".ini":
                 cmd.extend(["--config", str(config_path)])
-                vale_dir = str(config_path.parent)
+                vale_dir = str(config_path.parent.absolute())
             elif config_path.is_dir():
                 # Select config based on pipeline mode
                 if config.pipeline_mode == "holistic":
@@ -265,11 +265,11 @@ def run_vale(
                 if not vale_ini.exists():
                     vale_ini = config_path / ".vale.ini"
                 if vale_ini.exists():
-                    cmd.extend(["--config", str(vale_ini)])
-                    vale_dir = str(config_path)
+                    cmd.extend(["--config", str(vale_ini.absolute())])
+                    vale_dir = str(config_path.absolute())
         else:
             # Try to find config in project based on pipeline mode
-            project_root = Path(__file__).parent.parent.parent
+            project_root = Path(__file__).parent.parent.parent.absolute()
             vale_path = project_root / "rules" / "vale"
 
             # Select config based on pipeline mode
@@ -283,8 +283,8 @@ def run_vale(
                 default_ini = vale_path / ".vale.ini"
 
             if default_ini.exists():
-                cmd.extend(["--config", str(default_ini)])
-                vale_dir = str(default_ini.parent)
+                cmd.extend(["--config", str(default_ini.absolute())])
+                vale_dir = str(default_ini.parent.absolute())
                 logger.info(f"Using Vale config: {default_ini} (pipeline_mode={config.pipeline_mode})")
 
         cmd.append(temp_path)
@@ -297,7 +297,7 @@ def run_vale(
             capture_output=True,
             text=True,
             timeout=60,
-            cwd=vale_dir or str(Path(__file__).parent.parent.parent),
+            cwd=vale_dir or str(Path(__file__).parent.parent.parent.absolute()),
         )
 
         # Parse output (Vale returns non-zero if it finds issues)
