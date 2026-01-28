@@ -43,26 +43,52 @@ from dtc_editor.surgical.pipeline import (
 )
 
 from dtc_editor.surgical.integration import (
+    # Layer 1: Structural fixes
     StructuralFixesConfig,
     StructuralFixesResult,
     run_structural_fixes,
-    run_full_surgical_pipeline,
+    # Layer 2: Vale
+    ValeLayerResult,
+    run_vale_layer,
+    # Complete style_only pipeline
+    StyleOnlyConfig,
+    StyleOnlyResult,
+    run_style_only_pipeline,
+    # Integration with holistic
     integrate_with_holistic,
+    # Backward compatibility
+    run_full_surgical_pipeline,
 )
 
 __all__ = [
-    # Standalone DOCX Pipeline
+    # === Primary Entry Points ===
+    # Style-only pipeline (recommended for conformance-only)
+    "StyleOnlyConfig",
+    "StyleOnlyResult",
+    "run_style_only_pipeline",
+    # Integration with holistic pipeline
+    "integrate_with_holistic",
+
+    # === Layer 1: Structural Fixes (python-docx) ===
+    "StructuralFixesConfig",
+    "StructuralFixesResult",
+    "run_structural_fixes",
+
+    # === Layer 2: Vale Linting (thin IR) ===
+    "ValeLayerResult",
+    "run_vale_layer",
+
+    # === Standalone DOCX Pipeline (alternative API) ===
     "SurgicalPipeline",
     "SurgicalPipelineConfig",
     "SurgicalPipelineResult",
     "run_surgical_pipeline",
     "run_surgical_pipeline_cli",
-    # Integration with IR-based pipeline
-    "StructuralFixesConfig",
-    "StructuralFixesResult",
-    "run_structural_fixes",
+
+    # === Backward Compatibility ===
     "run_full_surgical_pipeline",
-    "integrate_with_holistic",
+
+    # === Individual Processors ===
     # Figure/Table
     "FigureTableProcessor",
     "FigureTableConfig",
