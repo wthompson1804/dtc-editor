@@ -42,13 +42,27 @@ from dtc_editor.surgical.pipeline import (
     run_surgical_pipeline_cli,
 )
 
+from dtc_editor.surgical.integration import (
+    StructuralFixesConfig,
+    StructuralFixesResult,
+    run_structural_fixes,
+    run_full_surgical_pipeline,
+    integrate_with_holistic,
+)
+
 __all__ = [
-    # Pipeline
+    # Standalone DOCX Pipeline
     "SurgicalPipeline",
     "SurgicalPipelineConfig",
     "SurgicalPipelineResult",
     "run_surgical_pipeline",
     "run_surgical_pipeline_cli",
+    # Integration with IR-based pipeline
+    "StructuralFixesConfig",
+    "StructuralFixesResult",
+    "run_structural_fixes",
+    "run_full_surgical_pipeline",
+    "integrate_with_holistic",
     # Figure/Table
     "FigureTableProcessor",
     "FigureTableConfig",
