@@ -10,6 +10,15 @@ Handles:
 6. In-text reference correction
 
 Reference: dtc_editor/rules/surgical_rules_manifest.yml (figures_tables section)
+
+IMPORTANT - OFFSET SHIFT WARNING:
+This processor can INSERT new paragraphs (captions), which shifts all subsequent
+paragraph indices. Any stored indices become stale after insertions.
+
+To prevent bugs:
+- Process figures/tables in REVERSE order to avoid index shifts affecting unprocessed items
+- Re-scan any references AFTER figure/table processing, before using stored indices
+- References are re-scanned in _fix_references() after caption insertions
 """
 from __future__ import annotations
 from dataclasses import dataclass, field

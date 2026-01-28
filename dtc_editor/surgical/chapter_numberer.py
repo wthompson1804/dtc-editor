@@ -124,6 +124,8 @@ class ChapterNumberer:
         self._assign_numbers()
 
         # Step 3: Apply changes
+        # IMPORTANT: Always rewrite headings to ensure clean formatting
+        # This prevents duplication from malformed source text or extra whitespace
         chapters_numbered = 0
         chapters_renumbered = 0
         special_chapters = 0
@@ -136,11 +138,11 @@ class ChapterNumberer:
             if chapter.assigned_number is None:
                 continue
 
-            # Determine what change is needed
-            if chapter.existing_number is None:
-                # Add new number
-                result = self._add_chapter_number(chapter)
-                if result:
+            # ALWAYS rewrite the heading with proper formatting
+            # This ensures we strip any existing number and apply clean formatting
+            result = self._rewrite_chapter_heading(chapter)
+            if result:
+                if chapter.existing_number is None:
                     chapters_numbered += 1
                     changes.append({
                         "type": "chapter_numbered",
@@ -148,24 +150,17 @@ class ChapterNumberer:
                         "title": chapter.title_text,
                         "new_number": chapter.assigned_number,
                     })
-            elif self.config.renumber_existing:
-                # Check if renumbering needed
-                try:
-                    existing = int(chapter.existing_number.rstrip('.'))
-                    if existing != chapter.assigned_number:
-                        result = self._renumber_chapter(chapter)
-                        if result:
-                            chapters_renumbered += 1
-                            changes.append({
-                                "type": "chapter_renumbered",
-                                "para_index": chapter.para_index,
-                                "title": chapter.title_text,
-                                "old_number": existing,
-                                "new_number": chapter.assigned_number,
-                            })
-                except ValueError:
-                    # Complex number like "2.1" - log and skip
-                    issues.append(f"Complex chapter number '{chapter.existing_number}' at '{chapter.title_text}'")
+                else:
+                    # Had existing number - count as renumbered even if same
+                    # (ensures clean formatting)
+                    chapters_renumbered += 1
+                    changes.append({
+                        "type": "chapter_renumbered",
+                        "para_index": chapter.para_index,
+                        "title": chapter.title_text,
+                        "old_number": chapter.existing_number,
+                        "new_number": chapter.assigned_number,
+                    })
 
         return ChapterNumbererResult(
             chapters_found=len(self.chapters),
@@ -194,14 +189,30 @@ class ChapterNumberer:
                 continue
 
             # Parse existing number if present
+            # IMPORTANT: Always strip leading numbers to avoid duplication
+            # Handles: "1 Title", "1. Title", "1.0 Title", "1.Title" (no space), etc.
+            # Also handles corrupted "4    4 VPP..." patterns by stripping all leading numbers
             existing_number = None
             title_text = text
 
-            # Pattern: "1 Introduction" or "1. Introduction" or "1.0 Introduction"
-            match = re.match(r'^(\d+(?:\.\d+)?\.?)\s+(.+)$', text)
-            if match:
-                existing_number = match.group(1)
-                title_text = match.group(2)
+            # Pattern: Any leading number pattern (with or without space after)
+            # Use a loop to strip ALL leading number patterns (handles "4 4 Title" cases)
+            while True:
+                # Match: digit(s), optional decimal parts, optional trailing dot, optional whitespace
+                match = re.match(r'^(\d+(?:\.\d+)*\.?)\s*(.*)$', title_text)
+                if match and match.group(2):
+                    # Found a leading number - save it (first one found) and strip it
+                    if existing_number is None:
+                        existing_number = match.group(1)
+                    title_text = match.group(2).strip()
+                    # Continue loop to strip any additional leading numbers
+                else:
+                    break
+
+            # Safety check: if we stripped everything, restore original
+            if not title_text.strip():
+                title_text = text
+                existing_number = None
 
             # Check if this is a special chapter
             title_lower = title_text.lower().strip()
@@ -234,8 +245,17 @@ class ChapterNumberer:
     # Modification Methods
     # =========================================================================
 
-    def _add_chapter_number(self, chapter: ChapterHeading) -> bool:
-        """Add number to an unnumbered chapter heading."""
+    def _rewrite_chapter_heading(self, chapter: ChapterHeading) -> bool:
+        """
+        Rewrite chapter heading with proper number and formatting.
+
+        ALWAYS rewrites the heading to ensure:
+        1. Any existing number is stripped (via title_text)
+        2. New number is applied consistently
+        3. Clean formatting without extra whitespace
+
+        This prevents duplication issues from malformed source text.
+        """
         if chapter.assigned_number is None:
             return False
 
@@ -243,29 +263,16 @@ class ChapterNumberer:
 
         # Format new number
         number_str = self.config.number_format.format(number=chapter.assigned_number)
-        new_text = f"{number_str}{self.config.separator}{chapter.title_text}"
+
+        # Use title_text which has existing number stripped
+        # Also strip to remove any leading/trailing whitespace
+        clean_title = chapter.title_text.strip()
+        new_text = f"{number_str}{self.config.separator}{clean_title}"
 
         # Preserve formatting by updating runs
         self._update_paragraph_text(para, new_text)
 
-        logger.info(f"Added chapter number: '{chapter.original_text}' → '{new_text}'")
-        return True
-
-    def _renumber_chapter(self, chapter: ChapterHeading) -> bool:
-        """Update number of an already-numbered chapter."""
-        if chapter.assigned_number is None:
-            return False
-
-        para = self.doc.paragraphs[chapter.para_index]
-
-        # Format new number
-        number_str = self.config.number_format.format(number=chapter.assigned_number)
-        new_text = f"{number_str}{self.config.separator}{chapter.title_text}"
-
-        # Preserve formatting by updating runs
-        self._update_paragraph_text(para, new_text)
-
-        logger.info(f"Renumbered chapter: '{chapter.original_text}' → '{new_text}'")
+        logger.info(f"Rewrote chapter heading: '{chapter.original_text}' → '{new_text}'")
         return True
 
     def _update_paragraph_text(self, para, new_text: str) -> None:

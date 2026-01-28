@@ -28,6 +28,24 @@ Recommended workflows:
         Input DOCX → integrate_with_holistic() → Fixed DOCX path
                    → run_holistic_pipeline() → Output IR
                    → emit_clean_docx() → Output DOCX
+
+IMPORTANT - OFFSET SHIFT GUARDRAILS:
+When modifying DOCX paragraphs, inserting/deleting paragraphs shifts all subsequent
+indices. To prevent index-related bugs:
+
+1. Processing Order: Layer 1 stages run in this order:
+   a) Chapter numbering (modifies existing paragraphs, no insertions)
+   b) Figure/table processing (CAN INSERT paragraphs for captions)
+   c) Acronym expansion (modifies existing paragraphs, no insertions)
+
+2. Reverse Processing: Process items in reverse document order when inserting
+   to avoid affecting unprocessed items.
+
+3. Re-scanning: Re-scan indices after modifications before using stored values.
+   FigureTableProcessor re-scans references after caption insertion.
+
+4. Layer Isolation: Layer 2 (IR/Vale) runs on the SAVED output from Layer 1,
+   ensuring clean paragraph state.
 """
 from __future__ import annotations
 from dataclasses import dataclass, field
